@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9ea5a6ebb1dfd6747acc9961ab3714d3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Prefabs/WallStraight.prefab
+  uploadId: 815132

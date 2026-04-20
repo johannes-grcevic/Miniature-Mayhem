@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fda40bea7d2bf5044b0d326a2e2aed98
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Materials/BrickShader.mat
+  uploadId: 815132

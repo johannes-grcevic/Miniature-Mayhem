@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac9f634d5607a2f45bcbb622db02987a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Materials/RailingsShader.mat
+  uploadId: 815132

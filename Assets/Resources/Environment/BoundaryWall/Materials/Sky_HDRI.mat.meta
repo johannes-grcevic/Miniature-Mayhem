@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b0610649f49de943baddc7fd7952046
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Materials/Sky_HDRI.mat
+  uploadId: 815132

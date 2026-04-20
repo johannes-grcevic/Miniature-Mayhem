@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ecab57ecb86b0fb4fa738e0220a32edb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Prefabs/GatePosts.prefab
+  uploadId: 815132

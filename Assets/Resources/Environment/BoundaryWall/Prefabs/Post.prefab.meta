@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 31bd5e13f1282a044845ae44f3d3fa0b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317324
+  packageName: Boundary Wall
+  packageVersion: 1.0
+  assetPath: Assets/BoundaryWall/Prefabs/Post.prefab
+  uploadId: 815132
