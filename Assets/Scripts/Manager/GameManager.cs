@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+[RequireComponent(typeof(GameStateController))]
 
+[RequireComponent(typeof(WaveController))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
@@ -13,38 +16,49 @@ public class GameManager : MonoBehaviour
     private CursorLockMode cursorLockMode;
 
     private EntityPlayer player;
+    private WaveController waveController;
+    private GameStateController stateController;
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance)
+        if (!Instance)
         {
-            DestroyImmediate(gameObject);
-            return;
+            Instance = this;
         }
 
-        Instance = this;
         DontDestroyOnLoad(gameObject);
 
         player = FindFirstObjectByType<EntityPlayer>();
+        stateController = GetComponent<GameStateController>();
+        waveController = GetComponent<WaveController>();
     }
 
-    void Start()
+    private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = cursorLockMode;
+        SetCursor(true, cursorLockMode);
+    }
+
+    public void SetCursor(bool visible, CursorLockMode lockMode)
+    {
+        cursorLockMode = lockMode;
+
+        Cursor.visible = visible;
+        Cursor.lockState = lockMode;
     }
 
     public void ReloadScene(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);
+        Time.timeScale = 1f;
+        stateController.SetGameState(GameState.Active);
     }
 
     public void ReloadScene()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        OnSceneReload.Invoke(index);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        OnSceneReload.Invoke(index);
+        ReloadScene(index);
     }
 
     public void Quit()
@@ -53,13 +67,13 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public EntityPlayer GetPlayer()
-    {
-        return player;
-    }
+    public EntityPlayer GetPlayer() => player;
 
-    public Transform GetPlayerTransform()
-    {
-        return player.transform;
-    }
+    public Transform GetPlayerTransform() => player.transform;
+
+    public GameStateController GetGameStateController() => stateController;
+
+    public WaveController GetWaveController() => waveController;
+
+    public bool IsPaused() => stateController.GetGameState() != GameState.Active;
 }

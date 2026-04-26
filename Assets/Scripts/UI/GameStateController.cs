@@ -2,47 +2,68 @@ using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
     [SerializeField]
     private InputActionReference pauseAction;
 
-    [SerializeField]
-    private Entity player;
-    
-    [SerializeField]
-    private WaveController waveController;
-
     [SerializedDictionary("Game State", "Elements")]
     public SerializedDictionary<GameState, List<GameObject>> UIElements;
 
     private GameState currentState;
+    private GameState previousState;
+    private GameManager gameManager;
     
-    void Awake()
+    private void Awake()
     {
-        waveController.OnWaveEnded.AddListener(SetGameState);
-        player.OnDeath.AddListener(SetGameState);
+        gameManager = GameManager.Instance;
+        gameManager.GetPlayer().OnDeath.AddListener(SetGameState);
+        gameManager.GetWaveController().OnWaveEnded.AddListener(SetGameState);
+
         pauseAction.action.performed += OnPauseButtonPressed;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     protected void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
+        if (pauseAction == null) return;
+        
         // toggle pause state
-        SetGameState(currentState == GameState.Paused ? GameState.Active : GameState.Paused);
+        SetGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
+
+        // toggle global volume
+        AudioListener.volume = currentState == GameState.Paused ? 0f : 1f;
     }
 
     protected void OnGameStateChanged(GameState state)
     {
         DrawUI(state);
 
-        // freeze the game time
-        Time.timeScale = state == GameState.Active ? 1.0f : 0.0f;
+        // freeze game time when the game is not running
+        Time.timeScale = state == GameState.Active ? 1f : 0f;
+
+        switch (currentState)
+        {
+            case GameState.GameOver:
+            case GameState.Success:
+            case GameState.Paused:
+                gameManager.SetCursor(true, CursorLockMode.None);
+                break;
+            case GameState.Active:
+                gameManager.SetCursor(false, CursorLockMode.Locked);
+                break;
+            default:
+                gameManager.SetCursor(true, CursorLockMode.None);
+                break;
+        }
     }
 
     public void DrawUI(GameState state)
     {
+        if (UIElements == null || UIElements.Values == null) return;
+        
         foreach (var element in UIElements)
         {
             element.Value.ForEach(go => go.SetActive(element.Key == state));
@@ -51,12 +72,10 @@ public class GameStateController : MonoBehaviour
 
     public void SetGameState(GameState state)
     {
+        previousState = currentState;
         currentState = state;
         OnGameStateChanged(state);
     }
 
-    public GameState GetGameState()
-    {
-        return currentState;
-    }
+    public GameState GetGameState() => currentState;
 }

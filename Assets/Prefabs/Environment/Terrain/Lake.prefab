@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7477056828915942309}
   - component: {fileID: 1552615866769564004}
   - component: {fileID: 7091281398938800543}
+  - component: {fileID: 7464290867193796587}
+  - component: {fileID: 8289632915600059247}
   m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
@@ -90,6 +92,42 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2672196780654646980}
   m_Mesh: {fileID: 4300002, guid: abc00000000006625704227329035661, type: 3}
+--- !u!65 &7464290867193796587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672196780654646980}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9999998, y: 0.01, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8289632915600059247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672196780654646980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e037d79687b134b4eb25c6b5996d3a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageOnStay
+  target: {fileID: 0}
+  damage: 5
+  damageRate: 1
 --- !u!1 &7710538939980032764
 GameObject:
   m_ObjectHideFlags: 0

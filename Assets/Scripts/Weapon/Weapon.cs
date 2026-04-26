@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
     private static readonly int IsAimingHash = Animator.StringToHash("isAiming");
@@ -26,7 +27,20 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private float zoomSpeed = 2f;
 
+    [SerializeField]
+    private AudioClip fireSound;
+
+    [SerializeField, Range(0f, 1f)]
+    private float volume = 1f;
+
+    private AudioSource weaponSource;
     private bool isAiming = false;
+
+    private void Awake()
+    {
+        weaponSource = GetComponent<AudioSource>();
+        weaponSource.playOnAwake = false;
+    }
 
     private void OnEnable()
     {
@@ -42,6 +56,10 @@ public class Weapon : MonoBehaviour
 
     protected void OnFire(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.IsPaused()) return;
+        
+        weaponSource.PlayOneShot(fireSound, volume);
+
         Instantiate(projectile, projectileJoint.position, projectileJoint.rotation).
             OnCollision.AddListener(OnProjectileCollision);
     }
@@ -59,18 +77,18 @@ public class Weapon : MonoBehaviour
 
     protected void OnProjectileCollision(GameObject other)
     {
-        if (other.TryGetComponent(out EntityEnemy entity))
+        if (other.TryGetComponent(out Entity entity))
         {
             DoDamage(entity, damage);
         }
     }
 
-    public void DoDamage(EntityEnemy entity, int damage)
+    public void DoDamage(Entity entity, int damage)
     {
         if (entity.IsDead()) return;
         
         entity.TakeDamage(damage);
-        PlayHitAnimation(entity);
+        PlayHitAnimation(entity as EntityEnemy);
     }
 
     public void PlayHitAnimation(EntityEnemy entity)
