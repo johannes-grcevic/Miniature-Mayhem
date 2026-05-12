@@ -24,9 +24,6 @@ public class EntitySpawner : MonoBehaviour
     [SerializeField]
     private ParticleSpawner spawner;
 
-    [SerializeField, ConditionalField(nameof(spawnOnCollison))]
-    private Terrain terrain;
-
     [SerializeField, ConditionalField(nameof(spawner))]
     private bool spawnOnCollison;
 
@@ -55,7 +52,7 @@ public class EntitySpawner : MonoBehaviour
 
             if (spawnOnCollison)
             {
-                ParticleSystem ps = spawner.SpawnParticle(TerrainUtils.GetRandomPosition(terrain, yOffset), Quaternion.identity);
+                ParticleSystem ps = spawner.SpawnParticle(TerrainUtils.GetRandomPosition(Terrain.activeTerrain, yOffset), Quaternion.identity);
 
                 if (ps.TryGetComponent(out ParticleCollisionHandler handler))
                 {

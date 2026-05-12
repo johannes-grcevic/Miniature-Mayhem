@@ -74,27 +74,16 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
-		{
-			get
-			{
-				#if ENABLE_INPUT_SYSTEM
-				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
-				return false;
-				#endif
-			}
-		}
+        public CharacterController CharacterController => _controller;
+		public Vector3 CurrentVelocity => _controller.velocity;
+        public bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
-		private void Start()
+        private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<CharacterInput>();
-#if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
-#else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
+
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;

@@ -16,7 +16,6 @@ public class FPSCounter : MonoBehaviour
     private float refreshRate = 0.1f;
 
     private WaitForSeconds waitForRefresh;
-
     private float frameCount;
     private bool displayToggle;
 
@@ -26,8 +25,8 @@ public class FPSCounter : MonoBehaviour
 
         waitForRefresh = new WaitForSeconds(refreshRate);
 
-        // fps counter is off by default
-        displayLabel.gameObject.SetActive(false);
+        // fps counter is off by default, unless in the editor
+        displayLabel.gameObject.SetActive(Application.isEditor);
     }
 
     private IEnumerator Start()

@@ -97,7 +97,7 @@ Shader "Davis3D/AlienPlants_Vol3/Enviroment/Landscape_V3"
 
 		
 
-		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry" "UniversalMaterialType"="Lit" }
+		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry" "UniversalMaterialType"="Lit" "TerrainCompatible"="True" }
 
 		Cull Back
 		ZWrite On

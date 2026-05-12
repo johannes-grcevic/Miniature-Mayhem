@@ -139,7 +139,7 @@ AssetOrigin:
   serializedVersion: 1
   productId: 325856
   packageName: MONSTER FULL PACK VOL 3
-  packageVersion: 1.12
-  assetPath: Assets/Resources/Protofactor/MonsterFullPackVol3/MonsterPackVol17/Pterokarce/FBX
+  packageVersion: 1.141
+  assetPath: Assets/_Assets/Entity/MonsterFullPackVol3/MonsterPackVol17/Pterokarce/FBX
     Files/Pterokarce@Run_RM.fbx
-  uploadId: 900774
+  uploadId: 912528

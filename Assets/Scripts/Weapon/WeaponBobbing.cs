@@ -20,34 +20,27 @@ public class WeaponBobbing : MonoBehaviour
     private float smoothness = 5f;
 
     private float timer;
-    private CharacterController characterController;
+    private Vector3 originalPosition;
 
-    private Vector3 defaultPosition; // Store the original position
-
-    private void Awake()
-    {
-        characterController = playerController.GetComponent<CharacterController>();
-    }
-
-    void Start()
+    private void Start()
     {
         // Record the starting position so we can bob relative to it
-        defaultPosition = transform.localPosition;
+        originalPosition = transform.localPosition;
     }
 
-    void Update()
+    private void Update()
     {
         ApplyBobbing();
     }
 
     public void ApplyBobbing()
     {
-        Vector2 movement = moveAction.action.ReadValue<Vector2>();
+        Vector2 playerMovement = moveAction.action.ReadValue<Vector2>();
 
-        Vector3 horizontalVelocity = new(characterController.velocity.x, 0, characterController.velocity.z);
+        Vector3 horizontalVelocity = new(playerController.CurrentVelocity.x, 0, playerController.CurrentVelocity.z);
         float currentSpeed = horizontalVelocity.magnitude;
 
-        float moveSpeed = movement.sqrMagnitude;
+        float moveSpeed = playerMovement.sqrMagnitude;
         float bobOffset;
 
         if (moveSpeed > 0.1f && playerController.Grounded)
@@ -62,9 +55,9 @@ public class WeaponBobbing : MonoBehaviour
         }
 
         transform.localPosition = new Vector3(
-            defaultPosition.x,
-            defaultPosition.y + bobOffset,
-            defaultPosition.z
+            originalPosition.x,
+            originalPosition.y + bobOffset,
+            originalPosition.z
         );
     }
 }

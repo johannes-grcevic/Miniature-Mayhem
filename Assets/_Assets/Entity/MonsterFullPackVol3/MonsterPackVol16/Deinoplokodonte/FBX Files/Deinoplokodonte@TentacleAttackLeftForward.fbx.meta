@@ -110,7 +110,7 @@ AssetOrigin:
   serializedVersion: 1
   productId: 325856
   packageName: MONSTER FULL PACK VOL 3
-  packageVersion: 1.12
-  assetPath: Assets/Resources/Protofactor/MonsterFullPackVol3/MonsterPackVol16/Deinoplokodonte/FBX
+  packageVersion: 1.141
+  assetPath: Assets/_Assets/Entity/MonsterFullPackVol3/MonsterPackVol16/Deinoplokodonte/FBX
     Files/Deinoplokodonte@TentacleAttackLeftForward.fbx
-  uploadId: 900774
+  uploadId: 912528

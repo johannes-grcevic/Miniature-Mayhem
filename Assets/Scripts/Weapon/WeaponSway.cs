@@ -3,19 +3,33 @@ using UnityEngine.InputSystem;
 
 public class WeaponSway : MonoBehaviour
 {
-    public float smothness = 8f;
-    public float multiplier = 0.1f;
+    [Header("Sway")]
+    public float multiplier = 0.02f;
+    public float maxRotation = 5f;
 
-    void Update()
+    [Header("Smoothing")]
+    public float smoothness = 12f;
+
+    private Quaternion targetRotation;
+
+    void LateUpdate()
     {
-        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * multiplier;
+        Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
-        // calculate target rotation (Sway)
-        Quaternion rotationX = Quaternion.AngleAxis(-mouseDelta.y, Vector3.right);
-        Quaternion rotationY = Quaternion.AngleAxis(mouseDelta.x, Vector3.up);
-        Quaternion targetRotation = rotationX * rotationY;
+        // Mouse movement
+        float mouseX = mouseDelta.x * multiplier;
+        float mouseY = mouseDelta.y * multiplier;
 
-        // apply smooth transition
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smothness * Time.deltaTime);
+        // Clamp sway
+        mouseX = Mathf.Clamp(mouseX, -maxRotation, maxRotation);
+        mouseY = Mathf.Clamp(mouseY, -maxRotation, maxRotation);
+
+        // Target rotation
+        targetRotation = Quaternion.Euler(-mouseY, mouseX, 0f);
+
+        // Frame-rate independent smoothing
+        float t = 1f - Mathf.Exp(-smoothness * Time.deltaTime);
+
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, t);
     }
 }

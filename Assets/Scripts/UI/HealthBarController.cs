@@ -4,19 +4,19 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     [SerializeField]
-    private Entity entity;
+    private Entity targetEntity;
 
     [SerializeField]
     private Image fillImage;
 
     private void Awake()
     {
-        entity.OnHealthChanged.AddListener(SetFillValue);
+        targetEntity.OnHealthChanged.AddListener(SetFillValue);
     }
 
     public void SetFillValue(int value)
     {
         // normalize health value and set the fill amount
-        fillImage.fillAmount = Mathf.InverseLerp(0, entity.GetMaxHealth(), value);
+        fillImage.fillAmount = Mathf.InverseLerp(0, targetEntity.GetMaxHealth(), value);
     }
 }
