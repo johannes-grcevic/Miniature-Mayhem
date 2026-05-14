@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class WaveController : MonoBehaviour
 {
-    public UnityEvent<GameState> OnWaveEnded { get; private set; } = new();
+    public UnityEvent<GameState> OnWaveTimerStopped = new();
     
     [SerializeField, Tooltip("The duration of each wave in seconds.")]
     private float waveDuration = 120f;
@@ -31,6 +31,6 @@ public class WaveController : MonoBehaviour
 
     protected void OnTimerStopped()
     {
-        OnWaveEnded.Invoke(GameState.Success);
+        OnWaveTimerStopped.Invoke(GameState.Win);
     }
 }

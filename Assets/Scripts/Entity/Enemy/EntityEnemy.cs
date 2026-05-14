@@ -57,7 +57,7 @@ public class EntityEnemy : Entity
     private bool isAttacking = false;
     private bool isTargetLost = false;
 
-    public override void Awake()
+    protected override void Awake()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -67,7 +67,7 @@ public class EntityEnemy : Entity
         base.Awake();
     }
 
-    public void Start()
+    private void Start()
     {
         if (attackRange == 0f)
         {
@@ -75,17 +75,17 @@ public class EntityEnemy : Entity
         }
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         InvokeRepeating(nameof(PlayIdleClip), 0f, Mathf.Max(0.1f, idleRepeatRate));
     }
 
-    public void OnDisable()
+    private void OnDisable()
     {
         CancelInvoke(nameof(PlayIdleClip));
     }
 
-    void Update()
+    private void Update()
     {
         isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
 
@@ -95,7 +95,7 @@ public class EntityEnemy : Entity
         }
     }
 
-    void OnAnimatorMove()
+    private void OnAnimatorMove()
     {
         SearchForTarget(agent.destination);
 
@@ -117,7 +117,7 @@ public class EntityEnemy : Entity
         // only allow a hit if the target is in range of the player
         if (Vector3.Distance(agent.destination, transform.position) > attackRange) return;
 
-        GameManager.Instance.GetPlayer().TakeDamage(damage);
+        GameManager.Instance.Player.TakeDamage(damage);
         PlayAudioClip(GetRandomClip(attackClips), volume);
 
         isTargetLost = false;

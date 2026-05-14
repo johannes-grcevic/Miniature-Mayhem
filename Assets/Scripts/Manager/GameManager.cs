@@ -1,79 +1,56 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-[RequireComponent(typeof(GameStateController))]
 
-[RequireComponent(typeof(WaveController))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 
-    public UnityEvent<int> OnSceneReload { get; private set; } = new();
-    public UnityEvent OnGameQuit { get; private set; } = new();
+    public EntityPlayer Player { get; private set; }
 
     [SerializeField]
-    private CursorLockMode cursorLockMode;
-
-    private EntityPlayer player;
-    private WaveController waveController;
-    private GameStateController stateController;
+    private UnityEvent<GameState> OnLevelRestart = new();
 
     private void Awake()
     {
         if (!Instance)
         {
             Instance = this;
+            Player = FindFirstObjectByType<EntityPlayer>();
+
+            DontDestroyOnLoad(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
-
-        player = FindFirstObjectByType<EntityPlayer>();
-        stateController = GetComponent<GameStateController>();
-        waveController = GetComponent<WaveController>();
-    }
-
-    private void Start()
-    {
-        SetCursor(true, cursorLockMode);
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void SetCursor(bool visible, CursorLockMode lockMode)
     {
-        cursorLockMode = lockMode;
-
         Cursor.visible = visible;
         Cursor.lockState = lockMode;
     }
 
-    public void ReloadScene(int buildIndex)
+    public void RestartCurrentLevel()
     {
-        SceneManager.LoadScene(buildIndex);
-        Time.timeScale = 1f;
-        stateController.SetGameState(GameState.Active);
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ReloadScene()
+    public void LoadScene(int index)
     {
-        int index = SceneManager.GetActiveScene().buildIndex;
-
-        OnSceneReload.Invoke(index);
-        ReloadScene(index);
+        SceneManager.LoadScene(index);
+        OnLevelRestart.Invoke(GameState.Running);
     }
 
     public void Quit()
     {
-        OnGameQuit.Invoke();
+#if UNITY_EDITOR        
+        EditorApplication.ExitPlaymode();
+#else
         Application.Quit();
+#endif
     }
-
-    public EntityPlayer GetPlayer() => player;
-
-    public Transform GetPlayerTransform() => player.transform;
-
-    public GameStateController GetGameStateController() => stateController;
-
-    public WaveController GetWaveController() => waveController;
-
-    public bool IsPaused() => stateController.GetGameState() != GameState.Active;
 }

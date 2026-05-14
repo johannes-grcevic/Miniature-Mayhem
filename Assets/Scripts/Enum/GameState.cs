@@ -1,7 +1,8 @@
 public enum GameState
 {
-    Active,
+    None,
+    Running,
     Paused,
-    GameOver,
-    Success
+    Over,
+    Win
 }

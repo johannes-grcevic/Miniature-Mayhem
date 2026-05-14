@@ -8,12 +8,12 @@ public class Entity : MonoBehaviour
     public UnityEvent<int> OnHealthChanged { get; private set; } = new();
     public UnityEvent<GameState> OnDeath { get; private set; } = new();
 
-    [SerializeField]
+    [SerializeField, Header("Health")]
     private int maxHealth = 50;
 
     private int currentHealth;
 
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -55,7 +55,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Die()
     {
-        OnDeath.Invoke(GameState.GameOver);
+        OnDeath.Invoke(GameState.Over);
     }
 
     public void SetMaxHealth(int value)

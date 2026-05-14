@@ -5,77 +5,87 @@ using UnityEngine.InputSystem;
 
 public class GameStateController : MonoBehaviour
 {
+    [SerializeField, SerializedDictionary("Game State", "UI Elements")]
+    private SerializedDictionary<GameState, List<GameObject>> UIElements;
+
     [SerializeField]
     private InputActionReference pauseAction;
 
-    [SerializedDictionary("Game State", "Elements")]
-    public SerializedDictionary<GameState, List<GameObject>> UIElements;
-
     private GameState currentState;
     private GameState previousState;
-    private GameManager gameManager;
-    
+
     private void Awake()
     {
-        gameManager = GameManager.Instance;
-        gameManager.GetPlayer().OnDeath.AddListener(SetGameState);
-        gameManager.GetWaveController().OnWaveEnded.AddListener(SetGameState);
-
         pauseAction.action.performed += OnPauseButtonPressed;
-
-        DontDestroyOnLoad(gameObject);
     }
 
-    protected void OnPauseButtonPressed(InputAction.CallbackContext context)
+    private void Start()
     {
-        if (pauseAction == null) return;
-        
-        // toggle pause state
-        SetGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
-
-        // toggle global volume
-        AudioListener.volume = currentState == GameState.Paused ? 0f : 1f;
-    }
-
-    protected void OnGameStateChanged(GameState state)
-    {
-        DrawUI(state);
-
-        // freeze game time when the game is not running
-        Time.timeScale = state == GameState.Active ? 1f : 0f;
-
-        switch (currentState)
-        {
-            case GameState.GameOver:
-            case GameState.Success:
-            case GameState.Paused:
-                gameManager.SetCursor(true, CursorLockMode.None);
-                break;
-            case GameState.Active:
-                gameManager.SetCursor(false, CursorLockMode.Locked);
-                break;
-            default:
-                gameManager.SetCursor(true, CursorLockMode.None);
-                break;
-        }
-    }
-
-    public void DrawUI(GameState state)
-    {
-        if (UIElements == null || UIElements.Values == null) return;
-        
-        foreach (var element in UIElements)
-        {
-            element.Value.ForEach(go => go.SetActive(element.Key == state));
-        }
+        GameManager.Instance.Player.OnDeath.AddListener(SetGameState);
+        SetGameState(GameState.Running);
     }
 
     public void SetGameState(GameState state)
     {
         previousState = currentState;
         currentState = state;
+
+        // call game state changed event handler
         OnGameStateChanged(state);
     }
 
     public GameState GetGameState() => currentState;
+
+    private void OnGameStateChanged(GameState newState)
+    {
+        OnUIDraw();
+
+        // freeze time when the game is not running
+        Time.timeScale = newState == GameState.Running ? 1.0f : 0.0f;
+
+        switch (currentState)
+        {
+            case GameState.Over:
+            case GameState.Win:
+            case GameState.Paused:
+                GameManager.Instance.SetCursor(true, CursorLockMode.None);
+                break;
+            case GameState.Running:
+                GameManager.Instance.SetCursor(false, CursorLockMode.Locked);
+                break;
+            case GameState.None:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnPauseButtonPressed(InputAction.CallbackContext context)
+    {
+        if (pauseAction == null) return;
+
+        // set pause state
+        SetGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
+
+        // set global volume state
+        AudioListener.volume = currentState == GameState.Paused ? 0f : 1f;
+    }
+
+    private void OnUIDraw()
+    {
+        if (UIElements == null || UIElements.Count == 0) return;
+        
+        foreach (var element in UIElements)
+        {
+            if (!UIElements.TryGetValue(element.Key, out List<GameObject> elements))
+            {
+                continue;
+            }
+
+            foreach (GameObject go in elements)
+            {
+                go.SetActive(element.Key == currentState);
+            }
+        }
+    }
 }

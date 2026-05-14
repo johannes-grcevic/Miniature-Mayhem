@@ -55,9 +55,7 @@ public class Weapon : MonoBehaviour
     }
 
     protected void OnFire(InputAction.CallbackContext context)
-    {
-        if (GameManager.Instance.IsPaused()) return;
-        
+    {     
         weaponSource.PlayOneShot(fireSound, volume);
 
         Instantiate(projectile, projectileJoint.position, projectileJoint.rotation).
@@ -93,7 +91,7 @@ public class Weapon : MonoBehaviour
 
     public void PlayHitAnimation(EntityEnemy entity)
     {
-        Transform playerTransform = GameManager.Instance.GetPlayerTransform();
+        Transform playerTransform = GameManager.Instance.Player.transform;
         Vector3 directionToTarget = entity.transform.position - playerTransform.position;
         float dotProduct = Vector3.Dot(playerTransform.forward, directionToTarget);
 

@@ -115,7 +115,7 @@ public class EntitySpawner : MonoBehaviour
 
     public bool CanSpawn()
     {
-        return entities.Length > 0 && !GameManager.Instance.GetPlayer().IsDead();
+        return entities.Length > 0 && !GameManager.Instance.Player.IsDead();
     }
 
     public Entity GetRandomEntity()
