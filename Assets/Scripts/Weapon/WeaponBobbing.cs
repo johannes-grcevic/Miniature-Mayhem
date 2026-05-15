@@ -9,16 +9,16 @@ public class WeaponBobbing : MonoBehaviour
     [SerializeField]
     private FirstPersonController playerController;
 
-    [SerializeField]
+    [SerializeField, Header("Bobbing")]
     private float speed = 5f;
 
     [SerializeField]
-    private float amount = 0.005f;
+    private float intensity = 0.005f;
 
-    [SerializeField]
+    [SerializeField, Header("Smoothing")]
     private float smoothness = 5f;
 
-    private float timer;
+    private float bobTimer;
     private Vector3 originalPosition;
 
     private void Start()
@@ -44,13 +44,13 @@ public class WeaponBobbing : MonoBehaviour
 
         if (moveSpeed > 0.1f && playerController.Grounded)
         {
-            timer += Time.deltaTime * currentSpeed * speed;
-            bobOffset = Mathf.Sin(timer) * amount;
+            bobTimer += Time.deltaTime * currentSpeed * speed;
+            bobOffset = Mathf.Sin(bobTimer) * intensity;
         }
         else
         {
-            timer = 0f;
-            bobOffset = Mathf.Lerp(timer, 0f, Time.deltaTime * smoothness);
+            bobTimer = 0f;
+            bobOffset = Mathf.Lerp(bobTimer, 0f, Time.deltaTime * smoothness);
         }
 
         transform.localPosition = new Vector3(

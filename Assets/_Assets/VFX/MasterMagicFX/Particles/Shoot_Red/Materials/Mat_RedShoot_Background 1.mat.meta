@@ -11,6 +11,6 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Shoot_Red/Materials/Mat_RedShoot_Background
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Shoot_Red/Materials/Mat_RedShoot_Background
     1.mat
   uploadId: 740422

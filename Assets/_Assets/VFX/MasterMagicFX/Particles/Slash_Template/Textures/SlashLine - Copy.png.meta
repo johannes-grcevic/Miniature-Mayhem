@@ -169,5 +169,6 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Slash_Template/Textures/SlashLine - Copy.png
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Slash_Template/Textures/SlashLine
+    - Copy.png
   uploadId: 740422

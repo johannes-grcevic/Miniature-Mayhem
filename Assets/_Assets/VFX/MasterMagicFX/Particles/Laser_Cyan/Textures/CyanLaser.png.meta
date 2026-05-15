@@ -130,5 +130,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Laser_Cyan/Textures/CyanLaser.png
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Laser_Cyan/Textures/CyanLaser.png
   uploadId: 740422

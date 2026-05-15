@@ -1,6 +1,7 @@
 using ConditionalField;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EntitySpawner : MonoBehaviour
@@ -8,11 +9,8 @@ public class EntitySpawner : MonoBehaviour
     [SerializeField]
     private Entity[] entities;
 
-    [SerializeField]
+    [SerializeField, Header("Spawning")]
     private float respawnDelay = 10f;
-
-    [SerializeField]
-    private bool destroyOnSpawn = false;
 
     [SerializeField, ConditionalField(nameof(spawnOnCollison), Conditional.Options.Invert)]
     private bool randomSpawn = false;
@@ -20,39 +18,65 @@ public class EntitySpawner : MonoBehaviour
     [SerializeField, ConditionalField(nameof(randomSpawn))]
     private Vector2 spawnRange = new(-5f, 5f);
 
-    [Header("VFX Spawner")]
-    [SerializeField]
-    private ParticleSpawner spawner;
+    [SerializeField, Space(10)]
+    private bool destroyOnSpawn = false;
 
-    [SerializeField, ConditionalField(nameof(spawner))]
+    [SerializeField, Header("VFX Spawner")]
     private bool spawnOnCollison;
 
     [SerializeField, ConditionalField(nameof(spawnOnCollison)), Range(0f, 600f)]
     private float yOffset = 50f;
 
-    private WaitForSeconds waitForRespawnDelay;
+    private ParticleSpawner particleSpawner;
+    private bool hasParticleSpawner = false;
 
-    void Awake()
+    private void Awake()
     {
-        waitForRespawnDelay = new WaitForSeconds(respawnDelay);
+        if (!TryGetComponent(out particleSpawner))
+        {
+            foreach (Transform child in transform.root)
+            {
+                // search all children for a particle spawner
+                if (child.TryGetComponent(out particleSpawner))
+                {
+
+                    hasParticleSpawner = true;
+                    break; // stop searching after the first one is found
+                }
+            }
+        }
+        else
+        {
+            // parent has a particle spawner
+            hasParticleSpawner = true;
+        }
     }
 
-    void Start()
-    { 
-        StartCoroutine(SpawnLoop());
+    private void Start()
+    {
+        _ = SpawnLoopAsync(destroyCancellationToken);
     }
 
-    private IEnumerator SpawnLoop()
+    private async Awaitable SpawnLoopAsync(CancellationToken token)
     {
         while (true)
         {
-            yield return waitForRespawnDelay; // wait before spawning another entity
+            try
+            {
+                // Wait for the respawn delay before spawning another entity
+                await Awaitable.WaitForSecondsAsync(respawnDelay, token);
+            }
+            catch (System.OperationCanceledException)
+            {
+                // Smoothly exit the loop if the object is destroyed during the wait period
+                break;
+            }
 
             if (!CanSpawn()) break;
 
-            if (spawnOnCollison)
+            if (spawnOnCollison && hasParticleSpawner)
             {
-                ParticleSystem ps = spawner.SpawnParticle(TerrainUtils.GetRandomPosition(Terrain.activeTerrain, yOffset), Quaternion.identity);
+                ParticleSystem ps = particleSpawner.SpawnParticle(TerrainUtils.GetRandomPosition(Terrain.activeTerrain, yOffset), Quaternion.identity);
 
                 if (ps.TryGetComponent(out ParticleCollisionHandler handler))
                 {
@@ -83,6 +107,9 @@ public class EntitySpawner : MonoBehaviour
                     SpawnEntity(random, spawnPosition, random.transform.rotation);
                 }
             }
+
+            // Break the loop immediately if the spawner self-destructed
+            if (destroyOnSpawn) break;
         }
     }
 
@@ -99,10 +126,10 @@ public class EntitySpawner : MonoBehaviour
 
     public Entity SpawnEntity(Entity entity, Vector3 position, Quaternion rotation)
     {
-        if (!spawnOnCollison)
+        if (!spawnOnCollison && hasParticleSpawner)
         {
             // spawn a particle to mask entity spawning
-            spawner.SpawnParticle(position, rotation);
+            particleSpawner.SpawnParticle(position, rotation);
         }
 
         if (destroyOnSpawn)

@@ -143,5 +143,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Commons/Textures/LightningSparkleHit.png
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Commons/Textures/LightningSparkleHit.png
   uploadId: 740422

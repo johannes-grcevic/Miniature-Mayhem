@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Shoot_Green/Materials/Mat_GreenShoot_TestExplosion.mat
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Shoot_Green/Materials/Mat_GreenShoot_TestExplosion.mat
   uploadId: 740422

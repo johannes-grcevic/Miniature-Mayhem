@@ -6,28 +6,28 @@ public class Weapon : MonoBehaviour
 {
     private static readonly int IsAimingHash = Animator.StringToHash("isAiming");
 
-    [SerializeField] 
+    [SerializeField, Header("Input")] 
     private InputActionReference fireAction;
 
     [SerializeField]
     private InputActionReference aimAction;
 
-    [SerializeField]
+    [SerializeField, Header("Weapon")]
     private ProjectileMove projectile;
 
     [SerializeField]
     private Transform projectileJoint;
 
     [SerializeField]
-    private GameObject crosshair;
-
-    [SerializeField]
     private int damage = 10;
+
+    [SerializeField, Header("Sights")]
+    private GameObject crosshair;
 
     [SerializeField]
     private float zoomSpeed = 2f;
 
-    [SerializeField]
+    [SerializeField, Header("Audio")]
     private AudioClip fireSound;
 
     [SerializeField, Range(0f, 1f)]
@@ -56,10 +56,12 @@ public class Weapon : MonoBehaviour
 
     protected void OnFire(InputAction.CallbackContext context)
     {     
-        weaponSource.PlayOneShot(fireSound, volume);
-
+        // spawn projectile
         Instantiate(projectile, projectileJoint.position, projectileJoint.rotation).
             OnCollision.AddListener(OnProjectileCollision);
+
+        // play fire sound
+        weaponSource.PlayOneShot(fireSound, volume);
     }
 
     protected void OnAim(InputAction.CallbackContext context)
@@ -95,7 +97,7 @@ public class Weapon : MonoBehaviour
         Vector3 directionToTarget = entity.transform.position - playerTransform.position;
         float dotProduct = Vector3.Dot(playerTransform.forward, directionToTarget);
 
-        entity.PlayAnimation(dotProduct > 0 ? EntityEnemy.HitFrontStateName : EntityEnemy.HitBackStateName, 0);
+        entity.PlayAnimation(dotProduct > 0 ? EntityEnemy.HIT_FRONT_STATE_TAG : EntityEnemy.HIT_BACK_STATE_TAG, 0);
     }
 
     public bool IsAiming()

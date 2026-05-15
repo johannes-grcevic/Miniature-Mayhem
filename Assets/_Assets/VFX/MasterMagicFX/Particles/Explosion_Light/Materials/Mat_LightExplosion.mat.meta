@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Explosion_Light/Materials/Mat_LightExplosion.mat
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Explosion_Light/Materials/Mat_LightExplosion.mat
   uploadId: 740422

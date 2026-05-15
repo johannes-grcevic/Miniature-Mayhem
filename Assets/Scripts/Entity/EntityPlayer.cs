@@ -14,20 +14,20 @@ public class EntityPlayer : Entity
     [SerializeField, Header("Stamina")]
     private float maxStamina = 100f;
 
-    [SerializeField]
+    [SerializeField, Tooltip("The speed that stamina drains when moving forward and sprinting")]
     private float drainRate = 10f;
 
-    [SerializeField]
-    private float jumpCost = 15f;
-
-    [SerializeField, Space(10)]
+    [SerializeField, Tooltip("The speed that stamina recovers when not sprinting")]
     private float regenRate = 5f;
 
+    [SerializeField, Tooltip("The amount of stamina used to jump")]
+    private float jumpCost = 15f;
+
     [SerializeField, Tooltip("Movement speed reduction when out of stamina")]
-    private float moveReduceRate = 0.5f;
+    private float moveSpeedReduction = 0.5f;
 
     [SerializeField, Tooltip("Delay before recovery starts after running out of stamina")]
-    private float exhaustionDelay = 1.5f;
+    private float exhaustionRecoveryDelay = 1.5f;
 
     private float currentStamina;
     private float currentRegenTimer;
@@ -35,6 +35,9 @@ public class EntityPlayer : Entity
 
     [SerializeField, Header("Audio")]
     private AudioClip painClip;
+
+    [SerializeField]
+    private AudioClip hitClip;
 
     [SerializeField, Range(0f, 1f)]
     private float volume;
@@ -66,18 +69,30 @@ public class EntityPlayer : Entity
     {
         if (!isExhausted && currentStamina > 0f)
         {
+            // drain when sprinting and moving forward only
             if (playerController.IsSprinting && playerController.InputController.Move.y >= 1.0f)
             {
                 DrainStamina(drainRate);
             }
         }
 
-        RegenerateStamina(regenRate);
+        // Only regen when not sprinting
+        if (!playerController.IsSprinting)
+        {
+            RegenerateStamina(regenRate);
+        }
     }
 
     public void OnJump()
     {
-        DecreaseStamina(jumpCost);
+        // Only count the jump if the player is grounded
+        if (!playerController.Grounded) return;
+
+        // prevent stamina from dropping low too quickly
+        if (currentStamina > jumpCost)
+        {
+            DecreaseStamina(jumpCost);
+        }
     }
 
     public override void TakeDamage(int amount)
@@ -89,6 +104,7 @@ public class EntityPlayer : Entity
         }
 
         playerSource.PlayOneShot(painClip, volume);
+        playerSource.PlayOneShot(hitClip, volume);
 
         base.TakeDamage(amount);
     }
@@ -111,7 +127,7 @@ public class EntityPlayer : Entity
             currentRegenTimer += Time.deltaTime;
 
             // wait for the timer to expire
-            if (currentRegenTimer >= exhaustionDelay)
+            if (currentRegenTimer >= exhaustionRecoveryDelay)
             {
                 isExhausted = false; // Recovery can now begin
                 currentRegenTimer = 0f; // Reset regen timer
@@ -168,7 +184,7 @@ public class EntityPlayer : Entity
 
     private void ApplyReducedSpeed()
     {
-        playerController.MoveSpeed *= moveReduceRate;
-        playerController.SprintSpeed *= moveReduceRate;
+        playerController.MoveSpeed *= moveSpeedReduction;
+        playerController.SprintSpeed *= moveSpeedReduction;
     }
 }

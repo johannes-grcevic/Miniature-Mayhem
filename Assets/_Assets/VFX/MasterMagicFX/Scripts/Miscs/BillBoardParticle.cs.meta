@@ -14,5 +14,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Scripts/Miscs/BillBoardParticle.cs
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Scripts/Miscs/BillBoardParticle.cs
   uploadId: 740422

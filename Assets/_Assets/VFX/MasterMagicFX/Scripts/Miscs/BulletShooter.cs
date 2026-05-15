@@ -27,8 +27,6 @@ namespace MasterFX
 
         public Transform BulletStartPoint;
 
-        // public Gradient MappingGradient = new Gradient();
-
         public Texture2D MappingTexture => bulletDatas[currentBulletIndex].MappingTexture;
 
         public List<BulletData> bulletDatas = new List<BulletData>();

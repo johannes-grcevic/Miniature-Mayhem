@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class WeaponSway : MonoBehaviour
 {
     [Header("Sway")]
-    public float multiplier = 0.02f;
+    public float intensity = 0.02f;
     public float maxRotation = 5f;
 
     [Header("Smoothing")]
@@ -12,13 +12,13 @@ public class WeaponSway : MonoBehaviour
 
     private Quaternion targetRotation;
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 
         // Mouse movement
-        float mouseX = mouseDelta.x * multiplier;
-        float mouseY = mouseDelta.y * multiplier;
+        float mouseX = mouseDelta.x * intensity;
+        float mouseY = mouseDelta.y * intensity;
 
         // Clamp sway
         mouseX = Mathf.Clamp(mouseX, -maxRotation, maxRotation);

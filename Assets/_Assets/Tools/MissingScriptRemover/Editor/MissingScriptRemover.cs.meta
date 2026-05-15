@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8a7802cba47e59946874ec5fcad8ae43
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301391
+  packageName: Missing Script Remover
+  packageVersion: 1.2
+  assetPath: Assets/Twisted Image/MissingScriptRemover/Editor/MissingScriptRemover.cs
+  uploadId: 829344

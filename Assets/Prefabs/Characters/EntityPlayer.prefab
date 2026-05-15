@@ -123,12 +123,13 @@ MonoBehaviour:
   godMode: 0
   maxStamina: 100
   drainRate: 10
-  jumpCost: 15
   regenRate: 8
-  moveReduceRate: 0.5
-  exhaustionDelay: 1.5
+  jumpCost: 5
+  moveSpeedReduction: 0.5
+  exhaustionRecoveryDelay: 1.5
   painClip: {fileID: 8300000, guid: 5f6c6f3ba570fcd4db3986bf80016340, type: 3}
-  volume: 0.01
+  hitClip: {fileID: 8300000, guid: 2db5e7e9059a6a347a3b2e6ad06ae49d, type: 3}
+  volume: 0.1
 --- !u!114 &5046546023758039366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0901feadbb441c4aab4659765bcdecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSway
-  multiplier: 0.02
+  intensity: 0.02
   maxRotation: 5
   smoothness: 12
 --- !u!114 &6990558867097596775
@@ -391,7 +392,7 @@ MonoBehaviour:
   moveAction: {fileID: -3552364970006637457, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   playerController: {fileID: 5500832690821602620}
   speed: 2
-  amount: 0.005
+  intensity: 0.005
   smoothness: 8
 --- !u!114 &4262697730245862460
 MonoBehaviour:
@@ -409,11 +410,11 @@ MonoBehaviour:
   aimAction: {fileID: 9174098745077636790, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   projectile: {fileID: 3041529029807739624, guid: 6af7dc75b19a3bc4584766e4241a7eec, type: 3}
   projectileJoint: {fileID: 595137209610828546}
-  crosshair: {fileID: 0}
   damage: 10
+  crosshair: {fileID: 0}
   zoomSpeed: 3
   fireSound: {fileID: 8300000, guid: ce0d275277830504cad67e61cbf14536, type: 3}
-  volume: 0.15
+  volume: 0.08
 --- !u!82 &5075827866468069679
 AudioSource:
   m_ObjectHideFlags: 0

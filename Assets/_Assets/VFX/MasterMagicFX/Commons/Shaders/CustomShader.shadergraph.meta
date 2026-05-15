@@ -13,5 +13,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Commons/Shaders/CustomShader.shadergraph
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Commons/Shaders/CustomShader.shadergraph
   uploadId: 740422

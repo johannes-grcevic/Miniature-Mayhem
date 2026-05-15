@@ -130,5 +130,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Commons/Textures/BlurRing.png
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Commons/Textures/BlurRing.png
   uploadId: 740422

@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Commons/Materials/Mat_DefaultParticle.mat
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Commons/Materials/Mat_DefaultParticle.mat
   uploadId: 740422

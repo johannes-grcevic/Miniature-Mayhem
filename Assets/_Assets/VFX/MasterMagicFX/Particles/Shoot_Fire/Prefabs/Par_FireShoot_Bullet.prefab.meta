@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 312910
   packageName: MasterMagicFX
   packageVersion: 0.1
-  assetPath: Assets/MasterMagicFX/Particles/Shoot_Fire/Prefabs/Par_FireShoot_Bullet.prefab
+  assetPath: Assets/_Assets/VFX/MasterMagicFX/Particles/Shoot_Fire/Prefabs/Par_FireShoot_Bullet.prefab
   uploadId: 740422

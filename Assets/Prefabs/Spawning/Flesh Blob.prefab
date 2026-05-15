@@ -529,7 +529,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4248016496628079339}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: cf36443e288bcf74bb16a06b926b111b, type: 3}
   m_Controller: {fileID: 9100000, guid: fb83b6622c2ceb8439145735690acdb2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -560,7 +560,6 @@ MonoBehaviour:
   destroyOnSpawn: 0
   randomSpawn: 1
   spawnRange: {x: -5, y: 5}
-  spawner: {fileID: 862091487790256445}
   spawnOnCollison: 0
   yOffset: 50
 --- !u!114 &862091487790256445
