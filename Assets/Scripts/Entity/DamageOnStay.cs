@@ -30,14 +30,16 @@ public class DamageOnStay : MonoBehaviour
     protected void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Entity entity) && entity.Equals(target))
+        {
             StopCoroutine(damageLoop);
+        }
     }
 
     private IEnumerator DamageLoop()
     {
         while (true)
         {
-            target.TakeDamage(damage);
+            target.TakeDamage(damage, DamageType.Hazard);
             yield return waitForDamageRateDelay;
         }
     }

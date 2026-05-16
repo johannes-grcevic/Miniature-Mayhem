@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Entity : MonoBehaviour
 {
-    public UnityEvent<int> OnDamageTaken { get; private set; } = new();
+    public UnityEvent<int, DamageType> OnDamageTaken { get; private set; } = new();
     public UnityEvent<int> OnHeal { get; private set; } = new();
     public UnityEvent<int> OnHealthChanged { get; private set; } = new();
     public UnityEvent<GameState> OnDeath { get; private set; } = new();
@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public virtual void TakeDamage(int value)
+    public virtual void TakeDamage(int value, DamageType type)
     {
         if (currentHealth - value < 0)
         {
@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
             currentHealth -= value;
         }
 
-        OnDamageTaken.Invoke(value);
+        OnDamageTaken.Invoke(value, type);
         OnHealthChanged.Invoke(currentHealth);
 
         if (currentHealth <= 0)

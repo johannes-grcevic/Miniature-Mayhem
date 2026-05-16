@@ -557,9 +557,9 @@ MonoBehaviour:
   entities:
   - {fileID: 2769687563528942743, guid: b3bf352b94ca20b49a8e41ef8bf52363, type: 3}
   respawnDelay: 15
-  destroyOnSpawn: 0
   randomSpawn: 1
   spawnRange: {x: -5, y: 5}
+  destroyOnSpawn: 0
   spawnOnCollison: 0
   yOffset: 50
 --- !u!114 &862091487790256445

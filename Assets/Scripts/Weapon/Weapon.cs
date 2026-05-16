@@ -1,10 +1,11 @@
+using ConditionalField;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
-    private static readonly int IsAimingHash = Animator.StringToHash("isAiming");
+    public static readonly int IsAimingHash = Animator.StringToHash("IsAiming");
 
     [SerializeField, Header("Input")] 
     private InputActionReference fireAction;
@@ -24,7 +25,7 @@ public class Weapon : MonoBehaviour
     [SerializeField, Header("Sights")]
     private GameObject crosshair;
 
-    [SerializeField]
+    [SerializeField, ConditionalField(nameof(crosshair))]
     private float zoomSpeed = 2f;
 
     [SerializeField, Header("Audio")]
@@ -39,7 +40,6 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         weaponSource = GetComponent<AudioSource>();
-        weaponSource.playOnAwake = false;
     }
 
     private void OnEnable()
@@ -66,6 +66,9 @@ public class Weapon : MonoBehaviour
 
     protected void OnAim(InputAction.CallbackContext context)
     {
+        // weapon does not need to have a crosshair
+        if (crosshair == null) return;
+        
         isAiming = !isAiming;
         
         if (crosshair.TryGetComponent(out Animator animator))
@@ -87,7 +90,7 @@ public class Weapon : MonoBehaviour
     {
         if (entity.IsDead()) return;
         
-        entity.TakeDamage(damage);
+        entity.TakeDamage(damage, DamageType.Weapon);
         PlayHitAnimation(entity as EntityEnemy);
     }
 
@@ -95,9 +98,11 @@ public class Weapon : MonoBehaviour
     {
         Transform playerTransform = GameManager.Instance.Player.transform;
         Vector3 directionToTarget = entity.transform.position - playerTransform.position;
-        float dotProduct = Vector3.Dot(playerTransform.forward, directionToTarget);
 
-        entity.PlayAnimation(dotProduct > 0 ? EntityEnemy.HIT_FRONT_STATE_TAG : EntityEnemy.HIT_BACK_STATE_TAG, 0);
+        // 1 for front facing, 0 for back facing
+        float directionFacingTarget = Vector3.Dot(playerTransform.forward, directionToTarget);
+
+        entity.PlayAnimation(directionFacingTarget > 0 ? EntityEnemy.HIT_FRONT_STATE_TAG : EntityEnemy.HIT_BACK_STATE_TAG, 0);
     }
 
     public bool IsAiming()

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3904414226084411818}
   - component: {fileID: 2874545924638482875}
   - component: {fileID: 1503245190331601361}
+  - component: {fileID: 4710538710807446125}
+  - component: {fileID: 2972075348785164134}
   m_Layer: 0
   m_Name: Prefab_LongGrass
   m_TagString: Untagged
@@ -90,3 +92,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6130936425573169615}
   m_Mesh: {fileID: 4300000, guid: abc00000000018216359434337208807, type: 3}
+--- !u!65 &4710538710807446125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130936425573169615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7986837, y: 0.6901652, z: 0.69292027}
+  m_Center: {x: 0.035661787, y: 0.3330575, z: -0.004178107}
+--- !u!114 &2972075348785164134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130936425573169615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dab89bda44aca48bd308b2556250c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SurfaceMaterial
+  materialSurfaceType: 4

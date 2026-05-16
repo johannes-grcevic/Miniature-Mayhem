@@ -95,7 +95,7 @@ public class EntityPlayer : Entity
         }
     }
 
-    public override void TakeDamage(int amount)
+    public override void TakeDamage(int amount, DamageType type)
     {
         if (godMode)
         {
@@ -104,9 +104,13 @@ public class EntityPlayer : Entity
         }
 
         playerSource.PlayOneShot(painClip, volume);
-        playerSource.PlayOneShot(hitClip, volume);
 
-        base.TakeDamage(amount);
+        if (type == DamageType.Entity)
+        {
+            playerSource.PlayOneShot(hitClip, volume);
+        }
+
+        base.TakeDamage(amount, type);
     }
 
     public void DrainStamina(float rate)

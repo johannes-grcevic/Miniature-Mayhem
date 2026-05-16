@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8888687312863865518}
   - component: {fileID: 5046546023758039366}
   - component: {fileID: 6666501229708012136}
+  - component: {fileID: 8345229409025398466}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -77,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 3
-  SprintSpeed: 7
+  SprintSpeed: 5
   RotationSpeed: 1.5
   SpeedChangeRate: 8
   JumpHeight: 0.6
@@ -89,7 +90,7 @@ MonoBehaviour:
   GroundedRadius: 0.25
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 80
   CinemachineCameraTarget: {fileID: 4218762096518933480}
   TopClamp: 89
   BottomClamp: -89
@@ -237,7 +238,7 @@ AudioSource:
   m_GameObject: {fileID: 118604772458187520}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -325,6 +326,50 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8345229409025398466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118604772458187520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ffa0aaec3fc984395adf911e547a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  surfaceAudioTypes:
+    _serializedList:
+    - Key: 1
+      Value:
+      - {fileID: 8300000, guid: 9ff527937f9b35f42a1458dd09dabf52, type: 3}
+      - {fileID: 8300000, guid: 6781f5311c8465944970985b31de20d1, type: 3}
+      - {fileID: 8300000, guid: 3b1819e93bfa0cb43be4f355435cb248, type: 3}
+      - {fileID: 8300000, guid: 12759ecb7a432d04c89010f3223fdce7, type: 3}
+      - {fileID: 8300000, guid: edff2938e0f924445823555e5a86cbae, type: 3}
+    - Key: 4
+      Value:
+      - {fileID: 8300000, guid: 108fab1092a4ac344a4a5cc13985326b, type: 3}
+      - {fileID: 8300000, guid: 045d835b0c0cd0843a680379ab89c075, type: 3}
+      - {fileID: 8300000, guid: 46a92cff4d634d1418432a441371af5d, type: 3}
+      - {fileID: 8300000, guid: e8eeada71651fb545a767b457d5e7853, type: 3}
+      - {fileID: 8300000, guid: 771c7a80a6098e247a544ecf1d6ce7f8, type: 3}
+      - {fileID: 8300000, guid: d2082a5734d1dc648963534210fb9237, type: 3}
+      - {fileID: 8300000, guid: b392b244f54d8094798ed498d0a1ee41, type: 3}
+    - Key: 3
+      Value:
+      - {fileID: 8300000, guid: 17bb64749a79ef24b8698f3e56f871e9, type: 3}
+      - {fileID: 8300000, guid: 1534c2ea00ac6fb469963b06a9122faa, type: 3}
+      - {fileID: 8300000, guid: 10467ab73aa6bdc4099ae805fb3e7314, type: 3}
+      - {fileID: 8300000, guid: ababf605dc1b69d409f4368244761e8e, type: 3}
+      - {fileID: 8300000, guid: 87bb88ba694a8054daca035240658e69, type: 3}
+  stepInterval: 0.6
+  minimumSpeedThreshold: 0.1
+  walkSpeedScale: 1
+  sprintSpeedScale: 1.6
+  minPitch: 0.92
+  maxPitch: 1.08
+  volumeScale: 0.3
 --- !u!1 &394908498858863055
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,9 +379,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4498494715241187575}
+  - component: {fileID: 4262697730245862460}
   - component: {fileID: 6286265191409048155}
   - component: {fileID: 6990558867097596775}
-  - component: {fileID: 4262697730245862460}
   - component: {fileID: 5075827866468069679}
   m_Layer: 0
   m_Name: WeaponHolder
@@ -362,6 +407,27 @@ Transform:
   - {fileID: 595137209610828546}
   m_Father: {fileID: 8340742502316011353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4262697730245862460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394908498858863055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ce94220f34c38408b5646514dcd767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  fireAction: {fileID: -1894428667710597030, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+  aimAction: {fileID: 9174098745077636790, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+  projectile: {fileID: 3041529029807739624, guid: 6af7dc75b19a3bc4584766e4241a7eec, type: 3}
+  projectileJoint: {fileID: 595137209610828546}
+  damage: 10
+  crosshair: {fileID: 0}
+  zoomSpeed: 3
+  fireSound: {fileID: 8300000, guid: ce0d275277830504cad67e61cbf14536, type: 3}
+  volume: 0.08
 --- !u!114 &6286265191409048155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,27 +460,6 @@ MonoBehaviour:
   speed: 2
   intensity: 0.005
   smoothness: 8
---- !u!114 &4262697730245862460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394908498858863055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce94220f34c38408b5646514dcd767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  fireAction: {fileID: -1894428667710597030, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
-  aimAction: {fileID: 9174098745077636790, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
-  projectile: {fileID: 3041529029807739624, guid: 6af7dc75b19a3bc4584766e4241a7eec, type: 3}
-  projectileJoint: {fileID: 595137209610828546}
-  damage: 10
-  crosshair: {fileID: 0}
-  zoomSpeed: 3
-  fireSound: {fileID: 8300000, guid: ce0d275277830504cad67e61cbf14536, type: 3}
-  volume: 0.08
 --- !u!82 &5075827866468069679
 AudioSource:
   m_ObjectHideFlags: 0
@@ -424,7 +469,7 @@ AudioSource:
   m_GameObject: {fileID: 394908498858863055}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

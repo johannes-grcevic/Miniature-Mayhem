@@ -118,10 +118,11 @@ public class EntityEnemy : Entity
         //animator.SetBool(IsSearchingHash, isSearching);
     }
 
-    public override void TakeDamage(int value)
+    public override void TakeDamage(int value, DamageType type)
     {
         PlayAudioClip(GetRandomClip(painClips), volume);
-        base.TakeDamage(value);
+
+        base.TakeDamage(value, type);
     }
 
     public override void Die()
@@ -144,7 +145,7 @@ public class EntityEnemy : Entity
         // only allow a hit if the target is in range of the player
         if (Vector3.Distance(agent.destination, transform.position) > attackRange) return;
 
-        GameManager.Instance.Player.TakeDamage(damage);
+        GameManager.Instance.Player.TakeDamage(damage, DamageType.Entity);
         PlayAudioClip(GetRandomClip(attackClips), volume);
 
         isTargetLost = false;
@@ -158,12 +159,11 @@ public class EntityEnemy : Entity
 
     public void PlayAnimation(string stateName, int layer)
     {
-        if (animator.GetCurrentAnimatorStateInfo(layer).IsName(stateName))
+        // if its not already playing
+        if (!animator.GetCurrentAnimatorStateInfo(layer).IsTag(stateName))
         {
-            return;
+            animator.Play(stateName, layer);
         }
-
-        animator.Play(stateName, layer);
     }
 
     public void PlayAudioClip(AudioClip clip, float volume)

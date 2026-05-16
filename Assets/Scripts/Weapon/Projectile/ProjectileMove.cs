@@ -6,6 +6,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class ProjectileMove : MonoBehaviour 
 {
+    public UnityEvent<GameObject> OnCollision { get; private set; } = new UnityEvent<GameObject>();
+
     [SerializeField]
     private bool rotate = false;
 
@@ -23,15 +25,10 @@ public class ProjectileMove : MonoBehaviour
 
     [Header("Particle Effects")]
     [SerializeField]
-	private GameObject muzzlePrefab;
-
-    [SerializeField]
-	private GameObject hitPrefab;
+	private GameObject hit;
 
     [SerializeField]
 	private List<GameObject> trails;
-
-    public UnityEvent<GameObject> OnCollision { get; private set; } = new UnityEvent<GameObject>();
 
     private Vector3 offset;
 	private bool collided;
@@ -43,7 +40,7 @@ public class ProjectileMove : MonoBehaviour
 
     private readonly List<ParticleCollisionEvent> collisionEvents = new();
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
 
@@ -57,49 +54,29 @@ public class ProjectileMove : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
+        if (accuracy == 100) return;
+
         // create a radius for the accuracy
-        if (accuracy != 100)
+        accuracy = 1 - (accuracy / 100);
+        for (int i = 0; i < 2; i++)
         {
-            accuracy = 1 - (accuracy / 100);
+            var val = 1 * Random.Range(-accuracy, accuracy);
+            var index = Random.Range(0, 2);
 
-            for (int i = 0; i < 2; i++)
+            if (i == 0)
             {
-                var val = 1 * Random.Range(-accuracy, accuracy);
-                var index = Random.Range(0, 2);
-
-                if (i == 0)
-                {
-                    offset = index == 0 ? new Vector3(0, -val, 0) : new Vector3(0, val, 0);
-                }
-                else
-                {
-                    offset = index == 0 ? new Vector3(0, offset.y, -val) : new Vector3(0, offset.y, val);
-                }
+                offset = index == 0 ? new Vector3(0, -val, 0) : new Vector3(0, val, 0);
             }
-        }
-
-        if (muzzlePrefab == null) return;
-
-        GameObject muzzleVFX = Instantiate(muzzlePrefab, transform.position, Quaternion.identity);
-        muzzleVFX.transform.forward = gameObject.transform.forward + offset;
-
-        if (muzzleVFX.TryGetComponent(out ParticleSystem ps))
-        {
-            Destroy(muzzleVFX, ps.main.duration);
-        }
-        else
-        {
-            Transform psChildTransform = muzzleVFX.transform.GetChild(0);
-
-            if (psChildTransform.TryGetComponent(out ParticleSystem psChild)) {
-                Destroy(muzzleVFX, psChild.main.duration);
+            else
+            {
+                offset = index == 0 ? new Vector3(0, offset.y, -val) : new Vector3(0, offset.y, val);
             }
         }
     }
 
-    void FixedUpdate() 
+    private void FixedUpdate() 
     {
         if (rotate)
         {
@@ -143,9 +120,9 @@ public class ProjectileMove : MonoBehaviour
             Quaternion hitRotationNormal = Quaternion.FromToRotation(Vector3.up, collision.normal);
             Vector3 hitPoint = collision.intersection;
 
-            if (hitPrefab != null)
+            if (hit != null)
             {
-                GameObject hitVFX = Instantiate(hitPrefab, hitPoint, hitRotationNormal);
+                GameObject hitVFX = Instantiate(hit, hitPoint, hitRotationNormal);
 
                 if (hitVFX.TryGetComponent(out ParticleSystem ps))
                 {
@@ -163,6 +140,7 @@ public class ProjectileMove : MonoBehaviour
             }
         }
 
+        // cleanup if all other paths fail
         Destroy(gameObject);
     }
 }

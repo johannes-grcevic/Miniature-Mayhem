@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7477056828915942309}
   - component: {fileID: 1552615866769564004}
   - component: {fileID: 7091281398938800543}
-  - component: {fileID: 7464290867193796587}
+  - component: {fileID: 601502049495559569}
   - component: {fileID: 8289632915600059247}
+  - component: {fileID: 2149079554951048701}
   m_Layer: 4
   m_Name: Water_Mesh
   m_TagString: Untagged
@@ -92,8 +93,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2672196780654646980}
   m_Mesh: {fileID: 7604641319889278300, guid: abc00000000006625704227329035661, type: 3}
---- !u!65 &7464290867193796587
-BoxCollider:
+--- !u!64 &601502049495559569
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,9 +111,10 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9999998, y: 0.01, z: 0.99999994}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7604641319889278300, guid: abc00000000006625704227329035661, type: 3}
 --- !u!114 &8289632915600059247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +130,19 @@ MonoBehaviour:
   target: {fileID: 0}
   damage: 5
   damageRate: 1
+--- !u!114 &2149079554951048701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2672196780654646980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22dab89bda44aca48bd308b2556250c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SurfaceMaterial
+  materialSurfaceType: 3
 --- !u!1 &7710538939980032764
 GameObject:
   m_ObjectHideFlags: 0
