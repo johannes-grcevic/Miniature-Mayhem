@@ -554,8 +554,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f7e7988a71f1845ad3a2b8b5d8cfaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  OnEntitySpawned:
+    m_PersistentCalls:
+      m_Calls: []
   entities:
   - {fileID: 2769687563528942743, guid: b3bf352b94ca20b49a8e41ef8bf52363, type: 3}
+  spawningEnabled: 1
   respawnDelay: 15
   randomSpawn: 1
   spawnRange: {x: -5, y: 5}

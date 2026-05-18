@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 public class ChaseTarget : MonoBehaviour
@@ -9,24 +10,13 @@ public class ChaseTarget : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
-    private bool isRootMotion = false;
 
     private Vector3 currentVelocity = Vector3.zero;
 
-    void Awake()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-
-        agent.updatePosition = false;
-
-        isRootMotion = animator.applyRootMotion;
-
-        if (isRootMotion)
-        {
-            agent.updatePosition = false;
-            agent.updateRotation = true;
-        }
 
         if (!target)
         {
@@ -34,9 +24,9 @@ public class ChaseTarget : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (agent.speed == 0) return;
+        if (!agent.enabled || agent.speed == 0) return;
         
         // set the current agent velocity
         currentVelocity = agent.velocity;
@@ -48,9 +38,9 @@ public class ChaseTarget : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, agent.nextPosition, ref currentVelocity, Time.deltaTime, agent.speed);
     }
 
-    void OnAnimatorMove()
+    private void OnAnimatorMove()
     {
-        if (!isRootMotion) return;
+        if (!animator.applyRootMotion || !agent.enabled || agent.speed == 0) return;
         
         Vector3 position = animator.rootPosition;
 

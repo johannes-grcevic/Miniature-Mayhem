@@ -24,7 +24,7 @@ Shader "Davis3D/AlienPlants_Vol3/Nature/Plants"
 		_Normal("Normal", 2D) = "bump" {}
 		_Normal_Amount("Normal_Amount", Float) = 1
 		_DetailNormal("DetailNormal", 2D) = "bump" {}
-		_Detail_Normal__Amount("Detail_Normal__Amount", Float) = 1
+		_Detail__Normal_Amount("Detail_Normal__Amount", Float) = 1
 		_Detail_Normal_Scale("Detail_Normal_Scale", Float) = 5
 		[Toggle(_METALLICFROMTEX_ON)] _MetallicFromTex("MetallicFromTex", Float) = 0
 		[Toggle(_METALGLOWSSS_ON)] _MetalGlowSSS("MetalGlowSSS", Float) = 0

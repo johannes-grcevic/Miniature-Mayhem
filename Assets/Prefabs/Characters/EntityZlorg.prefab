@@ -1501,7 +1501,6 @@ GameObject:
   - component: {fileID: 6955642087361701914}
   - component: {fileID: -467746920681846119}
   - component: {fileID: 6303665182636454459}
-  - component: {fileID: 5039248581064115171}
   - component: {fileID: 6876248436702170852}
   m_Layer: 0
   m_Name: EntityZlorg
@@ -1559,17 +1558,17 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.26
-  m_Speed: 4
+  m_Speed: 2
   m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.8
-  m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_BaseOffset: -0.05
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2769687563528942743
 MonoBehaviour:
@@ -1583,11 +1582,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f02136394cf6e94ab09949b5b1629ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityEnemy
+  entityType: 2
   maxHealth: 50
   damage: 10
-  attackRange: 2
   chaseRange: 15
+  attackRange: 2
   despawnDelay: 5
+  massOnDeath: 50
   idleClips:
   - {fileID: 8300000, guid: 42744eb59994e104bb93f2e1b4b41ada, type: 3}
   - {fileID: 8300000, guid: 932be0a9538f48647ba62d9e32d503a4, type: 3}
@@ -1693,33 +1694,6 @@ CapsuleCollider:
   m_Height: 1.6275971
   m_Direction: 1
   m_Center: {x: 0, y: 0.98300993, z: -0.018538147}
---- !u!54 &5039248581064115171
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7166204262351641782}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!82 &6876248436702170852
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1729,7 +1703,7 @@ AudioSource:
   m_GameObject: {fileID: 7166204262351641782}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

@@ -11,12 +11,17 @@ public class HealthBarController : MonoBehaviour
 
     private void Awake()
     {
-        targetEntity.OnHealthChanged.AddListener(SetFillValue);
+        targetEntity.OnHealthChanged += SetFillValue;
+    }
+
+    private void OnDestroy()
+    {
+        targetEntity.OnHealthChanged -= SetFillValue;
     }
 
     public void SetFillValue(int value)
     {
         // normalize health value and set the fill amount
-        fillImage.fillAmount = Mathf.InverseLerp(0, targetEntity.GetMaxHealth(), value);
+        fillImage.fillAmount = Mathf.InverseLerp(0, targetEntity.MaxHealth, value);
     }
 }

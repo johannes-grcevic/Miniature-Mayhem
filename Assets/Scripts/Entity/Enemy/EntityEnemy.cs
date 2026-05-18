@@ -1,11 +1,10 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(LookAtTarget))]
 public class EntityEnemy : Entity
 {
     public static readonly int IsDeadHash = Animator.StringToHash("IsDead");
@@ -15,20 +14,23 @@ public class EntityEnemy : Entity
     public static readonly int TauntHash = Animator.StringToHash("Taunt");
 
     public const string ATTACK_STATE_TAG = "Attack";
-    public const string HIT_FRONT_STATE_TAG = "HitFront";
-    public const string HIT_BACK_STATE_TAG = "HitBack";
+    public const string HIT_FRONT_STATE_NAME = "GetHitBack";
+    public const string HIT_BACK_STATE_NAME = "GetHitFront";
 
     [SerializeField]
     private int damage = 20;
 
     [SerializeField]
-    private float attackRange = 2f;
-
-    [SerializeField]
     private float chaseRange = 10f;
 
     [SerializeField]
+    private float attackRange = 1f;
+
+    [SerializeField]
     private float despawnDelay = 5f;
+
+    [SerializeField]
+    private float massOnDeath = 50f;
 
     [SerializeField, Header("Audio")]
     private AudioClip[] idleClips;
@@ -51,39 +53,18 @@ public class EntityEnemy : Entity
     [SerializeField, Range(0f, 1f)]
     private float volume = 1f;
 
-    private AudioSource enemySource;
-
-    private Animator animator;
     private NavMeshAgent agent;
-    private Rigidbody rb;
+    private LookAtTarget targetLook;
 
     private bool isSearchingTarget = false;
-    private bool isTargetLost = false;
     private bool canAttackTarget = false;
 
     protected override void Awake()
     {
-        enemySource = GetComponent<AudioSource>();
-
-        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        rb = GetComponent<Rigidbody>();
+        targetLook = GetComponent<LookAtTarget>();
 
         base.Awake();
-    }
-
-    private void Start()
-    {
-        enemySource.playOnAwake = false;
-
-        rb.isKinematic = true;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-
-        // Let the agent handle position changes natively
-        agent.updatePosition = true;
-        agent.updateRotation = true;
-
-        agent.stoppingDistance = attackRange;
     }
 
     private void OnEnable()
@@ -98,24 +79,28 @@ public class EntityEnemy : Entity
 
     private void Update()
     {
-        // Cache the magnitude once per frame to avoid calculating it twice
-        float currentSpeed = agent.velocity.magnitude;
-
-        // Verify the agent has a valid path and is in range of the player
-        canAttackTarget = !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && currentSpeed < 0.1f;
-
-        if (canAttackTarget && !animator.GetCurrentAnimatorStateInfo(0).IsTag(ATTACK_STATE_TAG))
+        if (IsDead) return;
+        
+        if (!agent.pathPending && agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Trigger attack animation
-            animator.SetTrigger(AttackHash);
+            // Cache the magnitude once per frame to avoid calculating it twice
+            float currentSpeed = agent.velocity.magnitude;
+
+            // Verify the agent has a valid path and is in range of the player
+            canAttackTarget = Vector3.Distance(agent.transform.position, agent.destination) <= attackRange && currentSpeed < 0.1f;
+
+            if (canAttackTarget && !Animator.GetCurrentAnimatorStateInfo(0).IsTag(ATTACK_STATE_TAG))
+            {
+                // Trigger attack animation
+                Animator.SetTrigger(AttackHash);
+            }
+
+            // Set the movement speed for animation blend
+            Animator.SetFloat(SpeedHash, currentSpeed);
         }
 
-        // Set the movement speed for animation blend
-        animator.SetFloat(SpeedHash, currentSpeed);
-
         // todo: not fully implemented yet
-        TrackTarget();
-        //animator.SetBool(IsSearchingHash, isSearching);
+        //TrackTarget();
     }
 
     public override void TakeDamage(int value, DamageType type)
@@ -127,50 +112,67 @@ public class EntityEnemy : Entity
 
     public override void Die()
     {
+        // stop agent from moving
         agent.isStopped = true;
-        agent.speed = 0f;
+        agent.enabled = false;
+        targetLook.enabled = false;
 
         // trigger death animation
-        animator.SetBool(IsDeadHash, true);
+        Animator.SetBool(IsDeadHash, true);
 
+        // fall to the ground when dead
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.mass = massOnDeath;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        rb.freezeRotation = true;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
+        // play death sound clip
         PlayAudioClip(GetRandomClip(deathClips), volume);
+
+        // despawn cleanup
         Destroy(gameObject, despawnDelay);
 
         base.Die();
     }
 
-    // called by an animation event on the enemy
+    // called by an animation event on the attack animation
     public void OnAttackHit()
-    {
-        // only allow a hit if the target is in range of the player
-        if (Vector3.Distance(agent.destination, transform.position) > attackRange) return;
-
+    {   
         GameManager.Instance.Player.TakeDamage(damage, DamageType.Entity);
         PlayAudioClip(GetRandomClip(attackClips), volume);
-
-        isTargetLost = false;
     }
 
-    public void OnTargetLost(float distanceFromTarget)
+    public void OnTargetLost()
     {
-        PlayAudioClip(GetRandomClip(tauntClips), volume * Mathf.InverseLerp(0f, 1f, distanceFromTarget));
-        isTargetLost = true;
+        PlayAudioClip(GetRandomClip(tauntClips), volume);
+
+        Animator.SetBool(IsSearchingHash, isSearchingTarget);
     }
 
-    public void PlayAnimation(string stateName, int layer)
+    public void TrackTarget()
     {
-        // if its not already playing
-        if (!animator.GetCurrentAnimatorStateInfo(layer).IsTag(stateName))
+        float distanceToTarget = agent.remainingDistance;
+
+        // Start searching if the target is out of the chase range
+        isSearchingTarget = distanceToTarget > 0f && distanceToTarget > chaseRange;
+
+        if (isSearchingTarget)
         {
-            animator.Play(stateName, layer);
+            OnTargetLost();
         }
     }
 
-    public void PlayAudioClip(AudioClip clip, float volume)
+    public void PlayHitAnimation(Transform target)
     {
-        if (clip == null) return;
+        Vector3 targetDirection = transform.position - target.position;
 
-        enemySource.PlayOneShot(clip, volume);
+        // 1 for front facing, 0 for back facing
+        float directionFacingTarget = Vector3.Dot(target.forward, targetDirection);
+
+        PlayAnimation(directionFacingTarget > 0 ? HIT_FRONT_STATE_NAME : HIT_BACK_STATE_NAME, 0);
     }
 
     public void PlayIdleClip()
@@ -181,18 +183,5 @@ public class EntityEnemy : Entity
     public AudioClip GetRandomClip(AudioClip[] clips)
     {
         return clips[Random.Range(0, clips.Length)];
-    }
-
-    public void TrackTarget()
-    {
-        float distanceToTarget = agent.remainingDistance;
-
-        // Start searching if the target is out of the chase range
-        isSearchingTarget = distanceToTarget > chaseRange;
-
-        if (isSearchingTarget && !isTargetLost)
-        {
-            OnTargetLost(distanceToTarget);
-        }
     }
 }

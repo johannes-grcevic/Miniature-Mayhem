@@ -31,7 +31,7 @@ public class DynamicSurfaceFootstep : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float volumeScale = 0.5f;
 
-    private readonly RaycastHit[] hitRays = new RaycastHit[10];
+    private readonly RaycastHit[] rayHitResults = new RaycastHit[1];
     private AudioSource playerSource;
     private FirstPersonController playerController;
     private SurfaceMaterial currentSurfaceMaterial;
@@ -47,7 +47,7 @@ public class DynamicSurfaceFootstep : MonoBehaviour
 
     private void Update()
     {
-        if (!hasPlayerController) return;
+        if (!hasPlayerController || !playerController.Grounded) return;
 
         // Get the current speed magnitude
         float currentSpeed = playerController.CurrentVelocity.magnitude;
@@ -75,29 +75,27 @@ public class DynamicSurfaceFootstep : MonoBehaviour
 
     private void TriggerFootstep()
     {
-        if (Physics.RaycastNonAlloc(transform.position, Vector3.down, hitRays) <= 0)
+        // check if the raycast hit a collider
+        if (Physics.RaycastNonAlloc(transform.position, Vector3.down, rayHitResults, Mathf.Infinity, playerController.GroundLayers) > 0)
         {
-            return;
-        }
-
-        foreach (RaycastHit raycastHit in hitRays)
-        {
-            if (!raycastHit.collider || !raycastHit.collider.TryGetComponent(out currentSurfaceMaterial))
+            foreach (RaycastHit hitInfo in rayHitResults)
             {
-                continue;
-            }
+                if (!hitInfo.collider || !hitInfo.collider.TryGetComponent(out currentSurfaceMaterial))
+                {
+                    continue;
+                }
 
-            Debug.Log(currentSurfaceMaterial);
+                // play a random footstep sound based on the type of surface stepped on
+                if (surfaceAudioTypes.TryGetValue(currentSurfaceMaterial.SurfaceType, out AudioClip[] clips) && clips.Length > 0)
+                {
+                    // apply a random pitch variation before playing the sound
+                    playerSource.pitch = Random.Range(minPitch, maxPitch);
 
-            if (surfaceAudioTypes.TryGetValue(currentSurfaceMaterial.SurfaceType, out AudioClip[] clips) && clips.Length > 0)
-            {
-                // apply a random pitch variation before playing the sound
-                playerSource.pitch = Random.Range(minPitch, maxPitch);
+                    // play a random sound clips
+                    playerSource.PlayOneShot(clips[Random.Range(0, clips.Length)], volumeScale);
 
-                // play a random clip
-                playerSource.PlayOneShot(clips[Random.Range(0, clips.Length)], volumeScale);
-
-                break; // exit loop once clip is played
+                    break; // exit loop once sound clip is played
+                }
             }
         }
     }

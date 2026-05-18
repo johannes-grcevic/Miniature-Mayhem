@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponBobbing : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Header("Input")]
     private InputActionReference moveAction;
 
     [SerializeField]

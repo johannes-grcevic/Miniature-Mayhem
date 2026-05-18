@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class Weapon : MonoBehaviour
 {
     public static readonly int IsAimingHash = Animator.StringToHash("IsAiming");
+    public bool IsAiming => isAiming;
 
     [SerializeField, Header("Input")] 
     private InputActionReference fireAction;
@@ -14,13 +15,16 @@ public class Weapon : MonoBehaviour
     private InputActionReference aimAction;
 
     [SerializeField, Header("Weapon")]
-    private ProjectileMove projectile;
+    private int damage = 10;
+
+    [SerializeField, Tooltip("How many projectiles the weapon fires per second.")]
+    private float fireRate = 5f;
+
+    [SerializeField, Header("Projectile")]
+    private Projectile projectile;
 
     [SerializeField]
     private Transform projectileJoint;
-
-    [SerializeField]
-    private int damage = 10;
 
     [SerializeField, Header("Sights")]
     private GameObject crosshair;
@@ -32,10 +36,11 @@ public class Weapon : MonoBehaviour
     private AudioClip fireSound;
 
     [SerializeField, Range(0f, 1f)]
-    private float volume = 1f;
+    private float volumeScale = 1f;
 
     private AudioSource weaponSource;
     private bool isAiming = false;
+    private float nextTimeToFire = 0f;
 
     private void Awake()
     {
@@ -54,19 +59,24 @@ public class Weapon : MonoBehaviour
         aimAction.action.performed -= OnAim;
     }
 
-    protected void OnFire(InputAction.CallbackContext context)
-    {     
-        // spawn projectile
-        Instantiate(projectile, projectileJoint.position, projectileJoint.rotation).
-            OnCollision.AddListener(OnProjectileCollision);
+    private void OnFire(InputAction.CallbackContext context)
+    {
+        // stop firing when the game is paused
+        if (Time.timeScale <= 0f) return;
 
-        // play fire sound
-        weaponSource.PlayOneShot(fireSound, volume);
+        // only fire if the cooldown timer has finished
+        if (Time.time >= nextTimeToFire)
+        {
+            // set the time for the next allowed shot
+            nextTimeToFire = Time.time + (1f / fireRate);
+
+            ExecuteFire();
+        }
     }
 
-    protected void OnAim(InputAction.CallbackContext context)
+    private void OnAim(InputAction.CallbackContext context)
     {
-        // weapon does not need to have a crosshair
+        // weapon does not need a crosshair
         if (crosshair == null) return;
         
         isAiming = !isAiming;
@@ -78,7 +88,19 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    protected void OnProjectileCollision(GameObject other)
+    public void DoDamage(Entity target, int amount)
+    {
+        if (target.IsDead) return;
+
+        target.TakeDamage(amount, DamageType.Weapon);
+
+        if (target is EntityEnemy enemy)
+        {
+            enemy.PlayHitAnimation(GameManager.Instance.Player.transform);
+        }
+    }
+
+    private void OnProjectileCollision(GameObject other)
     {
         if (other.TryGetComponent(out Entity entity))
         {
@@ -86,27 +108,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void DoDamage(Entity entity, int damage)
+    private void ExecuteFire()
     {
-        if (entity.IsDead()) return;
-        
-        entity.TakeDamage(damage, DamageType.Weapon);
-        PlayHitAnimation(entity as EntityEnemy);
-    }
+        Instantiate(projectile, projectileJoint.position, projectileJoint.rotation)
+            .OnCollision += OnProjectileCollision;
 
-    public void PlayHitAnimation(EntityEnemy entity)
-    {
-        Transform playerTransform = GameManager.Instance.Player.transform;
-        Vector3 directionToTarget = entity.transform.position - playerTransform.position;
-
-        // 1 for front facing, 0 for back facing
-        float directionFacingTarget = Vector3.Dot(playerTransform.forward, directionToTarget);
-
-        entity.PlayAnimation(directionFacingTarget > 0 ? EntityEnemy.HIT_FRONT_STATE_TAG : EntityEnemy.HIT_BACK_STATE_TAG, 0);
-    }
-
-    public bool IsAiming()
-    {
-        return isAiming;
+        weaponSource.PlayOneShot(fireSound, volumeScale);
     }
 }

@@ -192,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026400297156376370}
   - component: {fileID: 3886387762551784229}
+  - component: {fileID: 8612621726496129610}
   m_Layer: 0
   m_Name: Prefab_Tree_A2
   m_TagString: Untagged
@@ -269,6 +270,29 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8567231917449385918}
   m_Enabled: 1
+--- !u!136 &8612621726496129610
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223935657278153623}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.64136314
+  m_Height: 4.7406793
+  m_Direction: 1
+  m_Center: {x: 0.054372787, y: 2.0878208, z: 0}
 --- !u!1 &4552029651162074207
 GameObject:
   m_ObjectHideFlags: 0

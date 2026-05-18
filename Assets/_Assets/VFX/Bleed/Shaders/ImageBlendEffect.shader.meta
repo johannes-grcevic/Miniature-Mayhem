@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1899c349878167040bd0fd1c3cfc7c79
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 9400
+  packageName: Blood-Damage Effect
+  packageVersion: 1.1
+  assetPath: Assets/Bleed/ImageBlendEffect.shader
+  uploadId: 221439

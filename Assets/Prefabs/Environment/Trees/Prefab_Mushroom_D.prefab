@@ -550,6 +550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7335779542925770424}
   - component: {fileID: 1646743663913338608}
+  - component: {fileID: 2079966249637867688}
   m_Layer: 0
   m_Name: Prefab_Mushroom_D
   m_TagString: Untagged
@@ -622,6 +623,29 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8259180096901903061}
   m_Enabled: 1
+--- !u!136 &2079966249637867688
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562396034784331045}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3452969
+  m_Height: 5.556355
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.2781775, z: 0.2474041}
 --- !u!1 &6144073093114904966
 GameObject:
   m_ObjectHideFlags: 0

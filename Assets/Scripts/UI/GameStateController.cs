@@ -1,18 +1,26 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class GameStateController : MonoBehaviour
 {
+    public UnityEvent<GameState> OnStateChanged = new();
+    
+    public GameState CurrentState => currentState;
+    public GameState PreviousState => previousState;
+    
     [SerializeField, SerializedDictionary("Game State", "UI Elements")]
     private SerializedDictionary<GameState, List<GameObject>> UIElements;
 
-    [SerializeField]
+    [SerializeField, Header("Input")]
     private InputActionReference pauseAction;
 
     private GameState currentState;
     private GameState previousState;
+
+    private static readonly int IsMenuOpenHash = Animator.StringToHash("IsOpen");
 
     private void Awake()
     {
@@ -21,11 +29,12 @@ public class GameStateController : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.Player.OnDeath.AddListener(SetGameState);
-        SetGameState(GameState.Running);
+        GameManager.Instance.Player.OnDeath += UpdateGameState;
+
+        UpdateGameState(GameState.Running);
     }
 
-    public void SetGameState(GameState state)
+    public void UpdateGameState(GameState state)
     {
         previousState = currentState;
         currentState = state;
@@ -33,8 +42,6 @@ public class GameStateController : MonoBehaviour
         // call game state changed event handler
         OnGameStateChanged(state);
     }
-
-    public GameState GetGameState() => currentState;
 
     private void OnGameStateChanged(GameState newState)
     {
@@ -58,6 +65,8 @@ public class GameStateController : MonoBehaviour
             default:
                 break;
         }
+
+        OnStateChanged.Invoke(newState);
     }
 
     private void OnPauseButtonPressed(InputAction.CallbackContext context)
@@ -65,7 +74,7 @@ public class GameStateController : MonoBehaviour
         if (pauseAction == null) return;
 
         // set pause state
-        SetGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
+        UpdateGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
 
         // set global volume state
         AudioListener.volume = currentState == GameState.Paused ? 0f : 1f;
@@ -85,6 +94,11 @@ public class GameStateController : MonoBehaviour
             foreach (GameObject go in elements)
             {
                 go.SetActive(element.Key == currentState);
+
+                if (go.activeSelf && go.CompareTag("UIMenu") && go.TryGetComponent(out Animator animator))
+                {
+                    animator.SetBool(IsMenuOpenHash, go.activeSelf);
+                }
             }
         }
     }

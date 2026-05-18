@@ -6,6 +6,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInputController))]
 public class FirstPersonController : MonoBehaviour
 {
+    public CharacterController CharacterController => characterController;
+    public PlayerInputController InputController => playerInputController;
+    public Vector3 CurrentVelocity => characterController.velocity;
+    public bool IsCurrentDeviceMouse => playerInput.currentControlScheme == "KeyboardMouse";
+    public bool IsSprinting => isSprinting;
+
     [Header("Player")]
     [Tooltip("Move speed of the character in m/s")]
     public float MoveSpeed = 4.0f;
@@ -46,40 +52,39 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("How far in degrees can you move the camera down")]
     public float BottomClamp = -90.0f;
 
-    public CharacterController CharacterController => _controller;
-    public PlayerInputController InputController => _InputController;
-    public Vector3 CurrentVelocity => _controller.velocity;
-    public bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
-    public bool IsSprinting {  get; private set; } = false;
-
     // cinemachine
-    private float _cinemachineTargetPitch;
+    private float cinemachineTargetPitch;
 
     // player
-    private float _speed;
-    private float _rotationVelocity;
-    private float _verticalVelocity;
-    private readonly float _terminalVelocity = 53.0f;
+    private float speed;
+    private bool isSprinting = false;
+    private float rotationVelocity;
+    private float verticalVelocity;
+    private readonly float terminalVelocity = 53.0f;
 
     // timeout deltatime
-    private float _jumpTimeoutDelta;
-    private float _fallTimeoutDelta;
+    private float jumpTimeoutDelta;
+    private float fallTimeoutDelta;
 
-    private CharacterController _controller;
-    private PlayerInput _playerInput;
-    private PlayerInputController _InputController;
+    private const float threshold = 0.01f;
 
-    private const float _threshold = 0.01f;
+    private CharacterController characterController;
+    private PlayerInput playerInput;
+    private PlayerInputController playerInputController;
+
+    private void Awake()
+    {
+        characterController = GetComponent<CharacterController>();
+
+        playerInput = GetComponent<PlayerInput>();
+        playerInputController = GetComponent<PlayerInputController>();
+    }
 
     private void Start()
     {
-        _controller = GetComponent<CharacterController>();
-        _playerInput = GetComponent<PlayerInput>();
-        _InputController = GetComponent<PlayerInputController>();
-
         // reset timeouts on start
-        _jumpTimeoutDelta = JumpTimeout;
-        _fallTimeoutDelta = FallTimeout;
+        jumpTimeoutDelta = JumpTimeout;
+        fallTimeoutDelta = FallTimeout;
     }
 
     private void Update()
@@ -108,70 +113,70 @@ public class FirstPersonController : MonoBehaviour
     private void CameraRotation()
     {
         // if there is an input
-        if (_InputController.Look.sqrMagnitude >= _threshold)
+        if (playerInputController.Look.sqrMagnitude >= threshold)
         {
             //Don't multiply mouse input by Time.deltaTime
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-            _cinemachineTargetPitch += _InputController.Look.y * RotationSpeed * deltaTimeMultiplier;
-            _rotationVelocity = _InputController.Look.x * RotationSpeed * deltaTimeMultiplier;
+            cinemachineTargetPitch += playerInputController.Look.y * RotationSpeed * deltaTimeMultiplier;
+            rotationVelocity = playerInputController.Look.x * RotationSpeed * deltaTimeMultiplier;
 
             // clamp our pitch rotation
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+            cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // Update Cinemachine camera target pitch
-            CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
+            CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(cinemachineTargetPitch, 0.0f, 0.0f);
 
             // rotate the player left and right
-            transform.Rotate(Vector3.up * _rotationVelocity);
+            transform.Rotate(Vector3.up * rotationVelocity);
         }
     }
 
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = _InputController.Sprint ? SprintSpeed : MoveSpeed;
+        float targetSpeed = playerInputController.Sprint ? SprintSpeed : MoveSpeed;
 
         // set if the player is sprinting
-        IsSprinting = targetSpeed >= SprintSpeed;
+        isSprinting = targetSpeed >= SprintSpeed;
 
         // if there is no input, set the target speed to 0
-        if (_InputController.Move == Vector2.zero) targetSpeed = 0.0f;
+        if (playerInputController.Move == Vector2.zero) targetSpeed = 0.0f;
 
         // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(characterController.velocity.x, 0.0f, characterController.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
-        float inputMagnitude = _InputController.analogMovement ? _InputController.Move.magnitude : 1f;
+        float inputMagnitude = playerInputController.analogMovement ? playerInputController.Move.magnitude : 1f;
 
         // accelerate or decelerate to target speed
         if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
         {
             // creates curved result rather than a linear one giving a more organic speed change
             // note T in Lerp is clamped, so we don't need to clamp our speed
-            _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+            speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
 
             // round speed to 3 decimal places
-            _speed = Mathf.Round(_speed * 1000f) / 1000f;
+            speed = Mathf.Round(speed * 1000f) / 1000f;
         }
         else
         {
-            _speed = targetSpeed;
+            speed = targetSpeed;
         }
 
         // normalise input direction
-        Vector3 inputDirection = new Vector3(_InputController.Move.x, 0.0f, _InputController.Move.y).normalized;
+        Vector3 inputDirection = new Vector3(playerInputController.Move.x, 0.0f, playerInputController.Move.y).normalized;
 
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
-        if (_InputController.Move != Vector2.zero)
+        if (playerInputController.Move != Vector2.zero)
         {
             // move
-            inputDirection = transform.right * _InputController.Move.x + transform.forward * _InputController.Move.y;
+            inputDirection = transform.right * playerInputController.Move.x + transform.forward * playerInputController.Move.y;
         }
 
         // move the player
-        _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        characterController.Move(inputDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
     private void JumpAndGravity()
@@ -179,46 +184,46 @@ public class FirstPersonController : MonoBehaviour
         if (Grounded)
         {
             // reset the fall timeout timer
-            _fallTimeoutDelta = FallTimeout;
+            fallTimeoutDelta = FallTimeout;
 
             // stop our velocity dropping infinitely when grounded
-            if (_verticalVelocity < 0.0f)
+            if (verticalVelocity < 0.0f)
             {
-                _verticalVelocity = -2f;
+                verticalVelocity = -2f;
             }
 
             // Jump
-            if (_InputController.Jump && _jumpTimeoutDelta <= 0.0f)
+            if (playerInputController.Jump && jumpTimeoutDelta <= 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
-                _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
             }
 
             // jump timeout
-            if (_jumpTimeoutDelta >= 0.0f)
+            if (jumpTimeoutDelta >= 0.0f)
             {
-                _jumpTimeoutDelta -= Time.deltaTime;
+                jumpTimeoutDelta -= Time.deltaTime;
             }
         }
         else
         {
             // reset the jump timeout timer
-            _jumpTimeoutDelta = JumpTimeout;
+            jumpTimeoutDelta = JumpTimeout;
 
             // fall timeout
-            if (_fallTimeoutDelta >= 0.0f)
+            if (fallTimeoutDelta >= 0.0f)
             {
-                _fallTimeoutDelta -= Time.deltaTime;
+                fallTimeoutDelta -= Time.deltaTime;
             }
 
             // if we are not grounded, do not jump
-            _InputController.Jump = false;
+            playerInputController.Jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-        if (_verticalVelocity < _terminalVelocity)
+        if (verticalVelocity < terminalVelocity)
         {
-            _verticalVelocity += Gravity * Time.deltaTime;
+            verticalVelocity += Gravity * Time.deltaTime;
         }
     }
 

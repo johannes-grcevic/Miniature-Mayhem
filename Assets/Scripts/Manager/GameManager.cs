@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {  get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public EntityPlayer Player { get; private set; }
 
     [SerializeField]
-    private UnityEvent<GameState> OnLevelRestart = new();
+    private UnityEvent<GameState> OnLevelLoad = new();
 
     private void Awake()
     {
@@ -18,14 +18,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             Player = FindFirstObjectByType<EntityPlayer>();
+        }
 
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetCursor(bool visible, CursorLockMode lockMode)
@@ -42,7 +37,12 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
-        OnLevelRestart.Invoke(GameState.Running);
+        OnLevelLoad.Invoke(GameState.Running);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()

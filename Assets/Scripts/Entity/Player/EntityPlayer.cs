@@ -7,6 +7,10 @@ using UnityEngine.Events;
 public class EntityPlayer : Entity
 {
     public UnityEvent<float> OnStaminaChanged { get; private set; } = new();
+
+    public float MaxStamina => maxStamina;
+    public float CurrentStamina => currentStamina;
+    public FirstPersonController Controller => playerController;
     
     [SerializeField]
     private bool godMode = false;
@@ -40,33 +44,35 @@ public class EntityPlayer : Entity
     private AudioClip hitClip;
 
     [SerializeField, Range(0f, 1f)]
-    private float volume;
+    private float volumeScale;
 
     private FirstPersonController playerController;
-    private AudioSource playerSource;
 
     private float normalMoveSpeed;
     private float normalSprintSpeed;
 
     protected override void Awake()
     {
-        playerSource = GetComponent<AudioSource>();
         playerController = GetComponent<FirstPersonController>();
 
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
         normalMoveSpeed = playerController.MoveSpeed;
         normalSprintSpeed = playerController.SprintSpeed;
 
         currentStamina = maxStamina;
         currentRegenTimer = 0f;
+        
+        base.Start();
     }
 
     private void Update()
-    {
+    {   
+        if (IsDead) return;
+        
         if (!isExhausted && currentStamina > 0f)
         {
             // drain when sprinting and moving forward only
@@ -99,15 +105,15 @@ public class EntityPlayer : Entity
     {
         if (godMode)
         {
-            Debug.LogWarning("Can't take damage while in god mode!");
+            Debug.LogWarning("You are in God Mode. No damage was taken!");
             return;
         }
 
-        playerSource.PlayOneShot(painClip, volume);
+        PlayAudioClip(painClip, volumeScale);
 
         if (type == DamageType.Entity)
         {
-            playerSource.PlayOneShot(hitClip, volume);
+            PlayAudioClip(hitClip, volumeScale);
         }
 
         base.TakeDamage(amount, type);
@@ -174,11 +180,10 @@ public class EntityPlayer : Entity
         OnStaminaChanged.Invoke(currentStamina);
     }
 
-    public void SetMaxStamina(float value) => maxStamina = Mathf.Clamp(value, 0f, maxStamina);
-
-    public float GetMaxStamina() => maxStamina;
-
-    public float GetCurrentStamina() => currentStamina;
+    public void SetMaxStamina(float value)
+    {
+        maxStamina = Mathf.Clamp(value, 0f, maxStamina);
+    }
 
     private void ApplyNormalSpeed()
     {

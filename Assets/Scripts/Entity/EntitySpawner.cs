@@ -1,15 +1,20 @@
 using ConditionalField;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EntitySpawner : MonoBehaviour
 {
+    public UnityEvent<EntityType> OnEntitySpawned;
+    
     [SerializeField]
     private Entity[] entities;
 
     [SerializeField, Header("Spawning")]
+    private bool spawningEnabled = true;
+
+    [SerializeField]
     private float respawnDelay = 10f;
 
     [SerializeField, ConditionalField(nameof(spawnOnCollison), Conditional.Options.Invert)]
@@ -54,11 +59,19 @@ public class EntitySpawner : MonoBehaviour
 
     private void Start()
     {
+        if (!spawningEnabled)
+        {
+            Debug.LogWarning("Spawning is disabled: " + this);
+            return;
+        }
+
         _ = SpawnLoopAsync(destroyCancellationToken);
     }
 
     private async Awaitable SpawnLoopAsync(CancellationToken token)
     {
+        if (!CanSpawn()) return;
+
         while (true)
         {
             try
@@ -69,10 +82,9 @@ public class EntitySpawner : MonoBehaviour
             catch (System.OperationCanceledException)
             {
                 // Smoothly exit the loop if the object is destroyed during the wait period
+                Debug.LogWarning("Spawning stopped. The operation was cancelled!");
                 break;
             }
-
-            if (!CanSpawn()) break;
 
             if (spawnOnCollison && hasParticleSpawner)
             {
@@ -108,7 +120,7 @@ public class EntitySpawner : MonoBehaviour
                 }
             }
 
-            // Break the loop immediately if the spawner self-destructed
+            // Break the loop if the spawner self-destructed
             if (destroyOnSpawn) break;
         }
     }
@@ -137,12 +149,14 @@ public class EntitySpawner : MonoBehaviour
             Destroy(gameObject);
         }
 
+        OnEntitySpawned.Invoke(entity.EntityType);
+
         return Instantiate(entity, position, rotation);
     }
 
     public bool CanSpawn()
     {
-        return entities.Length > 0 && !GameManager.Instance.Player.IsDead();
+        return entities.Length > 0 && Time.timeScale > 0.0f;
     }
 
     public Entity GetRandomEntity()

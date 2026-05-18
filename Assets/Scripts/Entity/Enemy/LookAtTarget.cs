@@ -1,6 +1,6 @@
 using UnityEngine;
+
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(ChaseTarget))]
 public class LookAtTarget : MonoBehaviour
 {
     [SerializeField] 
@@ -15,7 +15,7 @@ public class LookAtTarget : MonoBehaviour
     [SerializeField] 
     private bool lockZAxis = false;
 
-    void Awake()
+    private void Awake()
     {
         if (!target)
         {
@@ -27,7 +27,7 @@ public class LookAtTarget : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (!target) return;
 
