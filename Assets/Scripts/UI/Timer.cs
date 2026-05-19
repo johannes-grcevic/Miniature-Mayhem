@@ -7,14 +7,16 @@ using UnityEngine.UI;
 
 public class Timer
 {
-    public UnityEvent OnStarted { get; private set; } = new();
-    public UnityEvent OnStopped { get; private set; } = new();
+    public UnityAction OnStarted;
+    public UnityAction OnStopped;
 
     public float Duration => timerDuration;
     public bool IsRunning => isTimerRunning;
+    public string Name => timerName;
+    public TMP_Text TextLabel => timerTextLabel;
 
-    private string timerName = string.Empty;
-    private TMP_Text timerLabel;
+    private string timerName;
+    private TMP_Text timerTextLabel;
 
     private float timerDuration = 0f;
     private bool isTimerRunning = false;
@@ -22,7 +24,7 @@ public class Timer
     public Timer(string name, TMP_Text label)
     {
         timerName = name;
-        timerLabel = label;
+        timerTextLabel = label;
     }
 
     public Timer(string name, Vector2 position, TextAlignmentOptions alignment = TextAlignmentOptions.Midline)
@@ -41,7 +43,7 @@ public class Timer
             }
 
             timerDuration -= Time.deltaTime;
-            DisplayTime(timerName, timerLabel, timerDuration);
+            DisplayTime(timerName, timerTextLabel, timerDuration);
 
             yield return null; // Wait one frame
         }
@@ -51,13 +53,13 @@ public class Timer
     {
         timerName = name;
         Canvas timerCanvas = new GameObject(nameof(Timer)).AddComponent<Canvas>();
-        timerLabel = new GameObject("Label").AddComponent<TextMeshProUGUI>();
-        timerLabel.transform.SetParent(timerCanvas.transform);
+        timerTextLabel = new GameObject("Label").AddComponent<TextMeshProUGUI>();
+        timerTextLabel.transform.SetParent(timerCanvas.transform);
 
         timerCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         timerCanvas.vertexColorAlwaysGammaSpace = true;
-        timerLabel.rectTransform.anchoredPosition = position;
-        timerLabel.alignment = alignmentMode;
+        timerTextLabel.rectTransform.anchoredPosition = position;
+        timerTextLabel.alignment = alignmentMode;
 
         timerCanvas.gameObject.AddComponent<GraphicRaycaster>();
 
@@ -75,7 +77,7 @@ public class Timer
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         StringBuilder sb = new();
-        sb.AppendWithSpace(timerName);
+        sb.Append(timerName).Append(':').Append(' ');
         sb.AppendFormat("{0:00}:{1:00}", minutes, seconds);
 
         timeLabel.SetText(sb.ToString());
@@ -88,8 +90,8 @@ public class Timer
         timerDuration = duration;
         isTimerRunning = true;
 
-        OnStarted.Invoke();
-        timerLabel.gameObject.SetActive(true);
+        OnStarted?.Invoke();
+        timerTextLabel.gameObject.SetActive(true);
 
         host.StartCoroutine(TimerUpdateLoop());
     }
@@ -98,17 +100,7 @@ public class Timer
     {
         isTimerRunning = false;
         timerDuration = 0f;
-        OnStopped.Invoke();
-        timerLabel.gameObject.SetActive(false);
-    }
-
-    public string GetName()
-    {
-        return timerName;
-    }
-
-    public TMP_Text GetLabel()
-    {
-        return timerLabel;
+        OnStopped?.Invoke();
+        timerTextLabel.gameObject.SetActive(false);
     }
 }

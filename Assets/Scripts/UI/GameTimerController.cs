@@ -21,7 +21,12 @@ public class GameTimerController : MonoBehaviour
     private void Awake()
     {
         gameTimer = new Timer(displayName, textLabel);
-        gameTimer.OnStopped.AddListener(OnTimerStopped);
+        gameTimer.OnStopped += OnTimerStopped;
+    }
+
+    private void OnDestroy()
+    {
+        gameTimer.OnStopped -= OnTimerStopped;
     }
 
     private void Start()

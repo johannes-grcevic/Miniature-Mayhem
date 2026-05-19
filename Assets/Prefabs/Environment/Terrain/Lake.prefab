@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7477056828915942309
 Transform:
@@ -100,7 +100,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2672196780654646980}
-  m_Material: {fileID: 13400000, guid: a5b757368e11ec7439403c52a9a1fde1, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e037d79687b134b4eb25c6b5996d3a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hazard
-  target: {fileID: 0}
-  damage: 5
+  targetType: 1
   damageType: 2
+  damage: 5
   damageRate: 1
 --- !u!1 &7710538939980032764
 GameObject:
@@ -158,7 +158,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1995820661637374430
 Transform:
@@ -280,6 +280,10 @@ PrefabInstance:
     - target: {fileID: 8298602017061239584, guid: 28bfe386cde67c246afa2242a20f8db6, type: 3}
       propertyPath: m_Name
       value: P_WaterSteam
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298602017061239584, guid: 28bfe386cde67c246afa2242a20f8db6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

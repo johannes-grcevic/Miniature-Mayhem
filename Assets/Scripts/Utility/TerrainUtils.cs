@@ -12,7 +12,7 @@ public static class TerrainUtils
         float x = Random.Range(terrainPos.x, terrainPos.x + width);
         float z = Random.Range(terrainPos.z, terrainPos.z + length);
 
-        // find the height (Y) at that specific X,Z point
+        // find the height at that specific point
         float y = terrain.SampleHeight(new Vector3(x, 0, z)) + terrainPos.y;
         float maxHeight = terrainPos.y + terrain.terrainData.size.y;
 

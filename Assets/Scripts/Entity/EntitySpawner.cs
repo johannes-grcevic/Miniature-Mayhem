@@ -74,17 +74,8 @@ public class EntitySpawner : MonoBehaviour
 
         while (true)
         {
-            try
-            {
-                // Wait for the respawn delay before spawning another entity
-                await Awaitable.WaitForSecondsAsync(respawnDelay, token);
-            }
-            catch (System.OperationCanceledException)
-            {
-                // Smoothly exit the loop if the object is destroyed during the wait period
-                Debug.LogWarning("Spawning stopped. The operation was cancelled!");
-                break;
-            }
+            // Wait for the respawn delay before spawning another entity
+            await Awaitable.WaitForSecondsAsync(respawnDelay, token);
 
             if (spawnOnCollison && hasParticleSpawner)
             {

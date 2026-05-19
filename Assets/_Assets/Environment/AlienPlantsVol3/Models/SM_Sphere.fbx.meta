@@ -67,8 +67,8 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
@@ -85,7 +85,7 @@ ModelImporter:
     generateMeshLods: 0
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
-    meshOptimizationFlags: 1
+    meshOptimizationFlags: -1
     indexFormat: 2
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001

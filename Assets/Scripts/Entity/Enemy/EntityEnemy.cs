@@ -67,6 +67,17 @@ public class EntityEnemy : Entity
         base.Awake();
     }
 
+    protected override void Start()
+    {
+        if (attackRange < agent.stoppingDistance)
+        {
+            Debug.LogWarning($"{this}: Attack range should not be less than the agent stopping distance. Setting attack range to {agent.stoppingDistance}.");
+            attackRange = agent.stoppingDistance;
+        }
+        
+        base.Start();
+    }
+
     private void OnEnable()
     {
         InvokeRepeating(nameof(PlayIdleClip), 0f, Mathf.Max(0.1f, idleRepeatRate));
@@ -80,12 +91,12 @@ public class EntityEnemy : Entity
     private void Update()
     {
         if (IsDead) return;
-        
+
+        // Cache the magnitude once per frame to avoid calculating it twice
+        float currentSpeed = agent.velocity.magnitude;
+
         if (!agent.pathPending && agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Cache the magnitude once per frame to avoid calculating it twice
-            float currentSpeed = agent.velocity.magnitude;
-
             // Verify the agent has a valid path and is in range of the player
             canAttackTarget = Vector3.Distance(agent.transform.position, agent.destination) <= attackRange && currentSpeed < 0.1f;
 
@@ -94,10 +105,10 @@ public class EntityEnemy : Entity
                 // Trigger attack animation
                 Animator.SetTrigger(AttackHash);
             }
-
-            // Set the movement speed for animation blend
-            Animator.SetFloat(SpeedHash, currentSpeed);
         }
+
+        // Set the movement speed for animation blend
+        Animator.SetFloat(SpeedHash, currentSpeed);
 
         // todo: not fully implemented yet
         //TrackTarget();
