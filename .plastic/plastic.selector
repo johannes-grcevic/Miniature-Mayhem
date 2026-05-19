@@ -1,4 +1,0 @@
-repository "Miniature Mayhem/Miniature Mayhem@5772895932144@cloud"
-  path "/"
-    br "/main"
-    co "/main"
