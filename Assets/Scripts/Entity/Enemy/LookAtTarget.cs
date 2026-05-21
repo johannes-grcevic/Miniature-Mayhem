@@ -9,6 +9,7 @@ public class LookAtTarget : MonoBehaviour
     [SerializeField] 
     private float rotationSpeed = 5f;
 
+    [Header("Constraints")]
     [SerializeField] 
     private bool lockXAxis = false;
 

@@ -63,7 +63,8 @@ MonoBehaviour:
   entities:
   - {fileID: 2305147360057373968, guid: fd22ef46ec2ed694f9e05ed02ce355c1, type: 3}
   spawningEnabled: 1
-  respawnDelay: 50
+  startSpawnDelay: 50
+  respawnDelay: 30
   randomSpawn: 0
   spawnRange: {x: -5, y: 5}
   destroyOnSpawn: 0

@@ -560,7 +560,8 @@ MonoBehaviour:
   entities:
   - {fileID: 2769687563528942743, guid: b3bf352b94ca20b49a8e41ef8bf52363, type: 3}
   spawningEnabled: 1
-  respawnDelay: 20
+  startSpawnDelay: 1
+  respawnDelay: 15
   randomSpawn: 1
   spawnRange: {x: -5, y: 5}
   destroyOnSpawn: 0
@@ -662,7 +663,7 @@ Light:
     serializedVersion: 2
     m_Bits: 65
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1.2, y: 1}
   m_BounceIntensity: 0

@@ -353,7 +353,7 @@ Light:
     serializedVersion: 2
     m_Bits: 65
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1.2, y: 1}
   m_BounceIntensity: 0
@@ -540,13 +540,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be87b1a3e8953334f834965bf6015c9d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealAOE
-  targetType: 1
+  m_EditorClassIdentifier: '::'
+  targetTypes: 010000000200000003000000
   healAmount: 5
   healInterval: 1
   maxHealAmountPerc: 75
   healingParticle: {fileID: 212469723430319539, guid: e904d38992a5d8b4889a5664225642ca, type: 3}
-  attachTransform: {fileID: 0}
   healingClip: {fileID: 8300000, guid: a3e4f7e00bc53254e89e42190ac71f1b, type: 3}
   volumeScale: 0.8
 --- !u!205 &4939949293468530988

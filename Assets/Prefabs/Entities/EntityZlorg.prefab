@@ -1275,6 +1275,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   targetProperty: _EmissionColor
+  hueMin: 0
+  hueMax: 1
+  saturationMin: 1
+  saturationMax: 1
+  valueMin: 0.5
+  valueMax: 1
 --- !u!1 &5713360800521342373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1519,7 @@ GameObject:
   - component: {fileID: 4417620516376158186}
   - component: {fileID: 2769687563528942743}
   - component: {fileID: 6955642087361701914}
+  - component: {fileID: 3388433218464810989}
   - component: {fileID: -467746920681846119}
   - component: {fileID: 6303665182636454459}
   - component: {fileID: 6876248436702170852}
@@ -1668,7 +1675,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChaseTarget
-  target: {fileID: 0}
+  smoothMovement: 1
+--- !u!114 &3388433218464810989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166204262351641782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
+  conditionalBehaviors:
+  - condition: {fileID: 11400000, guid: a6968c10020b21c44aed0f33fc998860, type: 2}
+    destinationType: 2
+    destinations:
+    - {fileID: 6117757904941928067, guid: 87d365221e12e3d4181f36f80c486599, type: 3}
+    - {fileID: 6401056945769372913, guid: 84c5358e19d23d247b2e84b85c3bfd27, type: 3}
+    - {fileID: 8235588892328084837, guid: be42f21dd6f2edb4db928534193816b0, type: 3}
+  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
+    destinationType: 1
+    destinations: []
 --- !u!114 &-467746920681846119
 MonoBehaviour:
   m_ObjectHideFlags: 0

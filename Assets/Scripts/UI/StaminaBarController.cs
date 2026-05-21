@@ -4,19 +4,19 @@ using UnityEngine.UI;
 public class StaminaBarController : MonoBehaviour
 {
     [SerializeField]
-    private EntityPlayer entityPlayer;
-
-    [SerializeField]
     private Image fillImage;
+
+    private EntityPlayer player;
 
     private void Awake()
     {
-        entityPlayer.OnStaminaChanged.AddListener(SetFillValue);
+        player = GameManager.Instance.Player;
+        player.OnStaminaChanged.AddListener(SetFillValue);
     }
 
     public void SetFillValue(float value)
     {
         // normalize health value and set the fill amount
-        fillImage.fillAmount = Mathf.InverseLerp(0, entityPlayer.MaxStamina, value);
+        fillImage.fillAmount = Mathf.InverseLerp(0, player.MaxStamina, value);
     }
 }

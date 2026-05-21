@@ -8,7 +8,6 @@ using UnityEngine.AI;
 public class EntityEnemy : Entity
 {
     public static readonly int IsDeadHash = Animator.StringToHash("IsDead");
-    public static readonly int IsSearchingHash = Animator.StringToHash("IsSearching");
     public static readonly int AttackHash = Animator.StringToHash("Attack");
     public static readonly int SpeedHash = Animator.StringToHash("Speed");
     public static readonly int TauntHash = Animator.StringToHash("Taunt");
@@ -19,9 +18,6 @@ public class EntityEnemy : Entity
 
     [SerializeField]
     private int damage = 20;
-
-    [SerializeField]
-    private float chaseRange = 10f;
 
     [SerializeField]
     private float attackRange = 1f;
@@ -47,16 +43,12 @@ public class EntityEnemy : Entity
     [SerializeField]
     private AudioClip[] deathClips;
 
-    [SerializeField]
-    private AudioClip[] tauntClips;
-
     [SerializeField, Range(0f, 1f)]
     private float volume = 1f;
 
     private NavMeshAgent agent;
     private LookAtTarget targetLook;
 
-    private bool isSearchingTarget = false;
     private bool canAttackTarget = false;
 
     protected override void Awake()
@@ -94,11 +86,12 @@ public class EntityEnemy : Entity
 
         // Cache the magnitude once per frame to avoid calculating it twice
         float currentSpeed = agent.velocity.magnitude;
+        float distanceToTarget = Vector3.Distance(agent.transform.position, agent.destination);
 
         if (!agent.pathPending && agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
             // Verify the agent has a valid path and is in range of the player
-            canAttackTarget = Vector3.Distance(agent.transform.position, agent.destination) <= attackRange && currentSpeed < 0.1f;
+            canAttackTarget = distanceToTarget <= attackRange && currentSpeed < 0.1f;
 
             if (canAttackTarget && !Animator.GetCurrentAnimatorStateInfo(0).IsTag(ATTACK_STATE_TAG))
             {
@@ -109,9 +102,6 @@ public class EntityEnemy : Entity
 
         // Set the movement speed for animation blend
         Animator.SetFloat(SpeedHash, currentSpeed);
-
-        // todo: not fully implemented yet
-        //TrackTarget();
     }
 
     public override void TakeDamage(int value, DamageType type)
@@ -154,26 +144,6 @@ public class EntityEnemy : Entity
     {   
         GameManager.Instance.Player.TakeDamage(damage, DamageType.Entity);
         PlayAudioClip(GetRandomClip(attackClips), volume);
-    }
-
-    public void OnTargetLost()
-    {
-        PlayAudioClip(GetRandomClip(tauntClips), volume);
-
-        Animator.SetBool(IsSearchingHash, isSearchingTarget);
-    }
-
-    public void TrackTarget()
-    {
-        float distanceToTarget = agent.remainingDistance;
-
-        // Start searching if the target is out of the chase range
-        isSearchingTarget = distanceToTarget > 0f && distanceToTarget > chaseRange;
-
-        if (isSearchingTarget)
-        {
-            OnTargetLost();
-        }
     }
 
     public void PlayHitAnimation(Transform target)

@@ -11,6 +11,11 @@ public class HealthBarController : MonoBehaviour
 
     private void Awake()
     {
+        if (!targetEntity)
+        {
+            targetEntity = GameManager.Instance.Player;
+        }
+        
         targetEntity.OnHealthChanged += SetFillValue;
     }
 

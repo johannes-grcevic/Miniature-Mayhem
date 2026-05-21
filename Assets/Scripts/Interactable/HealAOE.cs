@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -5,7 +6,7 @@ using UnityEngine;
 public class HealAOE : MonoBehaviour
 {
     [SerializeField]
-    private EntityType targetType = EntityType.Player;
+    private EntityType[] targetTypes;
 
     [SerializeField]
     private int healAmount = 1;
@@ -18,9 +19,6 @@ public class HealAOE : MonoBehaviour
 
     [SerializeField, Header("VFX")]
     private ParticleSystem healingParticle;
-
-    [SerializeField]
-    private Transform attachTransform;
 
     [SerializeField, Header("Audio")]
     private AudioClip healingClip;
@@ -38,12 +36,7 @@ public class HealAOE : MonoBehaviour
     }
 
     private void Start()
-    {
-        if (!attachTransform)
-        {
-            attachTransform = GameManager.Instance.Player.transform;
-        }
-        
+    {      
         healSource.clip = healingClip;
         healSource.volume = volumeScale;
         healTimer = 0f;
@@ -53,7 +46,7 @@ public class HealAOE : MonoBehaviour
     {     
         if (other.TryGetComponent(out Entity target) && target.CurrentHealthPerc < maxHealAmountPerc)
         {
-            OnHealStart(target, attachTransform, true);
+            OnHealStart(target, other.transform, true);
         }
     }
 
@@ -66,7 +59,7 @@ public class HealAOE : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {   
-        if (!other.TryGetComponent(out Entity collidingEntity) || collidingEntity.EntityType != targetType) return;
+        if (!other.TryGetComponent(out Entity collidingEntity) || !targetTypes.Any(type => type == collidingEntity.EntityType)) return;
 
         if (collidingEntity.CurrentHealthPerc < maxHealAmountPerc)
         {

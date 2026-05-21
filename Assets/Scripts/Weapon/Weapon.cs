@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour
         if (Time.time >= nextTimeToFire)
         {
             // set the time for the next allowed shot
-            nextTimeToFire = Time.time + (1f / fireRate);
+            nextTimeToFire = Time.time + (1f / fireRate * Time.deltaTime);
 
             ExecuteFire();
         }

@@ -15,6 +15,9 @@ public class EntitySpawner : MonoBehaviour
     private bool spawningEnabled = true;
 
     [SerializeField]
+    private float startSpawnDelay = 1.0f;
+
+    [SerializeField]
     private float respawnDelay = 10f;
 
     [SerializeField, ConditionalField(nameof(spawnOnCollison), Conditional.Options.Invert)]
@@ -75,7 +78,7 @@ public class EntitySpawner : MonoBehaviour
         while (true)
         {
             // Wait for the respawn delay before spawning another entity
-            await Awaitable.WaitForSecondsAsync(respawnDelay, token);
+            await Awaitable.WaitForSecondsAsync(Time.time > startSpawnDelay ? respawnDelay : startSpawnDelay, token);
 
             if (spawnOnCollison && hasParticleSpawner)
             {
