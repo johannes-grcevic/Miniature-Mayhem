@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AgentDestinationController))]
 [RequireComponent(typeof(LookAtTarget))]
 public class EntityEnemy : Entity
 {
     public static readonly int IsDeadHash = Animator.StringToHash("IsDead");
     public static readonly int AttackHash = Animator.StringToHash("Attack");
     public static readonly int SpeedHash = Animator.StringToHash("Speed");
-    public static readonly int TauntHash = Animator.StringToHash("Taunt");
 
     public const string ATTACK_STATE_TAG = "Attack";
     public const string HIT_FRONT_STATE_NAME = "GetHitBack";
     public const string HIT_BACK_STATE_NAME = "GetHitFront";
+
+    public bool CanAttack => canAttackTarget;
+    public float CurrentSpeed => currentSpeed;
+    public float CurrentPlayerDistance => currentPlayerDistance;
+    public NavMeshAgent Agent => agent;
+    public AgentDestinationController DestinationController => destinationController;
+    public LookAtTarget LookAtTarget => lookAtTarget;
 
     [SerializeField]
     private int damage = 20;
@@ -47,14 +52,18 @@ public class EntityEnemy : Entity
     private float volume = 1f;
 
     private NavMeshAgent agent;
-    private LookAtTarget targetLook;
+    private AgentDestinationController destinationController;
+    private LookAtTarget lookAtTarget;
 
     private bool canAttackTarget = false;
+    private float currentSpeed;
+    private float currentPlayerDistance;
 
     protected override void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        targetLook = GetComponent<LookAtTarget>();
+        destinationController = GetComponent<AgentDestinationController>();
+        lookAtTarget = GetComponent<LookAtTarget>();
 
         base.Awake();
     }
@@ -63,7 +72,7 @@ public class EntityEnemy : Entity
     {
         if (attackRange < agent.stoppingDistance)
         {
-            Debug.LogWarning($"{this}: Attack range should not be less than the agent stopping distance. Setting attack range to {agent.stoppingDistance}.");
+            Debug.LogWarning($"[{this}] Attack range should not be less than the agent stopping distance. Setting attack range to {agent.stoppingDistance}.");
             attackRange = agent.stoppingDistance;
         }
         
@@ -84,20 +93,31 @@ public class EntityEnemy : Entity
     {
         if (IsDead) return;
 
+        Debug.Log(destinationController.CurrentDestination);
+
+        // Make the target look in the direction its heading
+        lookAtTarget.SetLookTarget(agent.destination);
+
         // Cache the magnitude once per frame to avoid calculating it twice
-        float currentSpeed = agent.velocity.magnitude;
-        float distanceToTarget = Vector3.Distance(agent.transform.position, agent.destination);
+        currentSpeed = agent.velocity.magnitude;
+        currentPlayerDistance = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
+
+        // Verify the agent is in range of the player
+        canAttackTarget = currentPlayerDistance <= attackRange && currentSpeed < 0.1f;
 
         if (!agent.pathPending && agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
-            // Verify the agent has a valid path and is in range of the player
-            canAttackTarget = distanceToTarget <= attackRange && currentSpeed < 0.1f;
-
-            if (canAttackTarget && !Animator.GetCurrentAnimatorStateInfo(0).IsTag(ATTACK_STATE_TAG))
+            if (canAttackTarget && !IsAnimationPlaying(0, ATTACK_STATE_TAG))
             {
                 // Trigger attack animation
                 Animator.SetTrigger(AttackHash);
             }
+        }
+
+        // reset attack trigger if the target is out of range
+        if (!canAttackTarget)
+        {
+            Animator.ResetTrigger(AttackHash);
         }
 
         // Set the movement speed for animation blend
@@ -116,7 +136,7 @@ public class EntityEnemy : Entity
         // stop agent from moving
         agent.isStopped = true;
         agent.enabled = false;
-        targetLook.enabled = false;
+        lookAtTarget.enabled = false;
 
         // trigger death animation
         Animator.SetBool(IsDeadHash, true);
@@ -124,10 +144,8 @@ public class EntityEnemy : Entity
         // fall to the ground when dead
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.mass = massOnDeath;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.freezeRotation = true;
-        rb.isKinematic = false;
         rb.useGravity = true;
 
         // play death sound clip

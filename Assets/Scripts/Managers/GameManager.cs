@@ -7,17 +7,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public EntityPlayer Player { get; private set; }
+    public EntityPlayer Player => player;
 
     [SerializeField]
     private UnityEvent<GameState> OnLevelLoad = new();
 
+    private EntityPlayer player;
+
     private void Awake()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<EntityPlayer>();
+
         if (!Instance)
         {
             Instance = this;
-            Player = FindFirstObjectByType<EntityPlayer>();
         }
 
         DontDestroyOnLoad(gameObject);

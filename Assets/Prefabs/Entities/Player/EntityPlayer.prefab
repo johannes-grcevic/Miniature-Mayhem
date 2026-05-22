@@ -368,7 +368,7 @@ MonoBehaviour:
     Enabled: 1
     CollisionFilter:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 80
     IgnoreTag: Player
     CameraRadius: 0.15
     DampingIntoCollision: 0
@@ -1303,7 +1303,10 @@ MonoBehaviour:
   projectile: {fileID: 3197274097257789161, guid: c61cc2c78c31c0f4d992c556a81fe752, type: 3}
   projectileJoint: {fileID: 949541428017376796}
   crosshair: {fileID: 0}
-  zoomSpeed: 3
+  crosshairZoomSpeed: 3
+  normalFOV: 40
+  zoomFOV: 25
+  zoomSpeed: 4
   fireSound: {fileID: 8300000, guid: ce0d275277830504cad67e61cbf14536, type: 3}
   volumeScale: 0.08
 --- !u!114 &9000609551015699580

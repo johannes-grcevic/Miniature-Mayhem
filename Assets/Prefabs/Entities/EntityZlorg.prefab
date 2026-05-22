@@ -1517,9 +1517,9 @@ GameObject:
   - component: {fileID: 3451324488859772492}
   - component: {fileID: 6632507020687004670}
   - component: {fileID: 4417620516376158186}
-  - component: {fileID: 2769687563528942743}
   - component: {fileID: 6955642087361701914}
   - component: {fileID: 3388433218464810989}
+  - component: {fileID: 2769687563528942743}
   - component: {fileID: -467746920681846119}
   - component: {fileID: 6303665182636454459}
   - component: {fileID: 6876248436702170852}
@@ -1591,6 +1591,37 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6955642087361701914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166204262351641782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChaseTarget
+--- !u!114 &3388433218464810989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166204262351641782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
+  conditionalBehaviors:
+  - condition: {fileID: 11400000, guid: a6968c10020b21c44aed0f33fc998860, type: 2}
+    destinationType: 2
+    destination: {fileID: 0}
+  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
+    destinationType: 1
+    destination: {fileID: 0}
 --- !u!114 &2769687563528942743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,9 +1635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityEnemy
   entityType: 2
+  gameStateOnDeath: 1
   maxHealth: 50
   damage: 10
-  chaseRange: 15
   attackRange: 2
   despawnDelay: 5
   massOnDeath: 50
@@ -1651,53 +1682,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c7ebaefdadcbcd14d9520b09b184b228, type: 3}
   - {fileID: 8300000, guid: 1bbb6ae55de19b94fb4b17ce0ded0ba4, type: 3}
   - {fileID: 8300000, guid: 6c1c3497a61f12e469a9da645c4a778d, type: 3}
-  tauntClips:
-  - {fileID: 8300000, guid: 1e73b11f709938a4296b74cae9a36bde, type: 3}
-  - {fileID: 8300000, guid: f9dd318610f85104fbacb635d9178aa1, type: 3}
-  - {fileID: 8300000, guid: c9c86f36aaa8aff4faa486d5ef65e3b6, type: 3}
-  - {fileID: 8300000, guid: fc502229fbd61484b8a427760a335c12, type: 3}
-  - {fileID: 8300000, guid: f2c56add0a4a8df4faa19f530797dfd5, type: 3}
-  - {fileID: 8300000, guid: 48bb5e687cc706f42b576908b49efa23, type: 3}
-  - {fileID: 8300000, guid: ec1ba5ce0e0207c45bd0dea0646702a3, type: 3}
-  - {fileID: 8300000, guid: b9492af09cbd07245af7a0341a349c0d, type: 3}
-  - {fileID: 8300000, guid: 1b343212cd8d7e345adc8930767f136f, type: 3}
-  - {fileID: 8300000, guid: 4546202469fa3eb4a96745d51df23bf1, type: 3}
   volume: 0.1
---- !u!114 &6955642087361701914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7166204262351641782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChaseTarget
-  smoothMovement: 1
---- !u!114 &3388433218464810989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7166204262351641782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
-  conditionalBehaviors:
-  - condition: {fileID: 11400000, guid: a6968c10020b21c44aed0f33fc998860, type: 2}
-    destinationType: 2
-    destinations:
-    - {fileID: 6117757904941928067, guid: 87d365221e12e3d4181f36f80c486599, type: 3}
-    - {fileID: 6401056945769372913, guid: 84c5358e19d23d247b2e84b85c3bfd27, type: 3}
-    - {fileID: 8235588892328084837, guid: be42f21dd6f2edb4db928534193816b0, type: 3}
-  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
-    destinationType: 1
-    destinations: []
 --- !u!114 &-467746920681846119
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -495,6 +495,9 @@ GameObject:
   - component: {fileID: 766943642869738451}
   - component: {fileID: 487012454046659026}
   - component: {fileID: 862091487790256445}
+  - component: {fileID: 8144409703446512243}
+  - component: {fileID: 2147833680749821472}
+  - component: {fileID: 2196755403655104448}
   m_Layer: 0
   m_Name: Flesh Blob
   m_TagString: Untagged
@@ -557,14 +560,20 @@ MonoBehaviour:
   OnEntitySpawned:
     m_PersistentCalls:
       m_Calls: []
+  OnBossEntitySpawned:
+    m_PersistentCalls:
+      m_Calls: []
   entities:
   - {fileID: 2769687563528942743, guid: b3bf352b94ca20b49a8e41ef8bf52363, type: 3}
   spawningEnabled: 1
   startSpawnDelay: 1
   respawnDelay: 15
-  randomSpawn: 1
-  spawnRange: {x: -5, y: 5}
-  destroyOnSpawn: 0
+  randomSpawnPoint: 1
+  spawnPointRange: {x: -5, y: 5}
+  destroyOnSpawn: 1
+  OnBeforeSpawnerDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   spawnOnCollison: 0
   yOffset: 50
 --- !u!114 &862091487790256445
@@ -580,6 +589,143 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleSpawner
   particle: {fileID: 3970263362309477979, guid: ab559236a1b93ff4ab25e8f62482e17a, type: 3}
+--- !u!65 &8144409703446512243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248016496628079339}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 0.81811833, z: 2}
+  m_Center: {x: 0, y: 0.4020542, z: 0}
+--- !u!82 &2147833680749821472
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248016496628079339}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2196755403655104448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248016496628079339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be87b1a3e8953334f834965bf6015c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealAOE
+  targetTypes: 0200000003000000
+  healAmount: 10
+  healInterval: 1
+  maxHealAmountPerc: 100
+  healingParticle: {fileID: 1151581463672801389, guid: f7f7b221b134bdf4097445f9151296db, type: 3}
+  healingClip: {fileID: 8300000, guid: a3e4f7e00bc53254e89e42190ac71f1b, type: 3}
+  volumeScale: 1
 --- !u!1 &4699916153488175396
 GameObject:
   m_ObjectHideFlags: 0

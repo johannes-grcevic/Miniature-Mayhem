@@ -1,4 +1,5 @@
 using ConditionalField;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,8 +30,18 @@ public class Weapon : MonoBehaviour
     [SerializeField, Header("Sights")]
     private GameObject crosshair;
 
-    [SerializeField, ConditionalField(nameof(crosshair))]
-    private float zoomSpeed = 2f;
+    [SerializeField]
+    private float crosshairZoomSpeed = 3f;
+
+    [Header("Camera")]
+    [SerializeField]
+    private float normalFOV = 40f;
+
+    [SerializeField]
+    private float zoomFOV = 30f;
+
+    [SerializeField]
+    private float zoomSpeed = 3f;
 
     [SerializeField, Header("Audio")]
     private AudioClip fireSound;
@@ -59,6 +70,14 @@ public class Weapon : MonoBehaviour
         aimAction.action.performed -= OnAim;
     }
 
+    private void Update()
+    {
+        if (CinemachineCore.GetVirtualCamera(0) is CinemachineCamera virtualCam)
+        {
+            virtualCam.Lens.FieldOfView = Mathf.Lerp(virtualCam.Lens.FieldOfView, isAiming ? zoomFOV : normalFOV, Time.deltaTime * zoomSpeed);
+        }
+    }
+
     private void OnFire(InputAction.CallbackContext context)
     {
         // stop firing when the game is paused
@@ -80,11 +99,12 @@ public class Weapon : MonoBehaviour
         if (crosshair == null) return;
         
         isAiming = !isAiming;
-        
+
+        // animate the crosshair size on screen
         if (crosshair.TryGetComponent(out Animator animator))
         {
             animator.SetBool(IsAimingHash, isAiming);
-            animator.speed = zoomSpeed;
+            animator.speed = crosshairZoomSpeed;
         }
     }
 

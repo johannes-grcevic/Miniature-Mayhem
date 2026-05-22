@@ -1863,9 +1863,9 @@ GameObject:
   - component: {fileID: 8749261110207868612}
   - component: {fileID: 841956546463382941}
   - component: {fileID: 4534863243940949066}
-  - component: {fileID: 2305147360057373968}
   - component: {fileID: 8494214093562153959}
   - component: {fileID: 481368463906356010}
+  - component: {fileID: 2305147360057373968}
   - component: {fileID: 2807188879624835924}
   - component: {fileID: 8743749073025077363}
   - component: {fileID: 3122383419631245266}
@@ -1937,6 +1937,37 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8494214093562153959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChasePlayer
+--- !u!114 &481368463906356010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
+  conditionalBehaviors:
+  - condition: {fileID: 11400000, guid: a6968c10020b21c44aed0f33fc998860, type: 2}
+    destinationType: 2
+    destination: {fileID: 0}
+  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
+    destinationType: 1
+    destination: {fileID: 0}
 --- !u!114 &2305147360057373968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,6 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
   entityType: 3
+  gameStateOnDeath: 1
   maxHealth: 500
   damage: 10
   attackRange: 3
@@ -2016,35 +2048,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3c534d3fd4a34b546a1cf0f575c4aca4, type: 3}
   - {fileID: 8300000, guid: 43ddcb9d73ec9f441a7001e839321e19, type: 3}
   volume: 0.1
---- !u!114 &8494214093562153959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6526574952763004088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChasePlayer
-  smoothMovement: 1
---- !u!114 &481368463906356010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6526574952763004088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
-  conditionalBehaviors:
-  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
-    destinationType: 1
-    destinations: []
 --- !u!114 &2807188879624835924
 MonoBehaviour:
   m_ObjectHideFlags: 0

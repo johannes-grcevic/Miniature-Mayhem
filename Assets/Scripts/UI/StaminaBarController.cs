@@ -8,7 +8,7 @@ public class StaminaBarController : MonoBehaviour
 
     private EntityPlayer player;
 
-    private void Awake()
+    private void Start()
     {
         player = GameManager.Instance.Player;
         player.OnStaminaChanged.AddListener(SetFillValue);

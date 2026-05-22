@@ -4,12 +4,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 public class AgentMovementController : MonoBehaviour
-{
-    [SerializeField]
-    private bool smoothMovement = false;
-    
+{  
     private NavMeshAgent agent;
     private Animator animator;
+    private Vector3 currentVelocity;
 
     private void Awake()
     {
@@ -19,19 +17,18 @@ public class AgentMovementController : MonoBehaviour
 
     private void Update()
     {
-        if (!agent.enabled || agent.speed == 0) return;
-        
+        if (!agent.enabled || agent.speed <= 0f) return;
+
+        // get the current velocity of the agent
+        currentVelocity = agent.velocity;
+
         // Smooth movement to fix jittering
-        if (smoothMovement)
-        {
-            Vector3 currentVelocity = agent.velocity;
-            agent.transform.position = Vector3.SmoothDamp(transform.position, agent.nextPosition, ref currentVelocity, Time.deltaTime, agent.speed);
-        }
+        transform.position = Vector3.SmoothDamp(transform.position, agent.nextPosition, ref currentVelocity, Time.deltaTime, agent.speed);
     }
 
     private void OnAnimatorMove()
     {
-        if (!animator.applyRootMotion || !agent.enabled || agent.speed == 0) return;
+        if (!animator.applyRootMotion || !agent.enabled || agent.speed <= 0f) return;
         
         Vector3 position = animator.rootPosition;
 

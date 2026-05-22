@@ -3,8 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class LookAtTarget : MonoBehaviour
 {
+    public Vector3 LookTargetPosition => lookTargetPosition;
+    
     [SerializeField] 
-    private Transform target;
+    private Transform lookTarget;
 
     [SerializeField] 
     private float rotationSpeed = 5f;
@@ -16,28 +18,23 @@ public class LookAtTarget : MonoBehaviour
     [SerializeField] 
     private bool lockZAxis = false;
 
-    private void Awake()
-    {
-        if (!target)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player)
-            {
-                target = player.transform;
-            }
-        }
-    }
+    private Vector3 lookTargetPosition;
 
     private void Update()
     {
-        if (!target) return;
+        if (!lookTarget) return;
 
         RotateTowardsTarget();
     }
 
+    public void SetLookTarget(Vector3 target)
+    {
+        lookTargetPosition = target;
+    }
+
     private void RotateTowardsTarget()
     {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction = lookTargetPosition - transform.position;
 
         if (lockXAxis) direction.y = 0f;
         if (lockZAxis) direction.z = 0f;

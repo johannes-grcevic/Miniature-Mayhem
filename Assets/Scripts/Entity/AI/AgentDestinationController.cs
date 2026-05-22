@@ -1,32 +1,30 @@
-using ConditionalField;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class AgentDestinationController : MonoBehaviour
 {
-    public enum DestinationType { None,Player,Other }
+    public enum DestinationType { Custom,Player,SpawnPoint }
+    public DestinationType CurrentDestination => currentDestination;
     
     [Serializable]
     public struct ConditionDestinationPair
     {
         public AgentCondition condition;
 
+        [Tooltip("Where the agent should go if the condition is met.")]
         public DestinationType destinationType;
 
-        [Tooltip("Where the agent should go if the condition is met.")]
-        public Transform[] destinations;
-
-        [HideInInspector]
-        public DistanceComparer<Transform> distanceComparer;
+        [Tooltip("Set a custom destination for the agent.")]
+        public Transform destination;
     }
 
-    [SerializeField, Space(10)] 
-    private List<ConditionDestinationPair> conditionalBehaviors;
+    [SerializeField, Header("Agent Conditions")] 
+    private ConditionDestinationPair[] conditionalBehaviors;
 
     private NavMeshAgent agent;
+    private DestinationType currentDestination;
 
     private void Awake()
     {
@@ -44,25 +42,37 @@ public class AgentDestinationController : MonoBehaviour
     {
         foreach (var behavior in conditionalBehaviors)
         {
-            if (behavior.condition == null || behavior.destinations == null || behavior.destinationType == DestinationType.None) continue;
+            if (behavior.condition == null) continue;
 
             // Check if the individual asset condition is met
-            if (behavior.condition.IsSatisfied(agent))
-            {      
-                // Sorts the list from closest to furthest
-                if (behavior.destinations.Length > 1)
-                {
-                    Array.Sort(behavior.destinations, behavior.distanceComparer);
-                }
+            if (!behavior.condition.IsSatisfied(agent)) continue;
 
-                // Send the agent to the closest location
-                agent.SetDestination(behavior.destinations.Length > 0 ? behavior.destinations[0].transform.position : GameManager.Instance.Player.transform.position);
+            currentDestination = behavior.destinationType;
 
-                Debug.Log($"[{gameObject.name}] Moving to destination due to: {behavior.condition.name}.");
-
-                // Prioritizes the top items in the Inspector list over the bottom items
-                break;
+            // Send the agent to the closest location
+            switch (currentDestination)
+            {
+                case DestinationType.Custom:
+                    agent.SetDestination(behavior.destination.position);
+                    break;
+                case DestinationType.Player:
+                    agent.SetDestination(GameManager.Instance.Player.transform.position);
+                    break;
+                case DestinationType.SpawnPoint:
+                    if (agent.TryGetComponent(out Entity entity))
+                    {
+                        agent.SetDestination(entity.SpawnPoint);
+                    }
+                    break;
+                default:
+                    Debug.LogWarning($"[{agent}] Has no valid destination.");
+                    break;
             }
+
+            Debug.Log($"[{agent}] Moving to destination: {behavior.destinationType}.");
+
+            // Exit if the first condition is met to give it priority over the ones below it
+            break;
         }
     }
 }

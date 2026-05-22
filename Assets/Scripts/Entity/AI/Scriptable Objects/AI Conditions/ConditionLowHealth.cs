@@ -4,8 +4,8 @@ using UnityEngine.AI;
 [CreateAssetMenu(fileName = "Condition Low Health", menuName = "AI/Conditions/Low Health")]
 public class ConditionLowHealth : AgentCondition
 {
-    [Range(0f, 1f)]
-    [SerializeField] private float healthThresholdPercentage = 0.3f;
+    [Range(0f, 100f)]
+    [SerializeField] private float healthThresholdPercentage = 30f;
 
     public override bool IsSatisfied(NavMeshAgent agent)
     {

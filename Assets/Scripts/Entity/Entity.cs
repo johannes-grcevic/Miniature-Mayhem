@@ -15,11 +15,15 @@ public class Entity : MonoBehaviour
     public bool IsDead => !isAlive;
     public Animator Animator => animator;
     public bool HasAnimator => hasAnimator;
+    public Vector3 SpawnPoint => spawnPoint;
 
     public EntityType EntityType => entityType;
 
     [SerializeField, Header("Base Stats")]
     private EntityType entityType;
+
+    [SerializeField]
+    private GameState gameStateOnDeath;
 
     [SerializeField]
     private int maxHealth = 50;
@@ -31,6 +35,7 @@ public class Entity : MonoBehaviour
     private AudioSource source;
     private Animator animator;
     private bool hasAnimator = false;
+    private Vector3 spawnPoint;
 
     protected virtual void Awake()
     {
@@ -88,18 +93,23 @@ public class Entity : MonoBehaviour
     public virtual void Die()
     {
         isAlive = false;
-        OnDeath?.Invoke(GameState.Over);
+        OnDeath?.Invoke(gameStateOnDeath);
     }
 
     public virtual void PlayAnimation(string stateName, int layer)
     {
-        if (!HasAnimator) return;
+        if (!HasAnimator || !TargetStateHasClip(stateName)) return;
         
         // if its not already playing, play it
         if (!animator.GetCurrentAnimatorStateInfo(layer).IsName(stateName))
         {
             animator.Play(stateName, layer);
         }
+    }
+
+    public virtual bool IsAnimationPlaying(int layerIndex, string stateTag)
+    {
+        return animator.GetCurrentAnimatorStateInfo(layerIndex).IsTag(stateTag);
     }
 
     public virtual void PlayAudioClip(AudioClip clip, float volumeScale)
@@ -115,8 +125,38 @@ public class Entity : MonoBehaviour
         maxHealth = value;
     }
 
+    public virtual void SetSpawnPoint(Vector3 position)
+    {
+        if (position != Vector3.zero)
+        {
+            spawnPoint = position;
+        }
+    }
+
+    public void SetDead()
+    {
+        Die();
+    }
+
     private void UpdateCurrentHealthPerc()
     {
         currentHealthPerc = (float)currentHealth / maxHealth * 100f;
+    }
+
+    private bool TargetStateHasClip(string stateName)
+    {
+        // Ensure the animator is actually running an Override Controller
+        AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+        if (overrideController == null) return true; // Fallback for standard controllers
+
+        AnimationClip currentOverrideClip = overrideController[stateName];
+
+        // If the indexer returns null, or the clip is a dummy/empty asset, block it
+        if (currentOverrideClip == null || currentOverrideClip.name == "None" || currentOverrideClip.name == "")
+        {
+            return false;
+        }
+
+        return true;
     }
 }
