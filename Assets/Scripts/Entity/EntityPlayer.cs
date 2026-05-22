@@ -6,14 +6,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(FirstPersonController))]
 public class EntityPlayer : Entity
 {
-    public UnityEvent<float> OnStaminaChanged { get; private set; } = new();
+    public UnityEvent<float> OnStaminaChanged;
 
     public float MaxStamina => maxStamina;
     public float CurrentStamina => currentStamina;
     public FirstPersonController Controller => playerController;
-    
-    [SerializeField]
-    private bool godMode = false;
 
     [SerializeField, Header("Stamina")]
     private float maxStamina = 100f;
@@ -103,12 +100,6 @@ public class EntityPlayer : Entity
 
     public override void TakeDamage(int amount, DamageType type)
     {
-        if (godMode)
-        {
-            Debug.LogWarning("You are in God Mode. No damage was taken!");
-            return;
-        }
-
         PlayAudioClip(painClip, volumeScale);
 
         if (type == DamageType.Entity)

@@ -9,17 +9,20 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Rock_F_Alien
   m_Shader: {fileID: 4800000, guid: 28b69d8b607f5f94fa56d051c549c3c2, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DIFFUSE_DETAIL_IS_WORLDSPACE_ON
   - _GLOW_FROMTEXTURE_ON
   - _METAL_FROMTEXTURE_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -145,3 +148,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 1, g: 0, b: 0.85490197, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

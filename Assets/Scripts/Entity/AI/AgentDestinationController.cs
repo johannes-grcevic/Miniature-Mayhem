@@ -65,11 +65,11 @@ public class AgentDestinationController : MonoBehaviour
                     }
                     break;
                 default:
-                    Debug.LogWarning($"[{agent}] Has no valid destination.");
+                    //Debug.LogWarning($"[{agent}] Has no valid destination.");
                     break;
             }
 
-            Debug.Log($"[{agent}] Moving to destination: {behavior.destinationType}.");
+            //Debug.Log($"[{agent}] Moving to destination: {behavior.destinationType}.");
 
             // Exit if the first condition is met to give it priority over the ones below it
             break;

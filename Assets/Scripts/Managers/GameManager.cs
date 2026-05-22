@@ -1,29 +1,31 @@
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     public EntityPlayer Player => player;
-
-    [SerializeField]
-    private UnityEvent<GameState> OnLevelLoad = new();
 
     private EntityPlayer player;
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<EntityPlayer>();
-
         if (!Instance)
         {
             Instance = this;
         }
 
         DontDestroyOnLoad(gameObject);
+
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (!player && playerObject)
+        {
+            if (!playerObject.TryGetComponent(out player))
+            {
+                Debug.LogWarning($"[{this}] Could not find a player in the scene.");
+            }
+        }
     }
 
     public void SetCursor(bool visible, CursorLockMode lockMode)
@@ -32,28 +34,32 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = lockMode;
     }
 
-    public void RestartCurrentLevel()
+    public void StartGame()
     {
-        LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void LoadScene(int index)
-    {
-        SceneManager.LoadScene(index);
-        OnLevelLoad.Invoke(GameState.Running);
+        LoadScene(SceneNames.MainGame);
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        LoadScene(SceneNames.MainMenu);
     }
 
-    public void Quit()
+    public void RestartCurrentLevel()
+    {
+        LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit(int exitCode = 0)
     {
 #if UNITY_EDITOR        
         EditorApplication.ExitPlaymode();
 #else
-        Application.Quit();
+        Application.Quit(exitCode);
 #endif
+    }
+
+    private void LoadScene(string name, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        SceneManager.LoadScene(name, mode);
     }
 }

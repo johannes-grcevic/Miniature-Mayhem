@@ -6,7 +6,6 @@ public class Entity : MonoBehaviour
 {
     public UnityAction<int, DamageType> OnDamageTaken;
     public UnityAction<int> OnHeal;
-    public UnityAction<int> OnHealthChanged;
     public UnityAction<GameState> OnDeath;
 
     public int MaxHealth => maxHealth;
@@ -27,6 +26,9 @@ public class Entity : MonoBehaviour
 
     [SerializeField]
     private int maxHealth = 50;
+
+    [SerializeField, Header("Events"), Space(5)]
+    private UnityEvent<float> OnHealthChanged;
 
     private int currentHealth;
     private float currentHealthPerc;

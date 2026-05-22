@@ -6,9 +6,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(LookAtTarget))]
 public class EntityEnemy : Entity
 {
+    public static readonly int MotionSpeedHash = Animator.StringToHash("MotionSpeed");
     public static readonly int IsDeadHash = Animator.StringToHash("IsDead");
     public static readonly int AttackHash = Animator.StringToHash("Attack");
-    public static readonly int SpeedHash = Animator.StringToHash("Speed");
 
     public const string ATTACK_STATE_TAG = "Attack";
     public const string HIT_FRONT_STATE_NAME = "GetHitBack";
@@ -93,8 +93,6 @@ public class EntityEnemy : Entity
     {
         if (IsDead) return;
 
-        Debug.Log(destinationController.CurrentDestination);
-
         // Make the target look in the direction its heading
         lookAtTarget.SetLookTarget(agent.destination);
 
@@ -121,7 +119,7 @@ public class EntityEnemy : Entity
         }
 
         // Set the movement speed for animation blend
-        Animator.SetFloat(SpeedHash, currentSpeed);
+        Animator.SetFloat(MotionSpeedHash, currentSpeed);
     }
 
     public override void TakeDamage(int value, DamageType type)

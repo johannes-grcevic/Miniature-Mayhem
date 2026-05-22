@@ -1,0 +1,2864 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &15795813425572634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6203245494131210941}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6203245494131210941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15795813425572634}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000023307559, y: -0.0000000034451644, z: -0.17410813, w: 0.98472655}
+  m_LocalPosition: {x: -0.076064296, y: 0, z: -0.000000076293944}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8158824094594416051}
+  m_LocalEulerAnglesHint: {x: 0.0000021902702, y: -0.0000018822514, z: -68.186775}
+--- !u!1 &108574676810902722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3330236955688194473}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3330236955688194473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108574676810902722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00039577298, y: 0.10976284, z: 0.000043711625, w: 0.9939577}
+  m_LocalPosition: {x: -0.2233416, y: -0.01818512, z: 0.070059955}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5142748224673846808}
+  m_Father: {fileID: 4774111634064837348}
+  m_LocalEulerAnglesHint: {x: 0.04452088, y: 12.603298, z: -30.901468}
+--- !u!1 &142233841739852889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1834123077292844254}
+  m_Layer: 0
+  m_Name: root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1834123077292844254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142233841739852889}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3639125139304715154}
+  m_Father: {fileID: 8749261110207868612}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &204454974415691997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7135485274010967693}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7135485274010967693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204454974415691997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.047229968, y: 0.9988841, z: -0.000001693437, w: -0.00000083649496}
+  m_LocalPosition: {x: 0.26084736, y: -0.13023964, z: 0.00000015258789}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6163335198571969727}
+  m_Father: {fileID: 5238124252796251078}
+  m_LocalEulerAnglesHint: {x: 4.968271, y: 170.74356, z: -4.5978413}
+--- !u!1 &212245280957653223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8569221684043915911}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8569221684043915911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212245280957653223}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00039817957, y: 0.000000029796388, z: 0.000000014913027, w: 0.99999994}
+  m_LocalPosition: {x: -0.22334129, y: 0.00055847166, z: -0.00000047683716}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5444972258467608964}
+  m_Father: {fileID: 551846753017325171}
+  m_LocalEulerAnglesHint: {x: -0.045623057, y: 0.0000022995437, z: -41.651386}
+--- !u!1 &528079447121018565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872053926696885826}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872053926696885826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528079447121018565}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.06992182, y: -0.06992187, z: -0.70364124, w: 0.7036412}
+  m_LocalPosition: {x: -0.12379793, y: 0.12581171, z: -0.06017166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5531755870108457971}
+  m_Father: {fileID: 4129523358720439560}
+  m_LocalEulerAnglesHint: {x: -11.282964, y: -6.303714, z: -88.76195}
+--- !u!1 &720004932462359426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7420930054195669779}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7420930054195669779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720004932462359426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 2.2037954e-16, y: -3.4287049e-15, z: 0.06414251, w: 0.9979408}
+  m_LocalPosition: {x: -0.23445575, y: -0.000000076293944, z: -0.000000022063432}
+  m_LocalScale: {x: 0.99999976, y: 0.99999976, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3087700777742848964}
+  m_Father: {fileID: 7452150091823167629}
+  m_LocalEulerAnglesHint: {x: -1.3380222, y: 7.659752, z: 9.794331}
+--- !u!1 &734867125802700484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6551635831844384635}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6551635831844384635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734867125802700484}
+  serializedVersion: 2
+  m_LocalRotation: {x: -1.0570972e-17, y: -0.0000000045401976, z: -0.0000000023283067, w: 1}
+  m_LocalPosition: {x: -0.06373056, y: 0.000000009536743, z: 0.000000038146972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5138432644696810585}
+  m_LocalEulerAnglesHint: {x: 1.7763568e-14, y: 0.00000060823663, z: -0.000000053361422}
+--- !u!1 &791162305416923987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8406273618154717489}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8406273618154717489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791162305416923987}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000029068068, y: 0.0000000068601476, z: 0.390145, w: 0.9207534}
+  m_LocalPosition: {x: -0.73000723, y: 0.000000038146972, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6955167999622348122}
+  m_Father: {fileID: 4615998685996390597}
+  m_LocalEulerAnglesHint: {x: -0.00000017735587, y: -0.0000021270748, z: 48.363815}
+--- !u!1 &1254146885198743563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6163335198571969727}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6163335198571969727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254146885198743563}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000023509938, y: -0.00000015807254, z: 0.021336606, w: 0.99977237}
+  m_LocalPosition: {x: -0.21419112, y: -0.000000076293944, z: -0.000000026490305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1617342980238105706}
+  m_Father: {fileID: 7135485274010967693}
+  m_LocalEulerAnglesHint: {x: 0.10868105, y: 1.0362827, z: -6.1967072}
+--- !u!1 &1407682069963138823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5860803460416614589}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tongue2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5860803460416614589
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407682069963138823}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000044636383, y: -0.0000000492953, z: 0.090180025, w: 0.9959255}
+  m_LocalPosition: {x: -0.09800407, y: 0, z: -0.000000011231677}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 448074898284576973}
+  m_LocalEulerAnglesHint: {x: 0.000000705914, y: -0.000005627897, z: 7.149339}
+--- !u!1 &1537625335297214239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4615998685996390597}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4615998685996390597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537625335297214239}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.41016814, y: 0.9005782, z: 0.074142225, w: 0.12338537}
+  m_LocalPosition: {x: 0.00000015258789, y: 0.00000030517577, z: 0.16475564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8406273618154717489}
+  m_Father: {fileID: 5238124252796251078}
+  m_LocalEulerAnglesHint: {x: -10.226321, y: 176.36168, z: -49.198055}
+--- !u!1 &1705831690622308113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7452150091823167629}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7452150091823167629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705831690622308113}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000016938758, y: 0.00000023781612, z: 0.07104629, w: 0.99747306}
+  m_LocalPosition: {x: -0.23308131, y: 0.00000015258789, z: 0.000000046015145}
+  m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7420930054195669779}
+  m_Father: {fileID: 1617342980238105706}
+  m_LocalEulerAnglesHint: {x: -0.90300417, y: 5.8286376, z: 8.564963}
+--- !u!1 &1874441536215133582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551846753017325171}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &551846753017325171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874441536215133582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.61009264, y: 0.10037401, z: -0.065215655, w: 0.7832362}
+  m_LocalPosition: {x: -0.73217094, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1153192681391564207}
+  - {fileID: 6845745998871624123}
+  - {fileID: 8569221684043915911}
+  - {fileID: 8158824094594416051}
+  m_Father: {fileID: 1660093212128525384}
+  m_LocalEulerAnglesHint: {x: -70.49312, y: 45.167973, z: -42.277058}
+--- !u!1 &1925109574862220286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8841192989929876437}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8841192989929876437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925109574862220286}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000002487055, y: 0.00000022766731, z: 0.04412029, w: 0.99902624}
+  m_LocalPosition: {x: -0.3040727, y: 0, z: 0.000000059113187}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5660320680175753900}
+  m_Father: {fileID: 8082881995352243353}
+  m_LocalEulerAnglesHint: {x: 1.3646091, y: -12.753269, z: 7.632352}
+--- !u!1 &2347997564043250382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196141571397229622}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1196141571397229622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347997564043250382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00039816278, y: -0.000000003719357, z: 0.000000014902643, w: 0.99999994}
+  m_LocalPosition: {x: -0.22334144, y: 0.0005586243, z: 0.00000043869017}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3899986580955162616}
+  m_Father: {fileID: 4774111634064837348}
+  m_LocalEulerAnglesHint: {x: 0.045625184, y: 0.0000026647353, z: -41.65138}
+--- !u!1 &2447937991667760678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8158824094594416051}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8158824094594416051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447937991667760678}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00039725998, y: 0.06781966, z: -0.00002701767, w: 0.99769753}
+  m_LocalPosition: {x: -0.22334136, y: -0.0063830563, z: 0.072325915}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6203245494131210941}
+  m_Father: {fileID: 551846753017325171}
+  m_LocalEulerAnglesHint: {x: -0.045203473, y: 7.7775345, z: -48.139423}
+--- !u!1 &2522332150658060927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5660320680175753900}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5660320680175753900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2522332150658060927}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000038316355, y: -0.00000006757889, z: 0.03948069, w: 0.9992204}
+  m_LocalPosition: {x: -0.31465057, y: -0.00000030517577, z: -0.000000058662117}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4735406875949715670}
+  m_Father: {fileID: 8841192989929876437}
+  m_LocalEulerAnglesHint: {x: 4.279972, y: -21.09994, z: 14.807034}
+--- !u!1 &2702276779390414108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8302200798075928290}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8302200798075928290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702276779390414108}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.41016757, y: 0.90057814, z: -0.07414296, w: -0.12338721}
+  m_LocalPosition: {x: -0.00000015258789, y: -0.00000015258789, z: -0.16475564}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5904890212536841774}
+  m_Father: {fileID: 5238124252796251078}
+  m_LocalEulerAnglesHint: {x: 10.510057, y: -175.9074, z: -49.057137}
+--- !u!1 &2734013226474194836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5770408782453774918}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5770408782453774918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2734013226474194836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000024186098, y: -0.000000007440597, z: -0.07571715, w: 0.9971294}
+  m_LocalPosition: {x: -0.062942505, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1153192681391564207}
+  m_LocalEulerAnglesHint: {x: -0.0000027557307, y: -0.00000076759363, z: -39.596302}
+--- !u!1 &2968538738062369974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5904890212536841774}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5904890212536841774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968538738062369974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000011336756, y: 0.000000020987315, z: 0.39014506, w: 0.9207534}
+  m_LocalPosition: {x: -0.7300073, y: 0, z: 0.000000038146972}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1092277440128600646}
+  m_Father: {fileID: 8302200798075928290}
+  m_LocalEulerAnglesHint: {x: -0.0000018406437, y: 0.0000005067093, z: 48.043312}
+--- !u!1 &3084658632649027613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6811129341543954256}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6811129341543954256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084658632649027613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31773534, y: 0.31773534, z: -0.6316995, w: 0.6316995}
+  m_LocalPosition: {x: -0.123797916, y: 0.02218647, z: 0.070665546}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5240915275478604764}
+  m_Father: {fileID: 4031352228338391927}
+  m_LocalEulerAnglesHint: {x: 53.439, y: 5.614553, z: -88.355354}
+--- !u!1 &3087381623348442546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5531755870108457971}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5531755870108457971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087381623348442546}
+  serializedVersion: 2
+  m_LocalRotation: {x: -2.1141936e-18, y: -0.000000001513399, z: -0.0000000013969836, w: 1}
+  m_LocalPosition: {x: -0.0637306, y: 0, z: -0.000000038146972}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 872053926696885826}
+  m_LocalEulerAnglesHint: {x: 0.00000005336148, y: -0.00000075623126, z: -0.000000053361433}
+--- !u!1 &3161587631655578328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6251517566928053170}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6251517566928053170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161587631655578328}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3177353, y: -0.3177353, z: -0.6316995, w: 0.6316995}
+  m_LocalPosition: {x: -0.123797946, y: 0.02218647, z: -0.070665546}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7880569961076512586}
+  m_Father: {fileID: 4129523358720439560}
+  m_LocalEulerAnglesHint: {x: -53.43911, y: -5.6144247, z: -88.355576}
+--- !u!1 &3185730523859353938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5138432644696810585}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5138432644696810585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3185730523859353938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.06992186, y: 0.06992186, z: -0.70364124, w: 0.70364124}
+  m_LocalPosition: {x: -0.12379794, y: 0.12581173, z: 0.060171586}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6551635831844384635}
+  m_Father: {fileID: 4031352228338391927}
+  m_LocalEulerAnglesHint: {x: 11.283372, y: 6.303685, z: -88.76177}
+--- !u!1 &3272677806081132226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6030238555773827830}
+  - component: {fileID: 2975437127507792112}
+  m_Layer: 0
+  m_Name: SK_Xenosaurid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6030238555773827830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272677806081132226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8749261110207868612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &2975437127507792112
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272677806081132226}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: dab93fafe7083934186a75ffa3bec372, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  serializedVersion: 2
+  m_Quality: 4
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 247385907912805115, guid: 5697a09ebdc80ec42a7b50ea31cc13c3, type: 3}
+  m_Bones:
+  - {fileID: 5683466127046423100}
+  - {fileID: 1652720091062428697}
+  - {fileID: 8406273618154717489}
+  - {fileID: 7451699874298221073}
+  - {fileID: 1153192681391564207}
+  - {fileID: 5770408782453774918}
+  - {fileID: 6845745998871624123}
+  - {fileID: 8569221684043915911}
+  - {fileID: 8158824094594416051}
+  - {fileID: 5168495883000610930}
+  - {fileID: 5444972258467608964}
+  - {fileID: 6203245494131210941}
+  - {fileID: 4031352228338391927}
+  - {fileID: 1660093212128525384}
+  - {fileID: 551846753017325171}
+  - {fileID: 6955167999622348122}
+  - {fileID: 4615998685996390597}
+  - {fileID: 4633902490141318110}
+  - {fileID: 4563049720872729748}
+  - {fileID: 6351566982832947144}
+  - {fileID: 158350491049614113}
+  - {fileID: 1261636198705578681}
+  - {fileID: 7571487349882968648}
+  - {fileID: 3064493183842193808}
+  - {fileID: 448074898284576973}
+  - {fileID: 9222288562146764559}
+  - {fileID: 3735696906739807774}
+  - {fileID: 8226613555551745452}
+  - {fileID: 5860803460416614589}
+  - {fileID: 5255891973043756468}
+  - {fileID: 8302200798075928290}
+  - {fileID: 5238124252796251078}
+  - {fileID: 5904890212536841774}
+  - {fileID: 8435178743417884864}
+  - {fileID: 7135485274010967693}
+  - {fileID: 4129523358720439560}
+  - {fileID: 5240915275478604764}
+  - {fileID: 6811129341543954256}
+  - {fileID: 6551635831844384635}
+  - {fileID: 5138432644696810585}
+  - {fileID: 4558519456702070868}
+  - {fileID: 6163335198571969727}
+  - {fileID: 1617342980238105706}
+  - {fileID: 7452150091823167629}
+  - {fileID: 7420930054195669779}
+  - {fileID: 3087700777742848964}
+  - {fileID: 5866661075620952496}
+  - {fileID: 3958683408811215873}
+  - {fileID: 8082881995352243353}
+  - {fileID: 8841192989929876437}
+  - {fileID: 5660320680175753900}
+  - {fileID: 4735406875949715670}
+  - {fileID: 6677678261973344732}
+  - {fileID: 6780197951003660944}
+  - {fileID: 457494709571332170}
+  - {fileID: 3330236955688194473}
+  - {fileID: 1196141571397229622}
+  - {fileID: 6472426335735886096}
+  - {fileID: 5142748224673846808}
+  - {fileID: 3899986580955162616}
+  - {fileID: 7775547808279860436}
+  - {fileID: 4774111634064837348}
+  - {fileID: 1092277440128600646}
+  - {fileID: 4328185305522287333}
+  - {fileID: 1156964335250963344}
+  - {fileID: 2761276638649964632}
+  - {fileID: 7880569961076512586}
+  - {fileID: 6251517566928053170}
+  - {fileID: 5531755870108457971}
+  - {fileID: 872053926696885826}
+  - {fileID: 6465178018103524432}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1834123077292844254}
+  m_AABB:
+    m_Center: {x: 0.008838654, y: 1.0572786, z: 1.6116114}
+    m_Extent: {x: 1.9677048, y: 3.618793, z: 2.3466282}
+  m_DirtyAABB: 0
+--- !u!1 &3439624006097554224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2761276638649964632}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2761276638649964632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3439624006097554224}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.12164954, y: 0.12164952, z: -0.696564, w: 0.69656396}
+  m_LocalPosition: {x: -0.140262, y: 0.12960431, z: 0.022925453}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6465178018103524432}
+  m_Father: {fileID: 4129523358720439560}
+  m_LocalEulerAnglesHint: {x: 19.765917, y: -4.0991373, z: -91.38843}
+--- !u!1 &3748793242503506092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6472426335735886096}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6472426335735886096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3748793242503506092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00039724418, y: -0.06781965, z: -0.000027003813, w: 0.99769753}
+  m_LocalPosition: {x: -0.22334144, y: -0.0063830563, z: -0.072325915}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7775547808279860436}
+  m_Father: {fileID: 4774111634064837348}
+  m_LocalEulerAnglesHint: {x: 0.04520454, y: -7.7775316, z: -48.13942}
+--- !u!1 &3772420159315522685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153192681391564207}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1153192681391564207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772420159315522685}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.46999776, y: -0.5332713, z: 0.061864965, w: 0.7006401}
+  m_LocalPosition: {x: -0.08613434, y: 0.046218567, z: -0.123924226}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5770408782453774918}
+  m_Father: {fileID: 551846753017325171}
+  m_LocalEulerAnglesHint: {x: 49.892735, y: -130.08456, z: -97.62765}
+--- !u!1 &4074994560882996636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8226613555551745452}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Neck1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8226613555551745452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4074994560882996636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 8.7037644e-10, y: 0.00000052563263, z: -0.18965858, w: 0.9818501}
+  m_LocalPosition: {x: -0.18182926, y: -0.00013458251, z: -3.731111e-10}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1261636198705578681}
+  m_Father: {fileID: 3735696906739807774}
+  m_LocalEulerAnglesHint: {x: 0.000027701259, y: 0.00008863211, z: -34.706326}
+--- !u!1 &4094524802456337111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5866661075620952496}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5866661075620952496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4094524802456337111}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000020997248, y: -0.00000006449652, z: 0.03253839, w: 0.9994705}
+  m_LocalPosition: {x: -0.30587944, y: 0.00000061035155, z: -0.00000006461207}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3958683408811215873}
+  m_Father: {fileID: 3087700777742848964}
+  m_LocalEulerAnglesHint: {x: -1.2284417, y: 8.663314, z: 8.368382}
+--- !u!1 &4213809144904976553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7451699874298221073}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7451699874298221073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213809144904976553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.71920854, y: 0.00028727413, z: -0.6947942, w: 0.00027559203}
+  m_LocalPosition: {x: -0.34570006, y: 0.0001298523, z: 0.059297767}
+  m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7571487349882968648}
+  m_Father: {fileID: 158350491049614113}
+  m_LocalEulerAnglesHint: {x: 0.0455852, y: -91.97836, z: 179.99812}
+--- !u!1 &4441328958653309068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5168495883000610930}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5168495883000610930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4441328958653309068}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000033438486, y: 0.0000000044549413, z: -0.021789063, w: 0.9997626}
+  m_LocalPosition: {x: -0.076064296, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6845745998871624123}
+  m_LocalEulerAnglesHint: {x: 0.0000014254181, y: -0.0000009401939, z: -33.408485}
+--- !u!1 &4697122838070715650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7880569961076512586}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7880569961076512586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697122838070715650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000074505797, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.08689209, y: 0.000000009536743, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6251517566928053170}
+  m_LocalEulerAnglesHint: {x: -0.00000005336143, y: -0.0000014907857, z: -0.0000002134458}
+--- !u!1 &4765380198210617695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5683466127046423100}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5683466127046423100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4765380198210617695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000081986435, y: -0.0000003286969, z: 0.11812169, w: 0.99299914}
+  m_LocalPosition: {x: -0.18177529, y: 0, z: 5.820766e-13}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1652720091062428697}
+  m_Father: {fileID: 1261636198705578681}
+  m_LocalEulerAnglesHint: {x: 0.0000027120113, y: -0.000018507242, z: 6.076176}
+--- !u!1 &4842522552043711986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3516624635216646845}
+  m_Layer: 0
+  m_Name: nub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3516624635216646845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842522552043711986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9355188, y: 0.00000087738033, z: 2.7648639e-12}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6677678261973344732}
+  m_LocalEulerAnglesHint: {x: 22.535017, y: 23.49142, z: -62.552986}
+--- !u!1 &4925272145361563554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8082881995352243353}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8082881995352243353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4925272145361563554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 4.910223e-13, y: 2.1831691e-14, z: 0.04441783, w: 0.99901307}
+  m_LocalPosition: {x: -0.26538542, y: 0, z: 0.000000025448644}
+  m_LocalScale: {x: 0.9999998, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8841192989929876437}
+  m_Father: {fileID: 3958683408811215873}
+  m_LocalEulerAnglesHint: {x: 0.51378417, y: -2.5641868, z: 10.771878}
+--- !u!1 &4933405769271355424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156964335250963344}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1156964335250963344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933405769271355424}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000000037252903, y: 0.000000022351742, z: 0.000000007450581, w: 1}
+  m_LocalPosition: {x: -0.05346794, y: -0.000000019073486, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4328185305522287333}
+  m_LocalEulerAnglesHint: {x: -0.00000021344567, y: -0.000003895383, z: 0.00000021344562}
+--- !u!1 &4945435457530856457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5240915275478604764}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5240915275478604764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4945435457530856457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000007450581, y: 0.000000011175871, z: 0.000000007450581, w: 1}
+  m_LocalPosition: {x: -0.08689209, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6811129341543954256}
+  m_LocalEulerAnglesHint: {x: 0.00000005336142, y: 0.0000020860987, z: 1.3552527e-20}
+--- !u!1 &4996152669901080258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448074898284576973}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tongue1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448074898284576973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4996152669901080258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 2.907281e-15, y: -0.000000009386363, z: -0.21473493, w: 0.97667235}
+  m_LocalPosition: {x: -0.07968364, y: 0.052653197, z: -0.00000015258789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5860803460416614589}
+  m_Father: {fileID: 1652720091062428697}
+  m_LocalEulerAnglesHint: {x: 0.00000029327393, y: -0.0000010348555, z: 3.4225206}
+--- !u!1 &5149417921702654747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7775547808279860436}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger31
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7775547808279860436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149417921702654747}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000012302384, y: -0.0000000053909748, z: -0.17410812, w: 0.98472655}
+  m_LocalPosition: {x: -0.076064296, y: -0.00000030517577, z: -0.000000019073486}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6472426335735886096}
+  m_LocalEulerAnglesHint: {x: 0.0000012585249, y: -0.00000041591647, z: -68.18676}
+--- !u!1 &5427077658938866268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4328185305522287333}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4328185305522287333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427077658938866268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31341335, y: 0.31341332, z: -0.633855, w: 0.6338549}
+  m_LocalPosition: {x: -0.13163099, y: 0.0650091, z: 0.09078003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1156964335250963344}
+  m_Father: {fileID: 4129523358720439560}
+  m_LocalEulerAnglesHint: {x: 52.62071, y: -0.00015188447, z: -82.358315}
+--- !u!1 &5844225303173185981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6351566982832947144}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6351566982832947144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844225303173185981}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.121649526, y: -0.121649526, z: -0.696564, w: 0.696564}
+  m_LocalPosition: {x: -0.14026198, y: 0.1296043, z: -0.02292549}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4558519456702070868}
+  m_Father: {fileID: 4031352228338391927}
+  m_LocalEulerAnglesHint: {x: -19.766035, y: 4.0990057, z: -91.38827}
+--- !u!1 &5992382790488437653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6677678261973344732}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail12
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6677678261973344732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992382790488437653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000016817316, y: -0.000000584269, z: 0.12239192, w: 0.9924819}
+  m_LocalPosition: {x: -0.28127715, y: -0.00000019073485, z: 0.0000000056340648}
+  m_LocalScale: {x: 1.0000002, y: 1.0000004, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3516624635216646845}
+  m_Father: {fileID: 4735406875949715670}
+  m_LocalEulerAnglesHint: {x: -1.0992553, y: -11.30762, z: 22.996517}
+--- !u!1 &6017630422256430153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5238124252796251078}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Pelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5238124252796251078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6017630422256430153}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.49999934, w: 0.50000066}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4615998685996390597}
+  - {fileID: 8302200798075928290}
+  - {fileID: 5255891973043756468}
+  - {fileID: 7135485274010967693}
+  m_Father: {fileID: 3639125139304715154}
+  m_LocalEulerAnglesHint: {x: -90, y: 89.99992, z: 0}
+--- !u!1 &6132190936717863197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4558519456702070868}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4558519456702070868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132190936717863197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.0000000046566133, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06430248, y: 0, z: -0.000000038146972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6351566982832947144}
+  m_LocalEulerAnglesHint: {x: -0.00000010672282, y: 0.0000004135506, z: 0}
+--- !u!1 &6258650027907954094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4633902490141318110}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4633902490141318110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258650027907954094}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.31341335, y: -0.31341335, z: -0.633855, w: 0.6338549}
+  m_LocalPosition: {x: -0.13163097, y: 0.065009095, z: -0.09077995}
+  m_LocalScale: {x: 0.9999998, y: 0.9999999, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4563049720872729748}
+  m_Father: {fileID: 4031352228338391927}
+  m_LocalEulerAnglesHint: {x: -52.620888, y: -0.00011813324, z: -82.35809}
+--- !u!1 &6380470682413365236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092277440128600646}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R HorseLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1092277440128600646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6380470682413365236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000013848996, y: 0.000000010816013, z: -0.34210083, w: 0.93966323}
+  m_LocalPosition: {x: -0.6297351, y: -0.000000038146972, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4129523358720439560}
+  m_Father: {fileID: 5904890212536841774}
+  m_LocalEulerAnglesHint: {x: 0.0000013642414, y: -0.000000082271754, z: -42.11089}
+--- !u!1 &6396262166935033058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5255891973043756468}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Spine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5255891973043756468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396262166935033058}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0000019629251, y: 0.00000059364953, z: 0.13287571, w: 0.99113274}
+  m_LocalPosition: {x: -0.18939224, y: -0.00028144836, z: 0.00000026160794}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 158350491049614113}
+  m_Father: {fileID: 5238124252796251078}
+  m_LocalEulerAnglesHint: {x: -0.0002317205, y: 0.00003734231, z: 15.271596}
+--- !u!1 &6407236474474073247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660093212128525384}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1660093212128525384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407236474474073247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000026768554, y: -0.00000006992905, z: 0.2627963, w: 0.9648514}
+  m_LocalPosition: {x: -0.8562053, y: 0.000000019073486, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 551846753017325171}
+  m_Father: {fileID: 7571487349882968648}
+  m_LocalEulerAnglesHint: {x: -0.0000020145394, y: 0.0000028868128, z: 48.945164}
+--- !u!1 &6458470949301893070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1652720091062428697}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Jaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1652720091062428697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458470949301893070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.9512905, y: -0.30829597, z: 0.00000041052093, w: -0.0000012667199}
+  m_LocalPosition: {x: -0.10843066, y: 0.15304473, z: -0.00000045776366}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 448074898284576973}
+  m_Father: {fileID: 5683466127046423100}
+  m_LocalEulerAnglesHint: {x: -0.00015258143, y: -180, z: 179.47253}
+--- !u!1 &6481044561895013203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8435178743417884864}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8435178743417884864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481044561895013203}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000012391144, y: 0.000000073845015, z: 0.26279625, w: 0.9648514}
+  m_LocalPosition: {x: -0.8562055, y: 0, z: 0.00000015258789}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4774111634064837348}
+  m_Father: {fileID: 3064493183842193808}
+  m_LocalEulerAnglesHint: {x: 0.00000016614695, y: -0.0000024091396, z: 48.945183}
+--- !u!1 &6511411351625097453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 457494709571332170}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &457494709571332170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6511411351625097453}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000003110975, y: 0.0000000023623268, z: -0.07571728, w: 0.9971293}
+  m_LocalPosition: {x: -0.062942654, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6780197951003660944}
+  m_LocalEulerAnglesHint: {x: 0.0000017359646, y: 0.00000078009515, z: -39.596306}
+--- !u!1 &6519615087379031517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6845745998871624123}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6845745998871624123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519615087379031517}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00039577315, y: -0.10976284, z: 0.0000437266, w: 0.9939577}
+  m_LocalPosition: {x: -0.22334144, y: -0.01818512, z: -0.07006006}
+  m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5168495883000610930}
+  m_Father: {fileID: 551846753017325171}
+  m_LocalEulerAnglesHint: {x: -0.044522803, y: -12.603293, z: -30.90148}
+--- !u!1 &6526574952763004088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8749261110207868612}
+  - component: {fileID: 841956546463382941}
+  - component: {fileID: 4534863243940949066}
+  - component: {fileID: 8494214093562153959}
+  - component: {fileID: 481368463906356010}
+  - component: {fileID: 2305147360057373968}
+  - component: {fileID: 2807188879624835924}
+  - component: {fileID: 8743749073025077363}
+  - component: {fileID: 3122383419631245266}
+  m_Layer: 0
+  m_Name: EntityBossXenosaurid
+  m_TagString: Entity
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8749261110207868612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1834123077292844254}
+  - {fileID: 6030238555773827830}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &841956546463382941
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 5697a09ebdc80ec42a7b50ea31cc13c3, type: 3}
+  m_Controller: {fileID: 9100000, guid: 4f2d56b60ebda984287ff8cc59e8a762, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &4534863243940949066
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.81
+  m_Speed: 0.7
+  m_Acceleration: 4
+  avoidancePriority: 80
+  m_AngularSpeed: 100
+  m_StoppingDistance: 3
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3
+  m_BaseOffset: -0.1
+  m_WalkableMask: 5
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8494214093562153959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3281df3660394bba96aa2f746b77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChasePlayer
+--- !u!114 &481368463906356010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1369be2d78a705145a374225911977c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
+  conditionalBehaviors:
+  - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
+    destinationType: 1
+    destination: {fileID: 0}
+--- !u!114 &2305147360057373968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f02136394cf6e94ab09949b5b1629ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  entityType: 4
+  gameStateOnDeath: 1
+  maxHealth: 500
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  damage: 20
+  attackRange: 3
+  despawnDelay: 10
+  massOnDeath: 150
+  idleClips:
+  - {fileID: 8300000, guid: a62469593c876ea45bcc611e78cba7cd, type: 3}
+  - {fileID: 8300000, guid: a2c5c2c732219514f9253ebe931bd03e, type: 3}
+  - {fileID: 8300000, guid: 69e8e6c405fb9bb4a9479e0f35433ab3, type: 3}
+  - {fileID: 8300000, guid: 4a22932752cc1434cbb8dec1e76712da, type: 3}
+  - {fileID: 8300000, guid: 9d7eadf265caf6247832a54729f36657, type: 3}
+  - {fileID: 8300000, guid: 2006fad79f15a6040b82ecff792eca7f, type: 3}
+  - {fileID: 8300000, guid: 161f80124fbb56749b9182b0e90a075e, type: 3}
+  - {fileID: 8300000, guid: 8ed33fedf1f65314c8b7af91fc68a727, type: 3}
+  - {fileID: 8300000, guid: 557f607e8995ed44aa2f19f719165b7e, type: 3}
+  - {fileID: 8300000, guid: d6a187e3547cfed41a119cf6837f5c99, type: 3}
+  idleRepeatRate: 20
+  painClips:
+  - {fileID: 8300000, guid: 59a5e6202e94414488fed6f2cb3ea480, type: 3}
+  - {fileID: 8300000, guid: e7264b6b5bc8967418693dede6d43324, type: 3}
+  - {fileID: 8300000, guid: 6cfe6c2d87944da47bc766ee1d205788, type: 3}
+  - {fileID: 8300000, guid: fa72aebdd71dde44b87276a974e409a4, type: 3}
+  - {fileID: 8300000, guid: 44d80e94e2ead504ab01a9c396d8768b, type: 3}
+  - {fileID: 8300000, guid: cf8f60b19b6ebae4d93831a063656ba0, type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: 406caa38120e6934193e4e8f2cb7442a, type: 3}
+  - {fileID: 8300000, guid: 17f4847c9967ac44f8c2c72a90a0db3b, type: 3}
+  - {fileID: 8300000, guid: 29d7c9cec62b8724498b9e22c1c845ce, type: 3}
+  - {fileID: 8300000, guid: 69b87b06a0eeae946bfc1875e6e78a79, type: 3}
+  - {fileID: 8300000, guid: 5e9131d95ce6d5f4facc8074cac67020, type: 3}
+  - {fileID: 8300000, guid: dc721dfabab09214cb05b04f97083d89, type: 3}
+  - {fileID: 8300000, guid: d24215ecc926c7642ace299b42fb762b, type: 3}
+  - {fileID: 8300000, guid: 664e553aa567ed64eada0e477a58ed17, type: 3}
+  - {fileID: 8300000, guid: 04323a598a55cf747a725ef9531d59de, type: 3}
+  - {fileID: 8300000, guid: e86d1ced6f93d7e439903414ab12de8f, type: 3}
+  - {fileID: 8300000, guid: 635384e7a96bcc74fa290da2725a1dfb, type: 3}
+  - {fileID: 8300000, guid: 13c8c1051cb41b84a858331890261ac7, type: 3}
+  - {fileID: 8300000, guid: 1538b2740d8b56244a2cf716d29cb001, type: 3}
+  - {fileID: 8300000, guid: d501489bf12f7c149ab73a7deb85eeef, type: 3}
+  - {fileID: 8300000, guid: a3eac6ab0176fe0419781e29da4214a5, type: 3}
+  - {fileID: 8300000, guid: f9d568d085c49474782c2a48607f111a, type: 3}
+  - {fileID: 8300000, guid: 7ae74baf3287b134ba3283c55fa4d09a, type: 3}
+  - {fileID: 8300000, guid: 19a35f93d812587428e13598a8a2bc55, type: 3}
+  - {fileID: 8300000, guid: 780c94bafd60dbc4182e63611bc3bbdf, type: 3}
+  - {fileID: 8300000, guid: 9d5747b60253f3247aacbbaf7ca405c9, type: 3}
+  - {fileID: 8300000, guid: 48c10f360255d8d44a1d2feedac7d76d, type: 3}
+  - {fileID: 8300000, guid: b19c00d92f14a97439bbe816e5bf4940, type: 3}
+  - {fileID: 8300000, guid: 9c261f2422d1c934ab32b3a27660f8db, type: 3}
+  - {fileID: 8300000, guid: 61dc1df0d8462d04f9d66e2eee70d0f9, type: 3}
+  - {fileID: 8300000, guid: 75d5eb1225a52f14a894712cf1d12846, type: 3}
+  - {fileID: 8300000, guid: bd3598894b0be95469b8ba3c645cf2c4, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: 5e95c6f37edd1a445bfa24211b0f54d6, type: 3}
+  - {fileID: 8300000, guid: adfb753434f0fc7439a3a433e31ad758, type: 3}
+  - {fileID: 8300000, guid: 9bab63f1cb1168a48a02ea8c60eab7c8, type: 3}
+  - {fileID: 8300000, guid: a9d8bc19f184f80429d882a293e8536c, type: 3}
+  - {fileID: 8300000, guid: 8ac1f00e3d68f1f439175c7854d7e65d, type: 3}
+  - {fileID: 8300000, guid: 172832318bd2d2b4b860c7c42cf74a77, type: 3}
+  - {fileID: 8300000, guid: b7487e0538fc2c040ba96a1f15e01430, type: 3}
+  - {fileID: 8300000, guid: 3805d3558898b724c978add359006c6d, type: 3}
+  - {fileID: 8300000, guid: feabb9ba7abfd644798cd1c7269ea731, type: 3}
+  - {fileID: 8300000, guid: 96906ae67a044044e9826c629f566d0b, type: 3}
+  - {fileID: 8300000, guid: 25f8b5f65177e2e469f664deca28410d, type: 3}
+  - {fileID: 8300000, guid: 3c534d3fd4a34b546a1cf0f575c4aca4, type: 3}
+  - {fileID: 8300000, guid: 43ddcb9d73ec9f441a7001e839321e19, type: 3}
+  volume: 0.1
+--- !u!114 &2807188879624835924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8988b82e77bcf5743bff3abd59690f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LookAtTarget
+  lookTarget: {fileID: 0}
+  rotationSpeed: 3
+  lockXAxis: 0
+  lockZAxis: 0
+--- !u!136 &8743749073025077363
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.59523237
+  m_Height: 2.88686
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.518507, z: 0.08420968}
+--- !u!82 &3122383419631245266
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526574952763004088}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &6718285638161881769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5444972258467608964}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Finger21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5444972258467608964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718285638161881769}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00000004780335, y: 0.000000012121121, z: -0.058307093, w: 0.9982987}
+  m_LocalPosition: {x: -0.07844711, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8569221684043915911}
+  m_LocalEulerAnglesHint: {x: 0.00000017836226, y: -0.0000021269927, z: -48.336685}
+--- !u!1 &6911342387111083885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9222288562146764559}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9222288562146764559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911342387111083885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.71920854, y: 0.0002854126, z: 0.6947942, w: -0.0002776542}
+  m_LocalPosition: {x: -0.3456999, y: 0.00013015747, z: -0.059297774}
+  m_LocalScale: {x: 1.0000001, y: 0.9999998, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3064493183842193808}
+  m_Father: {fileID: 158350491049614113}
+  m_LocalEulerAnglesHint: {x: -0.04560665, y: 91.978355, z: 179.99858}
+--- !u!1 &6990980747379356402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3087700777742848964}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3087700777742848964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6990980747379356402}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000018280273, y: 0.00000023771675, z: 0.07667305, w: 0.9970563}
+  m_LocalPosition: {x: -0.27782658, y: -0.000000076293944, z: 0.00000001958986}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5866661075620952496}
+  m_Father: {fileID: 7420930054195669779}
+  m_LocalEulerAnglesHint: {x: -1.9981632, y: 8.543759, z: 13.227794}
+--- !u!1 &7120462192360172857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6955167999622348122}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L HorseLink
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6955167999622348122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120462192360172857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000019898364, y: 0.000000016542621, z: -0.3421009, w: 0.93966323}
+  m_LocalPosition: {x: -0.6297351, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4031352228338391927}
+  m_Father: {fileID: 8406273618154717489}
+  m_LocalEulerAnglesHint: {x: 0.0000019392708, y: 0.0000005422, z: -42.374207}
+--- !u!1 &7220046156556015006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3735696906739807774}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3735696906739807774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220046156556015006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000013806275, y: 0.0000010837022, z: -0.38997385, w: 0.92082596}
+  m_LocalPosition: {x: -0.47123381, y: 0.004098358, z: -0.00000007194932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8226613555551745452}
+  m_Father: {fileID: 158350491049614113}
+  m_LocalEulerAnglesHint: {x: 0.000045359135, y: 0.000111579895, z: -45.90574}
+--- !u!1 &7296158569005192537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5142748224673846808}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5142748224673846808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296158569005192537}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000015059966, y: 0.0000000071241297, z: -0.021789031, w: 0.9997626}
+  m_LocalPosition: {x: -0.07606438, y: 0, z: 0.000000057220458}
+  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3330236955688194473}
+  m_LocalEulerAnglesHint: {x: 0.0000007127094, y: -0.00000047009604, z: -33.408478}
+--- !u!1 &7306273161646923629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6465178018103524432}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Toe11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6465178018103524432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306273161646923629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.0000000018626454, z: -0, w: 1}
+  m_LocalPosition: {x: -0.06430246, y: 0.000000009536743, z: -0.000000038146972}
+  m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2761276638649964632}
+  m_LocalEulerAnglesHint: {x: 0.000000106722865, y: 0.0000011972975, z: 0}
+--- !u!1 &7306329809328508805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7571487349882968648}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7571487349882968648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7306329809328508805}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.1748731, y: -0.37732106, z: 0.23628204, w: 0.8781908}
+  m_LocalPosition: {x: -0.2868023, y: -0.00000015258789, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1660093212128525384}
+  m_Father: {fileID: 7451699874298221073}
+  m_LocalEulerAnglesHint: {x: 6.9690585, y: -59.565735, z: 32.71593}
+--- !u!1 &7455679084128166309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4563049720872729748}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Toe01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4563049720872729748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455679084128166309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.0408338e-16, y: -0.000000013969837, z: 0.0000000074505797, w: 1}
+  m_LocalPosition: {x: -0.053467903, y: -0.000000038146972, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4633902490141318110}
+  m_LocalEulerAnglesHint: {x: -0.00000042689135, y: -0.0000019743738, z: -0.00000021344577}
+--- !u!1 &7523098409461908875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4129523358720439560}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4129523358720439560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7523098409461908875}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.056181177, y: -0.006619296, z: 0.08751255, w: 0.99455595}
+  m_LocalPosition: {x: -0.32951096, y: -0.000000014305114, z: 0.000000038146972}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4328185305522287333}
+  - {fileID: 2761276638649964632}
+  - {fileID: 872053926696885826}
+  - {fileID: 6251517566928053170}
+  m_Father: {fileID: 1092277440128600646}
+  m_LocalEulerAnglesHint: {x: -6.094136, y: -4.855604, z: 12.844403}
+--- !u!1 &7602931323516692984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261636198705578681}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Neck2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1261636198705578681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602931323516692984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 2.3281055e-10, y: 0.000000039380534, z: -0.014199451, w: 0.9998992}
+  m_LocalPosition: {x: -0.1817794, y: -0.00014465331, z: -4.0105078e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5683466127046423100}
+  m_Father: {fileID: 8226613555551745452}
+  m_LocalEulerAnglesHint: {x: 0.0000043809414, y: -0.000034868717, z: 12.341178}
+--- !u!1 &7640108179765517635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6780197951003660944}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6780197951003660944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640108179765517635}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.4699978, y: 0.5332713, z: 0.061865047, w: 0.7006401}
+  m_LocalPosition: {x: -0.08613434, y: 0.04621872, z: 0.123924054}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 457494709571332170}
+  m_Father: {fileID: 4774111634064837348}
+  m_LocalEulerAnglesHint: {x: -49.892735, y: 130.08458, z: -97.62767}
+--- !u!1 &7734859854713754777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3639125139304715154}
+  m_Layer: 0
+  m_Name: Xenosaurid_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3639125139304715154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734859854713754777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.18301286, y: -0.18301268, z: 0.68301225, w: 0.68301314}
+  m_LocalPosition: {x: -0, y: 0.11306395, z: 1.6816363}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5238124252796251078}
+  m_Father: {fileID: 1834123077292844254}
+  m_LocalEulerAnglesHint: {x: 30.000015, y: -0.0000026524067, z: 89.99992}
+--- !u!1 &7780920313853952102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4735406875949715670}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail11
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4735406875949715670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780920313853952102}
+  serializedVersion: 2
+  m_LocalRotation: {x: 2.1831242e-16, y: -1.4863441e-14, z: 0.014686295, w: 0.9998922}
+  m_LocalPosition: {x: -0.2989993, y: 0.0000030136107, z: 1.6007107e-11}
+  m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6677678261973344732}
+  m_Father: {fileID: 5660320680175753900}
+  m_LocalEulerAnglesHint: {x: 3.4411476, y: -23.37983, z: 13.758847}
+--- !u!1 &7865675694419809473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3064493183842193808}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3064493183842193808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865675694419809473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.17487302, y: 0.37732112, z: 0.23628202, w: 0.87819076}
+  m_LocalPosition: {x: -0.2868023, y: 0, z: -0.00000015258789}
+  m_LocalScale: {x: 1, y: 1, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8435178743417884864}
+  m_Father: {fileID: 9222288562146764559}
+  m_LocalEulerAnglesHint: {x: -6.969068, y: 59.565746, z: 32.715916}
+--- !u!1 &8517449749282532057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3899986580955162616}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Finger21
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3899986580955162616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517449749282532057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000111700444, y: -0.000000032371336, z: -0.05830707, w: 0.9982987}
+  m_LocalPosition: {x: -0.07844734, y: 0, z: -0.000000019073486}
+  m_LocalScale: {x: 0.9999999, y: 0.9999998, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1196141571397229622}
+  m_LocalEulerAnglesHint: {x: 0.0000025891297, y: -0.0000022675436, z: -48.336674}
+--- !u!1 &8579799999529914720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158350491049614113}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Spine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &158350491049614113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579799999529914720}
+  serializedVersion: 2
+  m_LocalRotation: {x: 8.781002e-10, y: 0.0000005846473, z: -0.21051456, w: 0.97759074}
+  m_LocalPosition: {x: -0.3666641, y: -0.0003693771, z: -0.000000001025055}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7451699874298221073}
+  - {fileID: 3735696906739807774}
+  - {fileID: 9222288562146764559}
+  m_Father: {fileID: 5255891973043756468}
+  m_LocalEulerAnglesHint: {x: 0.000014292076, y: 0.00006516278, z: -24.305014}
+--- !u!1 &8622128584426343531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4031352228338391927}
+  m_Layer: 0
+  m_Name: Xenosaurid_ L Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4031352228338391927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622128584426343531}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.05618122, y: 0.006619135, z: 0.0875132, w: 0.9945559}
+  m_LocalPosition: {x: -0.32951096, y: -0.00000007390976, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4633902490141318110}
+  - {fileID: 6351566982832947144}
+  - {fileID: 5138432644696810585}
+  - {fileID: 6811129341543954256}
+  m_Father: {fileID: 6955167999622348122}
+  m_LocalEulerAnglesHint: {x: 6.1925273, y: 4.3369336, z: 12.854262}
+--- !u!1 &8711230338368939295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3958683408811215873}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3958683408811215873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711230338368939295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000024738222, y: -0.00000019615082, z: 0.044451084, w: 0.9990116}
+  m_LocalPosition: {x: -0.28871095, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8082881995352243353}
+  m_Father: {fileID: 5866661075620952496}
+  m_LocalEulerAnglesHint: {x: -1.0965947, y: 5.450894, z: 12.058961}
+--- !u!1 &8765749732329324212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4774111634064837348}
+  m_Layer: 0
+  m_Name: Xenosaurid_ R Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4774111634064837348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765749732329324212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.61009264, y: -0.100374036, z: -0.06521566, w: 0.7832362}
+  m_LocalPosition: {x: -0.73217076, y: -0.000000038146972, z: -0.00000015258789}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6780197951003660944}
+  - {fileID: 3330236955688194473}
+  - {fileID: 1196141571397229622}
+  - {fileID: 6472426335735886096}
+  m_Father: {fileID: 8435178743417884864}
+  m_LocalEulerAnglesHint: {x: 70.49312, y: -45.167976, z: -42.27707}
+--- !u!1 &8880713170233971119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1617342980238105706}
+  m_Layer: 0
+  m_Name: Xenosaurid_ Tail2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1617342980238105706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8880713170233971119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000023597028, y: 7.221658e-10, z: 0.030589815, w: 0.99953204}
+  m_LocalPosition: {x: -0.24836357, y: 0, z: 1.6825651e-12}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7452150091823167629}
+  m_Father: {fileID: 6163335198571969727}
+  m_LocalEulerAnglesHint: {x: -0.048546813, y: 3.1026978, z: 0.5976944}

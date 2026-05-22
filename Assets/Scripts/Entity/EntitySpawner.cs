@@ -12,11 +12,9 @@ public class EntitySpawner : MonoBehaviour
     [SerializeField]
     private Entity[] entities;
 
-    [SerializeField, Header("Spawning")]
-    private bool spawningEnabled = true;
-
+    [Header("Spawner")]
     [SerializeField]
-    private float startSpawnDelay = 1.0f;
+    private float spawnStartDelay = 1.0f;
 
     [SerializeField]
     private float respawnDelay = 10f;
@@ -42,38 +40,28 @@ public class EntitySpawner : MonoBehaviour
     private ParticleSpawner particleSpawner;
     private bool hasParticleSpawner = false;
 
-    private Dictionary<EntityType, Entity> currentSpawnedEntities = new();
-
     private void Awake()
     {
-        currentSpawnedEntities = new();
         hasParticleSpawner = TryGetComponent(out particleSpawner);
     }
 
     private void Start()
     {
-        if (!spawningEnabled)
+        if (entities.Length > 0)
         {
-            Debug.LogWarning($"[{this}] Spawning is disabled.");
-            return;
+            // start spawning enemies
+            _ = SpawnLoopAsync(destroyCancellationToken);
         }
-
-        _ = SpawnLoopAsync(destroyCancellationToken);
-    }
-
-    private void OnDestroy()
-    {
-        currentSpawnedEntities.Clear();
     }
 
     private async Awaitable SpawnLoopAsync(CancellationToken token)
     {
-        if (!CanSpawn()) return;
+        if (!CanSpawnEntity()) return;
 
         while (true)
         {
             // Wait for the respawn delay before spawning another entity
-            await Awaitable.WaitForSecondsAsync(Time.time > startSpawnDelay ? respawnDelay : startSpawnDelay, token);
+            await Awaitable.WaitForSecondsAsync(Time.time > spawnStartDelay ? respawnDelay : spawnStartDelay, token);
 
             if (spawnOnParticleCollison && hasParticleSpawner)
             {
@@ -133,8 +121,6 @@ public class EntitySpawner : MonoBehaviour
 
         Entity spawnedEntity = Instantiate(entity, position, rotation);
         spawnedEntity.SetSpawnPoint(spawnOnParticleCollison ? position : transform.position);
-        
-        currentSpawnedEntities.Add(spawnedEntity.EntityType, spawnedEntity);
 
         // set the spawn point without any offset applied
         OnEntitySpawned.Invoke(spawnedEntity.EntityType, position, rotation);
@@ -154,7 +140,7 @@ public class EntitySpawner : MonoBehaviour
         return spawnedEntity;
     }
 
-    public bool CanSpawn() => entities.Length > 0 && Time.timeScale > 0.0f;
+    public bool CanSpawnEntity() => entities.Length > 0 && Time.timeScale > 0.0f;
 
     public Entity GetRandomEntity() => entities[Random.Range(0, entities.Length)];
 }

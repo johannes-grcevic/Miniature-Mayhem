@@ -9,17 +9,20 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MI_Mushroom_B_NoTrail
   m_Shader: {fileID: 4800000, guid: e41d3411d01bdc547aa2f144cb03c17f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DIFFUSE_DETAIL_IS_WORLDSPACE_ON
   - _FUZZYSHADING_ON
   - _METALGLOWSSS_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -100,6 +103,7 @@ Material:
     - _AlphaCutoff: 0.5
     - _Detail_Normal_Scale: 50
     - _Detail_Normal__Amount: 0
+    - _Detail__Normal_Amount: 1
     - _Diffuse_Brightness: 4
     - _Diffuse_Desaturation: -1
     - _Diffuse_Detail_Add: 0.5
@@ -158,3 +162,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0.92156863, g: 0.14901957, b: 1, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

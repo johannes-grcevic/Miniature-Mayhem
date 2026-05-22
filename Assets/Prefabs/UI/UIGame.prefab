@@ -939,7 +939,7 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -947,7 +947,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &2363018158466288310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1272,7 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1280,7 +1280,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &3165927729237189092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1776,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &4353796229235797886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,8 +2135,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5783309450449469289}
-  - component: {fileID: 7468689459226231514}
-  - component: {fileID: 5289920668449907937}
   - component: {fileID: 5471460046376462553}
   m_Layer: 0
   m_Name: UIGame
@@ -2162,34 +2160,6 @@ Transform:
   - {fileID: 1680067026362522059}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7468689459226231514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4472819437899622954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19adcc99952fbcc49a39a3e7bd518c72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HealthBarController
-  targetEntity: {fileID: 0}
-  fillImage: {fileID: 5019087052534377947}
---- !u!114 &5289920668449907937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4472819437899622954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84c079a4eab6df4da52b36ef12f8e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  entityPlayer: {fileID: 0}
-  fillImage: {fileID: 3120580430982599524}
 --- !u!114 &5471460046376462553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,7 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 282e5dc0796ce9f4a81d3c53fb57717e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSCounter
-  toggleAction: {fileID: -2310937810958783241, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+  debugModeAction: {fileID: -2310937810958783241, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   displayLabel: {fileID: 2524950974006720916}
   refreshRate: 0.1
 --- !u!1 &4731877682109051673
@@ -2998,7 +2968,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &6234789864140765853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +3495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6485269109799721689}
+  - component: {fileID: 2107595570545076392}
   m_Layer: 5
   m_Name: StaminaBar
   m_TagString: Untagged
@@ -3553,6 +3524,22 @@ RectTransform:
   m_AnchoredPosition: {x: 191, y: 35}
   m_SizeDelta: {x: 173, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2107595570545076392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320730653141303488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19adcc99952fbcc49a39a3e7bd518c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageFillController
+  fillImage: {fileID: 3120580430982599524}
+  minValue: 0
+  maxValue: 100
+  fillSpeed: 5
 --- !u!1 &7562028839850072153
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,7 +3876,7 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3897,7 +3884,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &7911016404219026461
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,7 +4017,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &8340578039736496578
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,6 +4027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7874225890316183019}
+  - component: {fileID: 8123752356755070062}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -4068,6 +4056,22 @@ RectTransform:
   m_AnchoredPosition: {x: 191, y: 88}
   m_SizeDelta: {x: 173, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8123752356755070062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340578039736496578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19adcc99952fbcc49a39a3e7bd518c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ImageFillController
+  fillImage: {fileID: 5019087052534377947}
+  minValue: 0
+  maxValue: 150
+  fillSpeed: 5
 --- !u!1 &8506250924634403979
 GameObject:
   m_ObjectHideFlags: 0

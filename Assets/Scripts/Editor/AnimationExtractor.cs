@@ -4,16 +4,23 @@ using System.IO;
 
 public class AnimationExtractor : EditorWindow
 {
-    [MenuItem("Assets/Extract All Animations")]
+    [MenuItem("Assets/Extract Animations")]
     public static void Extract()
     {
-        foreach (Object obj in Selection.objects)
+        if (Selection.count == 0)
         {
-            string path = AssetDatabase.GetAssetPath(obj);
+            Debug.LogError("No assets selected! Select the assets you want to extract animations from and try again.");
+            return;
+        }
+        
+        foreach (Object objSelection in Selection.objects)
+        {
+            string path = AssetDatabase.GetAssetPath(objSelection);
+
             // Load all assets inside the FBX (clips are sub-assets)
             Object[] subAssets = AssetDatabase.LoadAllAssetsAtPath(path);
 
-            foreach (var asset in subAssets)
+            foreach (Object asset in subAssets)
             {
                 if (asset is AnimationClip clip && !asset.name.Contains("__preview__"))
                 {
@@ -30,6 +37,7 @@ public class AnimationExtractor : EditorWindow
                 }
             }
         }
+
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }

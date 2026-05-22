@@ -794,7 +794,6 @@ GameObject:
   - component: {fileID: 1571038558708037680}
   - component: {fileID: 6757026196370875827}
   - component: {fileID: 187811532668321667}
-  - component: {fileID: 8818242542367624797}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -953,30 +952,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &8818242542367624797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870999801664360470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 111147cff0ad1a94aafcd607c33cb045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BleedBehavior
-  TestingBloodAmount: 0.5
-  EdgeSharpness: 1
-  minAlpha: 0
-  maxAlpha: 1
-  distortion: 0.2
-  autoFadeOut: 1
-  autoFadeOutAbsReduc: 0.05
-  autoFadeOutRelReduc: 0.5
-  updateSpeed: 20
-  Image: {fileID: 2800000, guid: 07536878954ee034295e46c482f9ddae, type: 3}
-  Normals: {fileID: 2800000, guid: d6a4e510717eae7478cfc7e28099e214, type: 3}
-  Shader: {fileID: 4800000, guid: 1899c349878167040bd0fd1c3cfc7c79, type: 3}
 --- !u!1 &5666552299945464409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,14 +1274,14 @@ MonoBehaviour:
   fireAction: {fileID: -1894428667710597030, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   aimAction: {fileID: 9174098745077636790, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   damage: 10
-  fireRate: 3
+  fireRate: 1
   projectile: {fileID: 3197274097257789161, guid: c61cc2c78c31c0f4d992c556a81fe752, type: 3}
   projectileJoint: {fileID: 949541428017376796}
   crosshair: {fileID: 0}
   crosshairZoomSpeed: 3
   normalFOV: 40
-  zoomFOV: 25
-  zoomSpeed: 4
+  zoomFOV: 30
+  zoomSpeed: 6
   fireSound: {fileID: 8300000, guid: ce0d275277830504cad67e61cbf14536, type: 3}
   volumeScale: 0.08
 --- !u!114 &9000609551015699580
@@ -2020,7 +1995,48 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnStaminaChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFillValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnStaminaChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnStaminaChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFillValue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ImageFillController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnStaminaChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ImageFillController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnHealthChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3301986301566978960, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
+      propertyPath: OnStaminaChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8726204039351100507, guid: 19c98832ba4aa3048a5e5bac037b143d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

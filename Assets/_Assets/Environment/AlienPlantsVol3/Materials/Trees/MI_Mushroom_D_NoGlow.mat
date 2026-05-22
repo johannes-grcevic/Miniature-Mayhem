@@ -16,7 +16,7 @@ Material:
   - _FUZZYSHADING_ON
   - _METALLICFROMTEX_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -99,6 +99,7 @@ Material:
     - _AlphaCutoff: 0.5
     - _Detail_Normal_Scale: 500
     - _Detail_Normal__Amount: 1
+    - _Detail__Normal_Amount: 1
     - _Diffuse_Brightness: 3
     - _Diffuse_Desaturation: -0.1
     - _Diffuse_Detail_Add: 0.5

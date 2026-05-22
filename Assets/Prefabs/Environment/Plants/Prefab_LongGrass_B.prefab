@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6130936425573169615, guid: 25bd895f819f2e7478f415d15aac64ee, type: 3}
       propertyPath: m_Name
-      value: Prefab_LongGrass Variant
+      value: Prefab_LongGrass_B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

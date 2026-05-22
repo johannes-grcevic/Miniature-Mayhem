@@ -31,7 +31,7 @@ public class ApplyRandomColor : MonoBehaviour
 
             foreach (Material mat in renderer.materials)
             {
-                if (!mat.HasColor(targetProperty))
+                if (!mat.HasColor(targetProperty) || mat.color == randomColor)
                 {
                     continue;
                 }

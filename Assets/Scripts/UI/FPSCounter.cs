@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class FPSCounter : MonoBehaviour
 {
     [SerializeField]
-    private InputActionReference toggleAction;
+    private InputActionReference debugModeAction;
 
     [SerializeField] 
     private TMP_Text displayLabel;
@@ -21,7 +21,7 @@ public class FPSCounter : MonoBehaviour
 
     private void Awake()
     {
-        toggleAction.action.performed += ToggleDisplay;
+        debugModeAction.action.performed += ToggleDisplay;
 
         waitForRefresh = new WaitForSeconds(refreshRate);
 

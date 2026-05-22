@@ -11,7 +11,7 @@ public class HealAOE : MonoBehaviour
     [SerializeField]
     private int healAmount = 1;
 
-    [SerializeField, Tooltip("The speed that the target can heal")]
+    [SerializeField, Tooltip("The delay in seconds between each heal")]
     private float healInterval = 1f;
 
     [SerializeField, Range(0, 100), Tooltip("Heal the target up to a percentage of their max health")]
@@ -43,10 +43,30 @@ public class HealAOE : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {     
-        if (other.TryGetComponent(out Entity target) && target.CurrentHealthPerc < maxHealAmountPerc)
+    {
+        if (!other.TryGetComponent(out Entity collidingEntity)) return;
+        
+        if (IsValidTarget(collidingEntity))
         {
-            OnHealStart(target, other.transform, true);
+            OnHealStart(other.transform);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {   
+        if (!other.TryGetComponent(out Entity collidingEntity)) return;
+
+        if (!IsValidTarget(collidingEntity))
+        {
+            OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear);
+            return;
+        }
+
+        healTimer += Time.deltaTime;
+        if (healTimer > healInterval)
+        {
+            collidingEntity.Heal(healAmount);
+            healTimer = 0f;
         }
     }
 
@@ -54,49 +74,35 @@ public class HealAOE : MonoBehaviour
     {
         if (!attachedParticle) return;
 
-        OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear, true);
+        OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
-    private void OnTriggerStay(Collider other)
-    {   
-        if (!other.TryGetComponent(out Entity collidingEntity) || !targetTypes.Any(type => type == collidingEntity.EntityType)) return;
-
-        if (collidingEntity.CurrentHealthPerc < maxHealAmountPerc)
-        {
-            healTimer += Time.deltaTime;
-
-            if (healTimer > healInterval)
-            {
-                collidingEntity.Heal(healAmount);
-                healTimer = 0f;
-            }
-        }
-        else
-        {
-            OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear, true);
-        }
-    }
-
-    public void OnHealStart(Entity target, Transform attachTransform, bool playWithChildren = false)
+    public void OnHealStart(Transform attachTransform)
     {
-        if (!target || !healingParticle) return;
-
         healSource.Play();
-
-        attachedParticle = Instantiate(healingParticle, attachTransform);
-        attachedParticle.Play(playWithChildren);
+        
+        if (healingParticle)
+        {
+            attachedParticle = Instantiate(healingParticle, attachTransform);
+            attachedParticle.Play(attachedParticle.transform.childCount > 0);
+        }
     }
 
-    public void OnHealStop(ParticleSystemStopBehavior particleStopBehavior, bool stopWithChildren = false)
-    {        
-        if (attachedParticle && attachedParticle.isPlaying)
-        {
-            attachedParticle.Stop(stopWithChildren, particleStopBehavior);
-        }
-
+    public void OnHealStop(ParticleSystemStopBehavior stopBehavior)
+    {
         healSource.Stop();
+
+        if (attachedParticle.isPlaying)
+        {
+            attachedParticle.Stop(attachedParticle.transform.childCount > 0, stopBehavior);
+        }
 
         // clean up particles
         Destroy(attachedParticle, healingParticle.main.duration);
+    }
+
+    private bool IsValidTarget(Entity target)
+    {
+        return targetTypes.Any(type => type == target.EntityType) && target.CurrentHealthPerc < maxHealAmountPerc;
     }
 }

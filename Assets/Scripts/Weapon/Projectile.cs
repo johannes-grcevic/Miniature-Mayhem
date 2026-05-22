@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField]
-	private ParticleSystem hit;
+	private ParticleSystem hitEffect;
 
     private ParticleSystem projectileSystem;
     private bool collided;
@@ -49,9 +49,9 @@ public class Projectile : MonoBehaviour
             // Exact world spot where particle hit
             Vector3 hitPoint = collision.intersection;
 
-            if (hit != null)
+            if (hitEffect != null)
             {
-                ParticleSystem hitVFX = Instantiate(hit, hitPoint, hitRotationNormal);
+                ParticleSystem hitVFX = Instantiate(hitEffect, hitPoint, hitRotationNormal);
                 Destroy(hitVFX.gameObject, hitVFX.main.duration);
             }
         }

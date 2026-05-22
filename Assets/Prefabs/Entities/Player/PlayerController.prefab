@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5356155706690907831}
   - component: {fileID: 8281186451642864938}
   - component: {fileID: 3301986301566978960}
-  - component: {fileID: 8726204039351100507}
   - component: {fileID: 1650411380980235951}
   - component: {fileID: 1484232835707312146}
   - component: {fileID: 6126939776339799178}
@@ -119,20 +118,6 @@ MonoBehaviour:
   painClip: {fileID: 8300000, guid: 5f6c6f3ba570fcd4db3986bf80016340, type: 3}
   hitClip: {fileID: 8300000, guid: 2db5e7e9059a6a347a3b2e6ad06ae49d, type: 3}
   volumeScale: 0.08
---- !u!114 &8726204039351100507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705814845139730119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7543af0b71f47c448a224d1373a34e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicBloodEffect
-  damageBloodAmount: 3
-  maxBloodIndication: 0.5
 --- !u!114 &1650411380980235951
 MonoBehaviour:
   m_ObjectHideFlags: 0
