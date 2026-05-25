@@ -4,5 +4,6 @@ public enum GameState
     Running,
     Paused,
     Over,
-    Win
+    Win,
+    MainMenu
 }

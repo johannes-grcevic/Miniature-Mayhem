@@ -36,13 +36,13 @@ public class WeaponBobbing : MonoBehaviour
     {
         Vector2 playerMovement = moveAction.action.ReadValue<Vector2>();
 
-        Vector3 horizontalVelocity = new(playerController.CurrentVelocity.x, 0, playerController.CurrentVelocity.z);
+        Vector3 horizontalVelocity = new(playerController.Velocity.x, 0, playerController.Velocity.z);
         float currentSpeed = horizontalVelocity.magnitude;
 
         float moveSpeed = playerMovement.sqrMagnitude;
         float bobOffset;
 
-        if (moveSpeed > 0.1f && playerController.Grounded)
+        if (moveSpeed > 0.1f && playerController.IsGrounded)
         {
             bobTimer += Time.deltaTime * currentSpeed * speed;
             bobOffset = Mathf.Sin(bobTimer) * intensity;

@@ -2,7 +2,7 @@ public enum EntityType
 {
     None,
     Player,
-    Normal,
+    Standard,
     Tough,
     Boss
 }

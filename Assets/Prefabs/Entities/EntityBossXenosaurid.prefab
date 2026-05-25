@@ -1963,8 +1963,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AgentDestinationController
   conditionalBehaviors:
   - condition: {fileID: 11400000, guid: 4be14538cb1e20343be9a7bdfe689d14, type: 2}
-    destinationType: 1
-    destination: {fileID: 0}
+    destinationType: 2
+    customDestination: {fileID: 0}
 --- !u!114 &2305147360057373968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,13 +1978,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entity
   entityType: 4
-  gameStateOnDeath: 1
-  maxHealth: 500
+  maxHealth: 300
+  maxHealAmountPerc: 70
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
-  damage: 20
+  damage: 15
   attackRange: 3
+  attackSpeed: 1
   despawnDelay: 10
   massOnDeath: 150
   idleClips:
@@ -2048,6 +2049,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3c534d3fd4a34b546a1cf0f575c4aca4, type: 3}
   - {fileID: 8300000, guid: 43ddcb9d73ec9f441a7001e839321e19, type: 3}
   volume: 0.1
+  hasHitAnimation: 1
 --- !u!114 &2807188879624835924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,10 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8988b82e77bcf5743bff3abd59690f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LookAtTarget
-  lookTarget: {fileID: 0}
   rotationSpeed: 3
-  lockXAxis: 0
-  lockZAxis: 0
 --- !u!136 &8743749073025077363
 CapsuleCollider:
   m_ObjectHideFlags: 0

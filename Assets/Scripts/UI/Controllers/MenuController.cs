@@ -1,64 +1,52 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(AudioSource))]
 public class MenuController : MonoBehaviour
 {
+    [Header("Menu Buttons")]
     [SerializeField]
-    private AudioClip musicClip;
+    private Button[] restartButtons;
 
-    private AudioSource musicSource;
+    [SerializeField]
+    private Button[] mainMenuButtons;
 
-    private const string KeyMusicVolume = "Setting_Menu_Music_Volume";
-
-    private void Awake()
-    {
-        musicSource = GetComponent<AudioSource>();
-        
-        if (PlayerPrefs.HasKey(KeyMusicVolume))
-        {
-            OnMusicVolumeChanged(PlayerPrefs.GetFloat(KeyMusicVolume, musicSource.volume));
-        }
-    }
-
-    private void OnEnable()
-    {
-        Application.quitting += SavePrefs;
-    }
-
-    private void OnDisable()
-    {
-        Application.quitting -= SavePrefs;
-    }
+    [SerializeField]
+    private Button[] quitButtons;
 
     private void Start()
     {
-        musicSource.clip = musicClip;
-
-        if (!musicSource.isPlaying)
+        if (GameManager.Instance)
         {
-            musicSource.Play();
+            AddButtonListeners(restartButtons, GameManager.Instance.ReloadCurrentLevel);
+            AddButtonListeners(mainMenuButtons, GameManager.Instance.LoadMainMenu);
+            AddButtonListeners(quitButtons, GameManager.Instance.Quit);
         }
     }
 
-    public void OnMusicVolumeChanged(float value)
+    private void OnDestroy()
     {
-        musicSource.volume = value;
+        if (GameManager.Instance)
+        {
+            RemoveButtonListeners(restartButtons, GameManager.Instance.ReloadCurrentLevel);
+            RemoveButtonListeners(mainMenuButtons, GameManager.Instance.LoadMainMenu);
+            RemoveButtonListeners(quitButtons, GameManager.Instance.Quit);
+        }
     }
 
-    public void StartGame()
+    private void AddButtonListeners(Button[] buttons, UnityAction call)
     {
-        SceneManager.LoadScene(SceneNames.MainGame);
+        foreach (var button in buttons)
+        {
+            button.onClick.AddListener(call);
+        }
     }
 
-    public void Quit()
+    private void RemoveButtonListeners(Button[] buttons, UnityAction call)
     {
-        Application.Quit();
-    }
-
-    private void SavePrefs()
-    {
-        // save the menu music volume
-        PlayerPrefs.SetFloat(KeyMusicVolume, musicSource.volume);
+        foreach (var button in buttons)
+        {
+            button.onClick.RemoveListener(call);
+        }
     }
 }

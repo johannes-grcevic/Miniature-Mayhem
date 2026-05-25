@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &3556920691527450616
 Transform:
@@ -106,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &1870726905666172614
 Transform:
@@ -196,7 +196,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &2177105380927278472
 Transform:
@@ -286,7 +286,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &7854136741989414311
 Transform:
@@ -379,7 +379,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &1129598295608776096
 Transform:
@@ -414,12 +414,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be87b1a3e8953334f834965bf6015c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  targetTypes: 01000000
-  healAmount: 5
+  targetType: 1
+  healAmount: 10
   healInterval: 1
-  maxHealAmountPerc: 75
-  healingParticle: {fileID: 9046911113416789669, guid: e2188ca76a3a71643a603d1b93b7425b, type: 3}
-  healingClip: {fileID: 8300000, guid: a3e4f7e00bc53254e89e42190ac71f1b, type: 3}
+  healParticle: {fileID: 9046911113416789669, guid: e2188ca76a3a71643a603d1b93b7425b, type: 3}
+  healStopBehavior: 0
+  healStopAction: 2
+  healClip: {fileID: 8300000, guid: a3e4f7e00bc53254e89e42190ac71f1b, type: 3}
   volumeScale: 0.8
 --- !u!205 &5511248482318969057
 LODGroup:
@@ -613,7 +614,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &6142701742813521108
 Transform:
@@ -703,7 +704,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &8907382408434991322
 Transform:
@@ -768,7 +769,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 4294967295
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0

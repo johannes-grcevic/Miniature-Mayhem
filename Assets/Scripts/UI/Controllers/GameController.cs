@@ -1,15 +1,12 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameController : Singleton<GameController>
 {
-    public UnityEvent<GameState> OnStateChanged = new();
-    
     public GameState CurrentState => currentState;
-    public GameState PreviousState => previousState;
 
     [SerializeField, Header("Input")]
     private InputActionReference pauseAction;
@@ -18,33 +15,38 @@ public class GameController : MonoBehaviour
     private SerializedDictionary<GameState, List<GameObject>> UIElements;
 
     private GameState currentState;
-    private GameState previousState;
 
-    private static readonly int IsMenuOpenHash = Animator.StringToHash("IsOpen");
-
-    private void Awake()
+    protected override void Awake()
     {
         pauseAction.action.performed += OnPauseButtonPressed;
+        SceneManager.sceneLoaded += OnSceneLoad;
+
+        base.Awake();
     }
 
     private void Start()
     {
-        GameManager.Instance.Player.OnDeath += ChangeGameState;
+        GameManager.Instance.Player.OnDeath += () => ChangeGameState(GameState.Over);
         ChangeGameState(GameState.Running);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        ChangeGameState(GameState.None);
+        pauseAction.action.performed -= OnPauseButtonPressed;
+        SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
     public void ChangeGameState(GameState newState)
     {
-        previousState = currentState;
         currentState = newState;
 
-        // call game state changed event handler
+        // call game state changed event
         OnGameStateChanged(newState);
+    }
+
+    private void OnSceneLoad(Scene scene, LoadSceneMode sceneMode)
+    {
+        ChangeGameState(GameState.Running);
     }
 
     private void OnGameStateChanged(GameState newState)
@@ -57,33 +59,36 @@ public class GameController : MonoBehaviour
         switch (currentState)
         {
             case GameState.Over:
+                GameManager.Instance.SetCursor(true, CursorLockMode.None);
+                AudioListener.volume = 0.0f;
                 break;
             case GameState.Win:
+                GameManager.Instance.SetCursor(true, CursorLockMode.None);
+                AudioListener.volume = 0.0f;
                 break;
             case GameState.Paused:
                 GameManager.Instance.SetCursor(true, CursorLockMode.None);
+                AudioListener.volume = 0.0f;
                 break;
             case GameState.Running:
                 GameManager.Instance.SetCursor(false, CursorLockMode.Locked);
+                AudioListener.volume = 1.0f;
                 break;
-            case GameState.None:
+            case GameState.MainMenu:
+                GameManager.Instance.SetCursor(true, CursorLockMode.None);
+                AudioListener.volume = 1.0f;
                 break;
             default:
                 break;
         }
-
-        OnStateChanged.Invoke(newState);
     }
 
     private void OnPauseButtonPressed(InputAction.CallbackContext context)
     {
-        if (pauseAction == null) return;
+        if (currentState == GameState.Over || currentState == GameState.Win) return;
 
         // set pause state
-        ChangeGameState(currentState == GameState.Paused ? previousState : GameState.Paused);
-
-        // set global volume state
-        AudioListener.volume = currentState == GameState.Paused ? 0f : 1f;
+        ChangeGameState(currentState == GameState.Running ? GameState.Paused : GameState.Running);
     }
 
     private void OnUIDraw()
@@ -92,20 +97,18 @@ public class GameController : MonoBehaviour
         
         foreach (var element in UIElements)
         {
-            if (!UIElements.TryGetValue(element.Key, out List<GameObject> elements))
-            {
-                continue;
-            }
+            if (!UIElements.TryGetValue(element.Key, out List<GameObject> gameObjects)) continue;
 
-            foreach (GameObject go in elements)
+            foreach (GameObject go in gameObjects)
             {
                 if (!go) continue;
                 
+                // enable the ui element if it matches the current state
                 go.SetActive(element.Key == currentState);
 
                 if (go.activeSelf && go.CompareTag("UIMenu") && go.TryGetComponent(out Animator animator))
                 {
-                    animator.SetBool(IsMenuOpenHash, go.activeSelf);
+                    animator.SetBool(Animator.StringToHash("IsOpen"), go.activeSelf);
                 }
             }
         }

@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 5356155706690907831}
   - component: {fileID: 8281186451642864938}
   - component: {fileID: 3301986301566978960}
-  - component: {fileID: 1650411380980235951}
+  - component: {fileID: 2043296466975140446}
   - component: {fileID: 1484232835707312146}
   - component: {fileID: 6126939776339799178}
-  - component: {fileID: 2043296466975140446}
+  - component: {fileID: 1650411380980235951}
+  - component: {fileID: 7103375322891876344}
   m_Layer: 7
   m_Name: PlayerController
   m_TagString: Player
@@ -84,7 +85,7 @@ MonoBehaviour:
   Gravity: -15
   JumpTimeout: 0.1
   FallTimeout: 0.15
-  Grounded: 1
+  IsGrounded: 1
   GroundedOffset: 0
   GroundedRadius: 0.25
   GroundLayers:
@@ -106,62 +107,144 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   entityType: 1
-  gameStateOnDeath: 3
   maxHealth: 150
-  godMode: 0
+  maxHealAmountPerc: 70
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ImageFillController, Assembly-CSharp
+        m_MethodName: SetFillValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStaminaChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ImageFillController, Assembly-CSharp
+        m_MethodName: SetFillValue
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   maxStamina: 100
   drainRate: 10
   regenRate: 8
   jumpCost: 5
-  moveSpeedReduction: 0.5
-  exhaustionRecoveryDelay: 0.1
+  speedReducePerc: 0.5
+  recoveryDelay: 1
   painClip: {fileID: 8300000, guid: 5f6c6f3ba570fcd4db3986bf80016340, type: 3}
   hitClip: {fileID: 8300000, guid: 2db5e7e9059a6a347a3b2e6ad06ae49d, type: 3}
   volumeScale: 0.08
---- !u!114 &1650411380980235951
-MonoBehaviour:
+--- !u!82 &2043296466975140446
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705814845139730119}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ffa0aaec3fc984395adf911e547a2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  surfaceAudioTypes:
-    _serializedList:
-    - Key: 1
-      Value:
-      - {fileID: 8300000, guid: 9ff527937f9b35f42a1458dd09dabf52, type: 3}
-      - {fileID: 8300000, guid: 6781f5311c8465944970985b31de20d1, type: 3}
-      - {fileID: 8300000, guid: 3b1819e93bfa0cb43be4f355435cb248, type: 3}
-      - {fileID: 8300000, guid: 12759ecb7a432d04c89010f3223fdce7, type: 3}
-      - {fileID: 8300000, guid: edff2938e0f924445823555e5a86cbae, type: 3}
-    - Key: 4
-      Value:
-      - {fileID: 8300000, guid: 108fab1092a4ac344a4a5cc13985326b, type: 3}
-      - {fileID: 8300000, guid: 045d835b0c0cd0843a680379ab89c075, type: 3}
-      - {fileID: 8300000, guid: 46a92cff4d634d1418432a441371af5d, type: 3}
-      - {fileID: 8300000, guid: e8eeada71651fb545a767b457d5e7853, type: 3}
-      - {fileID: 8300000, guid: 771c7a80a6098e247a544ecf1d6ce7f8, type: 3}
-      - {fileID: 8300000, guid: d2082a5734d1dc648963534210fb9237, type: 3}
-      - {fileID: 8300000, guid: b392b244f54d8094798ed498d0a1ee41, type: 3}
-    - Key: 3
-      Value:
-      - {fileID: 8300000, guid: 17bb64749a79ef24b8698f3e56f871e9, type: 3}
-      - {fileID: 8300000, guid: 1534c2ea00ac6fb469963b06a9122faa, type: 3}
-      - {fileID: 8300000, guid: 10467ab73aa6bdc4099ae805fb3e7314, type: 3}
-      - {fileID: 8300000, guid: ababf605dc1b69d409f4368244761e8e, type: 3}
-      - {fileID: 8300000, guid: 87bb88ba694a8054daca035240658e69, type: 3}
-  stepInterval: 0.6
-  minimumSpeedThreshold: 0.1
-  walkSpeedScale: 1
-  sprintSpeedScale: 1.6
-  minPitch: 0.92
-  maxPitch: 1.08
-  volumeScale: 0.05
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1068596398750901472, guid: bc4b06e7625bfc847948d0d6348ea68e, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1.2
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1484232835707312146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,9 +355,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e813144ad12eca14aa90a1c6b72ec253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  analogMovement: 0
   cursorInputForLook: 1
---- !u!82 &2043296466975140446
+--- !u!114 &1650411380980235951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705814845139730119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ffa0aaec3fc984395adf911e547a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  surfaceAudioTypes:
+    _serializedList:
+    - Key: 1
+      Value:
+      - {fileID: 8300000, guid: 9ff527937f9b35f42a1458dd09dabf52, type: 3}
+      - {fileID: 8300000, guid: 6781f5311c8465944970985b31de20d1, type: 3}
+      - {fileID: 8300000, guid: 3b1819e93bfa0cb43be4f355435cb248, type: 3}
+      - {fileID: 8300000, guid: 12759ecb7a432d04c89010f3223fdce7, type: 3}
+      - {fileID: 8300000, guid: edff2938e0f924445823555e5a86cbae, type: 3}
+    - Key: 4
+      Value:
+      - {fileID: 8300000, guid: 108fab1092a4ac344a4a5cc13985326b, type: 3}
+      - {fileID: 8300000, guid: 045d835b0c0cd0843a680379ab89c075, type: 3}
+      - {fileID: 8300000, guid: 46a92cff4d634d1418432a441371af5d, type: 3}
+      - {fileID: 8300000, guid: e8eeada71651fb545a767b457d5e7853, type: 3}
+      - {fileID: 8300000, guid: 771c7a80a6098e247a544ecf1d6ce7f8, type: 3}
+      - {fileID: 8300000, guid: d2082a5734d1dc648963534210fb9237, type: 3}
+      - {fileID: 8300000, guid: b392b244f54d8094798ed498d0a1ee41, type: 3}
+    - Key: 3
+      Value:
+      - {fileID: 8300000, guid: 17bb64749a79ef24b8698f3e56f871e9, type: 3}
+      - {fileID: 8300000, guid: 1534c2ea00ac6fb469963b06a9122faa, type: 3}
+      - {fileID: 8300000, guid: 10467ab73aa6bdc4099ae805fb3e7314, type: 3}
+      - {fileID: 8300000, guid: ababf605dc1b69d409f4368244761e8e, type: 3}
+      - {fileID: 8300000, guid: 87bb88ba694a8054daca035240658e69, type: 3}
+  stepInterval: 0.6
+  minimumSpeedThreshold: 0.1
+  walkSpeedScale: 1
+  sprintSpeedScale: 1.6
+  footstepSource: {fileID: 2043296466975140446}
+  minPitch: 0.92
+  maxPitch: 1.08
+  volumeScale: 0.05
+--- !u!82 &7103375322891876344
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +415,7 @@ AudioSource:
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.5
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

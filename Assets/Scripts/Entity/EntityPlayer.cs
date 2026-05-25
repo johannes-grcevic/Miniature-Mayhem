@@ -1,3 +1,4 @@
+using ConditionalField;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,7 +11,8 @@ public class EntityPlayer : Entity
 
     public float MaxStamina => maxStamina;
     public float CurrentStamina => currentStamina;
-    public FirstPersonController Controller => playerController;
+    public bool IsStaminaExhausted => isStaminaExhausted;
+    public FirstPersonController Controller => controller;
 
     [SerializeField, Header("Stamina")]
     private float maxStamina = 100f;
@@ -24,15 +26,12 @@ public class EntityPlayer : Entity
     [SerializeField, Tooltip("The amount of stamina used to jump")]
     private float jumpCost = 15f;
 
-    [SerializeField, Tooltip("Movement speed reduction when out of stamina")]
-    private float moveSpeedReduction = 0.5f;
+    [Header("Stamina Penalty")]
+    [SerializeField, Range(0f, 1f), Tooltip("Movement speed percentage reduction when out of stamina")]
+    private float speedReducePerc = 0.5f;
 
     [SerializeField, Tooltip("Delay before recovery starts after running out of stamina")]
-    private float exhaustionRecoveryDelay = 1.5f;
-
-    private float currentStamina;
-    private float currentRegenTimer;
-    private bool isExhausted = false;
+    private float recoveryDelay = 1f;
 
     [SerializeField, Header("Audio")]
     private AudioClip painClip;
@@ -43,25 +42,23 @@ public class EntityPlayer : Entity
     [SerializeField, Range(0f, 1f)]
     private float volumeScale;
 
-    private FirstPersonController playerController;
+    private float currentStamina;
+    private float staminaRegenTimer;
+    private bool isStaminaExhausted = false;
 
-    private float normalMoveSpeed;
-    private float normalSprintSpeed;
+    private FirstPersonController controller;
 
     protected override void Awake()
     {
-        playerController = GetComponent<FirstPersonController>();
+        controller = GetComponent<FirstPersonController>();
 
         base.Awake();
     }
 
     protected override void Start()
     {
-        normalMoveSpeed = playerController.MoveSpeed;
-        normalSprintSpeed = playerController.SprintSpeed;
-
         currentStamina = maxStamina;
-        currentRegenTimer = 0f;
+        staminaRegenTimer = 0f;
         
         base.Start();
     }
@@ -70,79 +67,84 @@ public class EntityPlayer : Entity
     {   
         if (IsDead) return;
         
-        if (!isExhausted && currentStamina > 0f)
+        // only drain stamina if we have some to use
+        if (currentStamina > 0f && !isStaminaExhausted)
         {
             // drain when sprinting and moving forward only
-            if (playerController.IsSprinting && playerController.InputController.Move.y >= 1.0f)
+            if (controller.IsSprinting && controller.IsMovingForward)
             {
                 DrainStamina(drainRate);
             }
         }
 
         // Only regen when not sprinting
-        if (!playerController.IsSprinting)
+        if (!controller.IsSprinting)
         {
-            RegenerateStamina(regenRate);
+            RegenStamina(regenRate);
         }
     }
 
     public void OnJump()
     {
         // Only count the jump if the player is grounded
-        if (!playerController.Grounded) return;
+        if (!controller.IsGrounded) return;
 
         // prevent stamina from dropping low too quickly
         if (currentStamina > jumpCost)
         {
-            DecreaseStamina(jumpCost);
+            DecreaseStaminaImmediate(jumpCost);
         }
     }
 
-    public override void TakeDamage(int amount, DamageType type)
+    public override void TakeDamage(int value, DamageType type)
     {
+        base.TakeDamage(value, type);
+
         PlayAudioClip(painClip, volumeScale);
 
         if (type == DamageType.Entity)
         {
             PlayAudioClip(hitClip, volumeScale);
         }
-
-        base.TakeDamage(amount, type);
     }
 
     public void DrainStamina(float rate)
     {
-        DecreaseStamina(rate * Time.deltaTime);
+        DecreaseStaminaImmediate(rate * Time.deltaTime);
 
-        if (currentStamina <= 0)
+        if (Mathf.Approximately(currentStamina, 0f))
         {
-            isExhausted = true;
-            ApplyReducedSpeed();
+            isStaminaExhausted = true;
+
+            // reduce movement speed
+            controller.ApplyReducedSpeed(speedReducePerc);
         }
     }
 
-    public void RegenerateStamina(float rate)
+    public void RegenStamina(float rate)
     {
-        if (isExhausted)
+        if (isStaminaExhausted)
         {
-            currentRegenTimer += Time.deltaTime;
+            staminaRegenTimer += Time.deltaTime;
 
             // wait for the timer to expire
-            if (currentRegenTimer >= exhaustionRecoveryDelay)
+            if (staminaRegenTimer >= recoveryDelay)
             {
-                isExhausted = false; // Recovery can now begin
-                currentRegenTimer = 0f; // Reset regen timer
+                isStaminaExhausted = false; // Recovery can now begin
+                staminaRegenTimer = 0f; // Reset regen timer
             }
         }
         else
         {
             // Recover continuously up to max
-            IncreaseStamina(rate * Time.deltaTime);
-            ApplyNormalSpeed();
+            IncreaseStaminaImmediate(rate * Time.deltaTime);
+
+            // apply normal movement speed
+            controller.ApplyStartSpeed();
         }
     }
 
-    public void IncreaseStamina(float value)
+    public void IncreaseStaminaImmediate(float value)
     {
         if (currentStamina + value <= maxStamina)
         {
@@ -156,7 +158,7 @@ public class EntityPlayer : Entity
         OnStaminaChanged.Invoke(currentStamina);
     }
     
-    public void DecreaseStamina(float value)
+    public void DecreaseStaminaImmediate(float value)
     {
         // prevent stamina from going below zero
         if (currentStamina - value >= 0f)
@@ -166,7 +168,7 @@ public class EntityPlayer : Entity
         else
         {
             currentStamina = 0f;
-        }      
+        }
 
         OnStaminaChanged.Invoke(currentStamina);
     }
@@ -174,17 +176,5 @@ public class EntityPlayer : Entity
     public void SetMaxStamina(float value)
     {
         maxStamina = Mathf.Clamp(value, 0f, maxStamina);
-    }
-
-    private void ApplyNormalSpeed()
-    {
-        playerController.MoveSpeed = normalMoveSpeed;
-        playerController.SprintSpeed = normalSprintSpeed;
-    }
-
-    private void ApplyReducedSpeed()
-    {
-        playerController.MoveSpeed *= moveSpeedReduction;
-        playerController.SprintSpeed *= moveSpeedReduction;
     }
 }

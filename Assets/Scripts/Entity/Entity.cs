@@ -6,33 +6,38 @@ public class Entity : MonoBehaviour
 {
     public UnityAction<int, DamageType> OnDamageTaken;
     public UnityAction<int> OnHeal;
-    public UnityAction<GameState> OnDeath;
+    public UnityAction OnDeath;
 
     public int MaxHealth => maxHealth;
     public int CurrentHealth => currentHealth;
     public float CurrentHealthPerc => currentHealthPerc;
     public bool IsDead => !isAlive;
+    public bool IsHealing { get; set; }
+    public bool CanHeal => canHeal;
+    public float MaxHealAmountPerc => maxHealAmountPerc;
     public Animator Animator => animator;
     public bool HasAnimator => hasAnimator;
     public Vector3 SpawnPoint => spawnPoint;
 
-    public EntityType EntityType => entityType;
+    public EntityType Type => entityType;
 
-    [SerializeField, Header("Base Stats")]
-    private EntityType entityType;
-
+    [Header("Base Stats")]
     [SerializeField]
-    private GameState gameStateOnDeath;
+    private EntityType entityType;
 
     [SerializeField]
     private int maxHealth = 50;
 
-    [SerializeField, Header("Events"), Space(5)]
+    [SerializeField, Range(0f, 100f)]
+    private float maxHealAmountPerc = 100f;
+
+    [SerializeField, Space(10)]
     private UnityEvent<float> OnHealthChanged;
 
     private int currentHealth;
     private float currentHealthPerc;
     private bool isAlive = false;
+    private bool canHeal = false;
 
     private AudioSource source;
     private Animator animator;
@@ -49,8 +54,9 @@ public class Entity : MonoBehaviour
     {
         currentHealth = maxHealth;
         isAlive = true;
+        canHeal = false;
 
-        UpdateCurrentHealthPerc();
+        UpdateHealthInternal();
     }
 
     public virtual void TakeDamage(int value, DamageType type)
@@ -64,10 +70,10 @@ public class Entity : MonoBehaviour
             currentHealth -= value;
         }
 
-        UpdateCurrentHealthPerc();
+        UpdateHealthInternal();
 
         OnDamageTaken?.Invoke(value, type);
-        OnHealthChanged?.Invoke(currentHealth);
+        OnHealthChanged.Invoke(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -86,21 +92,21 @@ public class Entity : MonoBehaviour
             currentHealth += value;
         }
 
-        UpdateCurrentHealthPerc();
+        UpdateHealthInternal();
 
         OnHeal?.Invoke(value);
-        OnHealthChanged?.Invoke(currentHealth);
+        OnHealthChanged.Invoke(currentHealth);
     }
 
     public virtual void Die()
     {
         isAlive = false;
-        OnDeath?.Invoke(gameStateOnDeath);
+        OnDeath?.Invoke();
     }
 
     public virtual void PlayAnimation(string stateName, int layer)
     {
-        if (!HasAnimator || !TargetStateHasClip(stateName)) return;
+        if (!HasAnimator) return;
         
         // if its not already playing, play it
         if (!animator.GetCurrentAnimatorStateInfo(layer).IsName(stateName))
@@ -109,9 +115,9 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public virtual bool IsAnimationPlaying(int layerIndex, string stateTag)
+    public virtual bool IsAnimationPlaying(int layer, string stateTag)
     {
-        return animator.GetCurrentAnimatorStateInfo(layerIndex).IsTag(stateTag);
+        return animator.GetCurrentAnimatorStateInfo(layer).IsTag(stateTag);
     }
 
     public virtual void PlayAudioClip(AudioClip clip, float volumeScale)
@@ -129,36 +135,15 @@ public class Entity : MonoBehaviour
 
     public virtual void SetSpawnPoint(Vector3 position)
     {
-        if (position != Vector3.zero)
+        if (position != spawnPoint)
         {
             spawnPoint = position;
         }
     }
 
-    public void SetDead()
-    {
-        Die();
-    }
-
-    private void UpdateCurrentHealthPerc()
+    private void UpdateHealthInternal()
     {
         currentHealthPerc = (float)currentHealth / maxHealth * 100f;
-    }
-
-    private bool TargetStateHasClip(string stateName)
-    {
-        // Ensure the animator is actually running an Override Controller
-        AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
-        if (overrideController == null) return true; // Fallback for standard controllers
-
-        AnimationClip currentOverrideClip = overrideController[stateName];
-
-        // If the indexer returns null, or the clip is a dummy/empty asset, block it
-        if (currentOverrideClip == null || currentOverrideClip.name == "None" || currentOverrideClip.name == "")
-        {
-            return false;
-        }
-
-        return true;
+        canHeal = currentHealthPerc < maxHealAmountPerc;
     }
 }

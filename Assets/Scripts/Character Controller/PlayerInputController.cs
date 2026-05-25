@@ -8,9 +8,6 @@ public class PlayerInputController : MonoBehaviour
     public bool Jump {  get; set; }
     public bool Sprint { get; set; }
 
-    [Header("Movement")]
-    public bool analogMovement = false;
-
     [Header("Mouse Cursor")]
     public bool cursorInputForLook = true;
 

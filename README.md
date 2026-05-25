@@ -1,2 +1,2 @@
-# Miniature Mayhem (WIP)
-[![Prototype Video](https://img.youtube.com/vi/WKa2DPPntB8/0.jpg)](https://www.youtube.com/watch?v=WKa2DPPntB8)
+# Miniature Mayhem - Expanded Edition
+[![Miniature Mayhem](https://i.imgur.com/Wf0TDz1.png)](https://youtu.be/bPGcBc7Q3wU)

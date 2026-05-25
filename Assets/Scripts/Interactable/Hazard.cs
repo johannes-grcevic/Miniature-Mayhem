@@ -25,7 +25,7 @@ public class Hazard : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Entity collidingEntity) && collidingEntity.EntityType == targetType)
+        if (other.TryGetComponent(out Entity collidingEntity) && collidingEntity.Type == targetType)
         {
             SetDamageState(collidingEntity, true);
         }
@@ -33,7 +33,7 @@ public class Hazard : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out Entity collidingEntity) && collidingEntity.EntityType == targetType)
+        if (other.TryGetComponent(out Entity collidingEntity) && collidingEntity.Type == targetType)
         {
             SetDamageState(collidingEntity, false);
         }

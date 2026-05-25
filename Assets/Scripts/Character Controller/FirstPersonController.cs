@@ -6,11 +6,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInputController))]
 public class FirstPersonController : MonoBehaviour
 {
-    public CharacterController CharacterController => characterController;
-    public PlayerInputController InputController => playerInputController;
-    public Vector3 CurrentVelocity => characterController.velocity;
-    public bool IsCurrentDeviceMouse => playerInput.currentControlScheme == "KeyboardMouse";
+    public Vector3 Velocity => controller.velocity;
     public bool IsSprinting => isSprinting;
+    public bool IsMovingForward => isMovingForward;
+    public CollisionFlags CollisionFlag => collisionFlag;
 
     [Header("Player")]
     [Tooltip("Move speed of the character in m/s")]
@@ -36,7 +35,7 @@ public class FirstPersonController : MonoBehaviour
 
     [Header("Player Grounded")]
     [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-    public bool Grounded = true;
+    public bool IsGrounded = true;
     [Tooltip("Useful for rough ground")]
     public float GroundedOffset = -0.14f;
     [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
@@ -55,33 +54,45 @@ public class FirstPersonController : MonoBehaviour
     // cinemachine
     private float cinemachineTargetPitch;
 
-    // player
+    // movement
     private float speed;
-    private bool isSprinting = false;
     private float rotationVelocity;
     private float verticalVelocity;
     private readonly float terminalVelocity = 53.0f;
+
+    private float startMoveSpeed;
+    private float startSprintSpeed;
+
+    private bool isMovingForward;
+    private bool isSprinting;
 
     // timeout deltatime
     private float jumpTimeoutDelta;
     private float fallTimeoutDelta;
 
-    private const float threshold = 0.01f;
+    private const float lookInputThreshold = 0.01f;
 
-    private CharacterController characterController;
-    private PlayerInput playerInput;
-    private PlayerInputController playerInputController;
+    // controller
+    private CharacterController controller;
+    private PlayerInput input;
+    private PlayerInputController inputController;
+
+    // collision
+    private CollisionFlags collisionFlag;
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
-
-        playerInput = GetComponent<PlayerInput>();
-        playerInputController = GetComponent<PlayerInputController>();
+        controller = GetComponent<CharacterController>();
+        input = GetComponent<PlayerInput>();
+        inputController = GetComponent<PlayerInputController>();
     }
 
     private void Start()
     {
+        // track starting speed
+        startMoveSpeed = MoveSpeed;
+        startSprintSpeed = SprintSpeed;
+        
         // reset timeouts on start
         jumpTimeoutDelta = JumpTimeout;
         fallTimeoutDelta = FallTimeout;
@@ -89,7 +100,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale <= 0.0f) return;
+        if (!CanMove()) return;
 
         JumpAndGravity();
         GroundedCheck();
@@ -98,28 +109,40 @@ public class FirstPersonController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Time.timeScale <= 0.0f) return;
+        if (!CanMove()) return;
 
         CameraRotation();
+    }
+
+    public void ApplyStartSpeed()
+    {
+        MoveSpeed = startMoveSpeed;
+        SprintSpeed = startSprintSpeed;
+    }
+
+    public void ApplyReducedSpeed(float reducePerc)
+    {
+        MoveSpeed *= reducePerc;
+        SprintSpeed *= reducePerc;
     }
 
     private void GroundedCheck()
     {
         // set sphere position, with offset
         Vector3 spherePosition = new(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+        IsGrounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
     }
 
     private void CameraRotation()
     {
         // if there is an input
-        if (playerInputController.Look.sqrMagnitude >= threshold)
+        if (inputController.Look.sqrMagnitude >= lookInputThreshold)
         {
-            //Don't multiply mouse input by Time.deltaTime
-            float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+            // Don't multiply mouse input by Time.deltaTime
+            float deltaTimeMultiplier = input.currentControlScheme == "KeyboardMouse" ? 1.0f : Time.deltaTime;
 
-            cinemachineTargetPitch += playerInputController.Look.y * RotationSpeed * deltaTimeMultiplier;
-            rotationVelocity = playerInputController.Look.x * RotationSpeed * deltaTimeMultiplier;
+            cinemachineTargetPitch += inputController.Look.y * RotationSpeed * deltaTimeMultiplier;
+            rotationVelocity = inputController.Look.x * RotationSpeed * deltaTimeMultiplier;
 
             // clamp our pitch rotation
             cinemachineTargetPitch = ClampAngle(cinemachineTargetPitch, BottomClamp, TopClamp);
@@ -135,26 +158,31 @@ public class FirstPersonController : MonoBehaviour
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = playerInputController.Sprint ? SprintSpeed : MoveSpeed;
+        float targetSpeed = inputController.Sprint ? SprintSpeed : MoveSpeed;
 
-        // set if the player is sprinting
+        // if the player is sprinting
         isSprinting = targetSpeed >= SprintSpeed;
 
+        // if the player is moving foward
+        isMovingForward = inputController.Move.y >= 1f;
+
         // if there is no input, set the target speed to 0
-        if (playerInputController.Move == Vector2.zero) targetSpeed = 0.0f;
+        if (inputController.Move == Vector2.zero)
+        {
+            targetSpeed = 0.0f;
+        }
 
         // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(characterController.velocity.x, 0.0f, characterController.velocity.z).magnitude;
+        float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
         float speedOffset = 0.1f;
-        float inputMagnitude = playerInputController.analogMovement ? playerInputController.Move.magnitude : 1f;
 
         // accelerate or decelerate to target speed
         if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
         {
             // creates curved result rather than a linear one giving a more organic speed change
             // note T in Lerp is clamped, so we don't need to clamp our speed
-            speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
+            speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * 1f, Time.deltaTime * SpeedChangeRate);
 
             // round speed to 3 decimal places
             speed = Mathf.Round(speed * 1000f) / 1000f;
@@ -165,23 +193,23 @@ public class FirstPersonController : MonoBehaviour
         }
 
         // normalise input direction
-        Vector3 inputDirection = new Vector3(playerInputController.Move.x, 0.0f, playerInputController.Move.y).normalized;
+        Vector3 inputDirection = new Vector3(inputController.Move.x, 0.0f, inputController.Move.y).normalized;
 
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
-        if (playerInputController.Move != Vector2.zero)
+        if (inputController.Move != Vector2.zero)
         {
             // move
-            inputDirection = transform.right * playerInputController.Move.x + transform.forward * playerInputController.Move.y;
+            inputDirection = transform.right * inputController.Move.x + transform.forward * inputController.Move.y;
         }
 
         // move the player
-        characterController.Move(inputDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+        collisionFlag = controller.Move(inputDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
     }
 
     private void JumpAndGravity()
     {
-        if (Grounded)
+        if (IsGrounded)
         {
             // reset the fall timeout timer
             fallTimeoutDelta = FallTimeout;
@@ -193,7 +221,7 @@ public class FirstPersonController : MonoBehaviour
             }
 
             // Jump
-            if (playerInputController.Jump && jumpTimeoutDelta <= 0.0f)
+            if (inputController.Jump && jumpTimeoutDelta <= 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
@@ -217,7 +245,7 @@ public class FirstPersonController : MonoBehaviour
             }
 
             // if we are not grounded, do not jump
-            playerInputController.Jump = false;
+            inputController.Jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -227,10 +255,16 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    private bool CanMove()
+    {
+        return MoveSpeed > 0f && SprintSpeed > 0f && Time.timeScale > 0.0f;
+    }
+
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
         if (lfAngle < -360f) lfAngle += 360f;
         if (lfAngle > 360f) lfAngle -= 360f;
+
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
 
@@ -239,7 +273,7 @@ public class FirstPersonController : MonoBehaviour
         Color transparentGreen = new(0.0f, 1.0f, 0.0f, 0.35f);
         Color transparentRed = new(1.0f, 0.0f, 0.0f, 0.35f);
 
-        Gizmos.color = Grounded ? transparentGreen : transparentRed;
+        Gizmos.color = IsGrounded ? transparentGreen : transparentRed;
 
         // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);

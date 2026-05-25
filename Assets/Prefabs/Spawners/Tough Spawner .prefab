@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 123
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &689231036321686111
 Transform:
@@ -45,23 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f7e7988a71f1845ad3a2b8b5d8cfaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntitySpawner
-  OnEntitySpawned:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBossEntitySpawned:
-    m_PersistentCalls:
-      m_Calls: []
   entities:
-  - {fileID: 2769687563528942743, guid: 44952bb24eab2d1409e8cc9ef520b756, type: 3}
-  spawnStartDelay: 40
+  - {fileID: 7856697680124627415, guid: b1bd772f5e4844b4398e61be8382b7de, type: 3}
+  spawnStartDelay: 30
   respawnDelay: 20
   randomSpawnPoint: 0
   spawnPointRange: {x: -5, y: 5}
-  destroyOnSpawn: 0
-  OnBeforeSpawnerDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-  spawnOnParticleCollison: 1
+  spawnOnCollison: 1
   yOffset: 0
 --- !u!114 &347289156427512186
 MonoBehaviour:
@@ -75,4 +65,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ba6cb0f60fb9743a944d386220869f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleSpawner
-  particle: {fileID: 8652355944447386911, guid: ebc5e41e033bdeb4f84e18c2865c7693, type: 3}
+  particle: {fileID: 5331484368290223593, guid: bb7bfeb0ba964ee4dbac6e9139cc488e, type: 3}

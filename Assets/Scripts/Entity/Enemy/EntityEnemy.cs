@@ -2,25 +2,23 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(AgentDestinationController))]
-[RequireComponent(typeof(LookAtTarget))]
 public class EntityEnemy : Entity
 {
     public static readonly int MotionSpeedHash = Animator.StringToHash("MotionSpeed");
     public static readonly int IsDeadHash = Animator.StringToHash("IsDead");
     public static readonly int AttackHash = Animator.StringToHash("Attack");
+    public static readonly int AttackSpeedHash = Animator.StringToHash("AttackSpeed");
 
-    public const string ATTACK_STATE_TAG = "Attack";
-    public const string HIT_FRONT_STATE_NAME = "GetHitBack";
-    public const string HIT_BACK_STATE_NAME = "GetHitFront";
+    public const string AttackStateTag = "Attack";
+    public const string HitFrontStateName = "GetHitBack";
+    public const string HitBackStateName = "GetHitFront";
 
-    public bool CanAttack => canAttackTarget;
+    public bool CanAttack => canAttack;
     public float CurrentSpeed => currentSpeed;
     public float CurrentPlayerDistance => currentPlayerDistance;
     public NavMeshAgent Agent => agent;
-    public AgentDestinationController DestinationController => destinationController;
-    public LookAtTarget LookAtTarget => lookAtTarget;
 
+    [Header("Attack")]
     [SerializeField]
     private int damage = 20;
 
@@ -28,12 +26,17 @@ public class EntityEnemy : Entity
     private float attackRange = 1f;
 
     [SerializeField]
+    private float attackSpeed = 1f;
+
+    [Header("Death")]
+    [SerializeField]
     private float despawnDelay = 5f;
 
     [SerializeField]
     private float massOnDeath = 50f;
 
-    [SerializeField, Header("Audio")]
+    [Header("Audio")]
+    [SerializeField]
     private AudioClip[] idleClips;
 
     [SerializeField, Tooltip("Idle sound repeat rate in seconds")]
@@ -51,31 +54,35 @@ public class EntityEnemy : Entity
     [SerializeField, Range(0f, 1f)]
     private float volume = 1f;
 
-    private NavMeshAgent agent;
-    private AgentDestinationController destinationController;
-    private LookAtTarget lookAtTarget;
+    [Header("Animation")]
+    [SerializeField]
+    private bool hasHitAnimation = false;
 
-    private bool canAttackTarget = false;
+    private NavMeshAgent agent;
+    private EntityPlayer player;
+
     private float currentSpeed;
     private float currentPlayerDistance;
+    private bool canAttack = false;
 
     protected override void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        destinationController = GetComponent<AgentDestinationController>();
-        lookAtTarget = GetComponent<LookAtTarget>();
-
         base.Awake();
     }
 
     protected override void Start()
-    {
+    {        
         if (attackRange < agent.stoppingDistance)
         {
-            Debug.LogWarning($"[{this}] Attack range should not be less than the agent stopping distance. Setting attack range to {agent.stoppingDistance}.");
+            Debug.LogWarning($"[{name}] Attack range should not be less than the agent stopping distance. Setting attack range to {agent.stoppingDistance}.");
             attackRange = agent.stoppingDistance;
         }
-        
+
+        player = GameManager.Instance.Player;
+
+        Animator.SetFloat(AttackSpeedHash, attackSpeed);
+
         base.Start();
     }
 
@@ -93,48 +100,67 @@ public class EntityEnemy : Entity
     {
         if (IsDead) return;
 
-        // Make the target look in the direction its heading
-        lookAtTarget.SetLookTarget(agent.destination);
-
-        // Cache the magnitude once per frame to avoid calculating it twice
+        // Cache the magnitude to avoid calculating it more than once per frame
         currentSpeed = agent.velocity.magnitude;
-        currentPlayerDistance = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
+
+        // Convert to local space
+        Vector3 localVelocity = transform.InverseTransformDirection(agent.velocity);
+        float forwardSpeed = localVelocity.z;
+
+        // Normalize the speed for the blendtree
+        Animator.SetFloat(MotionSpeedHash, Mathf.InverseLerp(0f, 1f, forwardSpeed));
+
+        // The current distance from the player
+        currentPlayerDistance = Vector3.Distance(transform.position, player.transform.position);
 
         // Verify the agent is in range of the player
-        canAttackTarget = currentPlayerDistance <= attackRange && currentSpeed < 0.1f;
+        canAttack = currentPlayerDistance <= attackRange && currentSpeed < 0.1f;
 
         if (!agent.pathPending && agent.hasPath && agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (canAttackTarget && !IsAnimationPlaying(0, ATTACK_STATE_TAG))
+            // If we can attack the target and the attack animation is not already playing
+            if (canAttack && !IsAnimationPlaying(0, AttackStateTag))
             {
                 // Trigger attack animation
                 Animator.SetTrigger(AttackHash);
             }
         }
 
-        // reset attack trigger if the target is out of range
-        if (!canAttackTarget)
+        // Reset attack trigger if the target is out of range
+        if (!canAttack)
         {
             Animator.ResetTrigger(AttackHash);
         }
-
-        // Set the movement speed for animation blend
-        Animator.SetFloat(MotionSpeedHash, currentSpeed);
     }
 
     public override void TakeDamage(int value, DamageType type)
     {
-        PlayAudioClip(GetRandomClip(painClips), volume);
-
         base.TakeDamage(value, type);
+
+        if (hasHitAnimation)
+        {
+            PlayHitAnimation(0);
+        }
+
+        // stop healing if being attacked
+        IsHealing = false;
+
+        PlayAudioClip(GetRandomClip(painClips), volume);
     }
 
     public override void Die()
     {
+        base.Die();
+
         // stop agent from moving
         agent.isStopped = true;
         agent.enabled = false;
-        lookAtTarget.enabled = false;
+
+        // stop looking at the target
+        if (TryGetComponent(out LookAt look))
+        {
+            look.Target = null;
+        }
 
         // trigger death animation
         Animator.SetBool(IsDeadHash, true);
@@ -146,38 +172,42 @@ public class EntityEnemy : Entity
         rb.freezeRotation = true;
         rb.useGravity = true;
 
+        // stop idle sound loop
+        CancelInvoke(nameof(PlayIdleClip));
+
         // play death sound clip
         PlayAudioClip(GetRandomClip(deathClips), volume);
 
         // despawn cleanup
         Destroy(gameObject, despawnDelay);
-
-        base.Die();
     }
 
-    // called by an animation event on the attack animation
-    public void OnAttackHit()
-    {   
-        GameManager.Instance.Player.TakeDamage(damage, DamageType.Entity);
+    // should be called from an animation event on the attack animation
+    public virtual void OnAttackHit()
+    {
+        player.TakeDamage(damage, DamageType.Entity);
         PlayAudioClip(GetRandomClip(attackClips), volume);
     }
 
-    public void PlayHitAnimation(Transform target)
+    private void PlayHitAnimation(int layer)
     {
-        Vector3 targetDirection = transform.position - target.position;
+        // Get the direction from the player to the target
+        Vector3 directionToPlayer = transform.position - player.transform.position;
+        directionToPlayer.y = 0; // Flatten the height difference
 
-        // 1 for front facing, 0 for back facing
-        float directionFacingTarget = Vector3.Dot(target.forward, targetDirection);
+        // A positive value means facing toward, negative means facing away
+        float cosOfAngleToPlayer = Vector3.Dot(transform.forward, directionToPlayer.normalized);
 
-        PlayAnimation(directionFacingTarget > 0 ? HIT_FRONT_STATE_NAME : HIT_BACK_STATE_NAME, 0);
+        // If positive, the hit came from the front. If negative, the hit came from behind.
+        PlayAnimation(cosOfAngleToPlayer > 0 ? HitFrontStateName : HitBackStateName, layer);
     }
 
-    public void PlayIdleClip()
+    private void PlayIdleClip()
     {
         PlayAudioClip(GetRandomClip(idleClips), volume);
     }
 
-    public AudioClip GetRandomClip(AudioClip[] clips)
+    private AudioClip GetRandomClip(AudioClip[] clips)
     {
         return clips[Random.Range(0, clips.Length)];
     }

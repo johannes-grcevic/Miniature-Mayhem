@@ -1,4 +1,3 @@
-using ConditionalField;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,17 +8,16 @@ public class Weapon : MonoBehaviour
     public static readonly int IsAimingHash = Animator.StringToHash("IsAiming");
     public bool IsAiming => isAiming;
 
-    [SerializeField, Header("Input")] 
+    [Header("Input")]
+    [SerializeField] 
     private InputActionReference fireAction;
 
     [SerializeField]
     private InputActionReference aimAction;
 
-    [SerializeField, Header("Weapon")]
-    private int damage = 10;
-
-    [SerializeField, Tooltip("How many projectiles the weapon fires per second.")]
-    private float fireRate = 5f;
+    [Header("Weapon")]
+    [SerializeField, Tooltip("How many times the weapon fires per second.")]
+    private float fireRate = 2f;
 
     [SerializeField, Header("Projectile")]
     private Projectile projectile;
@@ -27,7 +25,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform projectileJoint;
 
-    [SerializeField, Header("Sights")]
+    [Header("Sights")]
+    [SerializeField]
     private GameObject crosshair;
 
     [SerializeField]
@@ -43,7 +42,8 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private float zoomSpeed = 3f;
 
-    [SerializeField, Header("Audio")]
+    [Header("Audio")]
+    [SerializeField]
     private AudioClip fireSound;
 
     [SerializeField, Range(0f, 1f)]
@@ -108,31 +108,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void DoDamage(Entity target, int amount)
-    {
-        if (target.IsDead) return;
-
-        target.TakeDamage(amount, DamageType.Weapon);
-
-        if (target is EntityEnemy enemy)
-        {
-            enemy.PlayHitAnimation(GameManager.Instance.Player.transform);
-        }
-    }
-
-    private void OnProjectileCollision(GameObject other)
-    {
-        if (other.TryGetComponent(out Entity entity))
-        {
-            DoDamage(entity, damage);
-        }
-    }
-
     private void ExecuteFire()
     {
-        Instantiate(projectile, projectileJoint.position, projectileJoint.rotation)
-            .OnCollision += OnProjectileCollision;
-
+        Instantiate(projectile, projectileJoint.position, projectileJoint.rotation);
         weaponSource.PlayOneShot(fireSound, volumeScale);
     }
 }

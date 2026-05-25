@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -6,7 +5,7 @@ using UnityEngine;
 public class HealAOE : MonoBehaviour
 {
     [SerializeField]
-    private EntityType[] targetTypes;
+    private EntityType targetType;
 
     [SerializeField]
     private int healAmount = 1;
@@ -14,20 +13,24 @@ public class HealAOE : MonoBehaviour
     [SerializeField, Tooltip("The delay in seconds between each heal")]
     private float healInterval = 1f;
 
-    [SerializeField, Range(0, 100), Tooltip("Heal the target up to a percentage of their max health")]
-    private int maxHealAmountPerc = 50;
-
     [SerializeField, Header("VFX")]
-    private ParticleSystem healingParticle;
+    private ParticleSystem healParticle;
+
+    [SerializeField]
+    private ParticleSystemStopBehavior healStopBehavior;
+
+    [SerializeField]
+    private ParticleSystemStopAction healStopAction;
 
     [SerializeField, Header("Audio")]
-    private AudioClip healingClip;
+    private AudioClip healClip;
 
     [SerializeField]
     private float volumeScale = 1.0f;
 
     private AudioSource healSource;
-    private ParticleSystem attachedParticle;
+
+    private ParticleSystem currentHealParticle;
     private float healTimer;
 
     private void Awake()
@@ -36,73 +39,114 @@ public class HealAOE : MonoBehaviour
     }
 
     private void Start()
-    {      
-        healSource.clip = healingClip;
+    {
+        healSource.clip = healClip;
         healSource.volume = volumeScale;
+
         healTimer = 0f;
+
+        InitHealParticle();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent(out Entity collidingEntity)) return;
-        
-        if (IsValidTarget(collidingEntity))
+        if (!IsValidTarget(other, out Entity target)) return;
+
+        if (target.CanHeal)
         {
-            OnHealStart(other.transform);
+            OnHealStart(target);
         }
     }
 
     private void OnTriggerStay(Collider other)
-    {   
-        if (!other.TryGetComponent(out Entity collidingEntity)) return;
+    {
+        if (!IsValidTarget(other, out Entity target)) return;
 
-        if (!IsValidTarget(collidingEntity))
+        if (target.CanHeal)
         {
-            OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear);
-            return;
+            OnHealStay(target);
         }
 
-        healTimer += Time.deltaTime;
-        if (healTimer > healInterval)
+        if (!target.CanHeal && target.IsHealing)
         {
-            collidingEntity.Heal(healAmount);
-            healTimer = 0f;
+            OnHealStop(target);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!attachedParticle) return;
+        if (!IsValidTarget(other, out Entity target)) return;
 
-        OnHealStop(ParticleSystemStopBehavior.StopEmittingAndClear);
+        OnHealStop(target);
     }
 
-    public void OnHealStart(Transform attachTransform)
+    public void OnHealStart(Entity other)
     {
         healSource.Play();
+
+        other.IsHealing = true;
         
-        if (healingParticle)
+        if (healParticle)
         {
-            attachedParticle = Instantiate(healingParticle, attachTransform);
-            attachedParticle.Play(attachedParticle.transform.childCount > 0);
+            currentHealParticle = Instantiate(healParticle, transform);
+            currentHealParticle.Play(currentHealParticle.transform.childCount > 0);
         }
     }
 
-    public void OnHealStop(ParticleSystemStopBehavior stopBehavior)
+    public void OnHealStay(Entity other)
     {
+        healTimer += Time.deltaTime;
+        if (healTimer > healInterval)
+        {
+            other.Heal(healAmount);
+
+            // reset the heal timer
+            healTimer = 0f;
+        }
+    }
+
+    public void OnHealStop(Entity other)
+    {        
         healSource.Stop();
 
-        if (attachedParticle.isPlaying)
-        {
-            attachedParticle.Stop(attachedParticle.transform.childCount > 0, stopBehavior);
-        }
+        other.IsHealing = false;
 
-        // clean up particles
-        Destroy(attachedParticle, healingParticle.main.duration);
+        // reset the heal timer
+        healTimer = 0f;
+
+        // stop playing particles
+        if (currentHealParticle)
+        {
+            currentHealParticle.Stop(currentHealParticle.transform.childCount > 0, healStopBehavior);
+        }
     }
 
-    private bool IsValidTarget(Entity target)
+    private bool IsValidTarget(Collider other, out Entity target)
     {
-        return targetTypes.Any(type => type == target.EntityType) && target.CurrentHealthPerc < maxHealAmountPerc;
+        return TryGetCollidingEntity(other, out target) && target.Type == targetType;
+    }
+
+    private bool TryGetCollidingEntity(Collider other, out Entity colliding)
+    {
+        return other.TryGetComponent(out colliding);
+    }
+
+    private void InitHealParticle()
+    {
+        // set up particle stop action
+        var mainModule = healParticle.main;
+        mainModule.stopAction = healStopAction;
+
+        // set up child particles if they exist
+        if (healParticle.transform.childCount <= 0) return;
+
+        foreach (Transform child in healParticle.transform)
+        {
+            if (child.TryGetComponent(out ParticleSystem childParticle))
+            {
+                var childMainModule = childParticle.main;
+                childMainModule.stopAction = healStopAction;
+            }
+        }
     }
 }

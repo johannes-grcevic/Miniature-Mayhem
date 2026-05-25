@@ -7,7 +7,7 @@ public class PostProcessController : MonoBehaviour
     [SerializeField]
     private Volume volume;
 
-    public void UpdateDepthOfField(GameState state)
+    public void ChangeDepthOfFieldState(GameState state)
     {
         if (volume.profile.TryGet(out DepthOfField depthOfField))
         {

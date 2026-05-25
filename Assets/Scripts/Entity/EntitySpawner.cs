@@ -2,39 +2,30 @@ using ConditionalField;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class EntitySpawner : MonoBehaviour
-{
-    public UnityEvent<EntityType, Vector3, Quaternion> OnEntitySpawned;
-    public UnityEvent<EntityType> OnBossEntitySpawned;
-    
+{  
+    [Header("Spawner")]
     [SerializeField]
     private Entity[] entities;
 
-    [Header("Spawner")]
     [SerializeField]
     private float spawnStartDelay = 1.0f;
 
     [SerializeField]
     private float respawnDelay = 10f;
 
-    [SerializeField, Space(10), ConditionalField(nameof(spawnOnParticleCollison), Conditional.Options.Invert)]
+    [SerializeField, Space(10), ConditionalField(nameof(spawnOnCollison), Conditional.Options.Invert)]
     private bool randomSpawnPoint = false;
 
     [SerializeField, ConditionalField(nameof(randomSpawnPoint))]
     private Vector2 spawnPointRange = new(-5f, 5f);
 
-    [SerializeField, Header("Behavior")]
-    private bool destroyOnSpawn = false;
+    [Header("Particle Spawner")]
+    [SerializeField]
+    private bool spawnOnCollison;
 
-    [SerializeField, ConditionalField(nameof(destroyOnSpawn))]
-    private UnityEvent OnBeforeSpawnerDestroyed;
-
-    [SerializeField, Header("VFX Spawner")]
-    private bool spawnOnParticleCollison;
-
-    [SerializeField, ConditionalField(nameof(spawnOnParticleCollison)), Range(0f, 600f)]
+    [SerializeField, ConditionalField(nameof(spawnOnCollison)), Range(0f, 600f)]
     private float yOffset = 50f;
 
     private ParticleSpawner particleSpawner;
@@ -63,18 +54,17 @@ public class EntitySpawner : MonoBehaviour
             // Wait for the respawn delay before spawning another entity
             await Awaitable.WaitForSecondsAsync(Time.time > spawnStartDelay ? respawnDelay : spawnStartDelay, token);
 
-            if (spawnOnParticleCollison && hasParticleSpawner)
+            if (spawnOnCollison && hasParticleSpawner)
             {
                 ParticleSystem ps = particleSpawner.SpawnParticle(TerrainUtils.GetRandomPosition(Terrain.activeTerrain, yOffset), Quaternion.identity);
 
-                if (ps.TryGetComponent(out ParticleCollisionHandler handler))
+                if (ps.TryGetComponent(out ParticleCollisionHandler collisionHandler))
                 {
-                    handler.OnFirstCollision.AddListener(HandleParticleCollisonSpawn);
+                    collisionHandler.OnFirstCollision.AddListener(OnSpawnParticleFirstCollision);
                 }
                 else
                 {
-                    ps.gameObject.AddComponent<ParticleCollisionHandler>()
-                        .OnFirstCollision.AddListener(HandleParticleCollisonSpawn);
+                    ps.gameObject.AddComponent<ParticleCollisionHandler>().OnFirstCollision.AddListener(OnSpawnParticleFirstCollision);
                 }
             }
             else
@@ -92,17 +82,14 @@ public class EntitySpawner : MonoBehaviour
                 }
                 else
                 {
-                    Entity randomEntity = GetRandomEntity();
-                    SpawnEntity(randomEntity, spawnPosition, randomEntity.transform.rotation);
+                    Entity random = GetRandomEntity();
+                    SpawnEntity(random, spawnPosition, random.transform.rotation);
                 }
             }
-
-            // Break the loop if the spawner self-destructed
-            if (destroyOnSpawn) break;
         }
     }
 
-    public void HandleParticleCollisonSpawn(ParticleSystem ps, GameObject other)
+    public void OnSpawnParticleFirstCollision(ParticleSystem ps, GameObject other)
     {    
         List<ParticleCollisionEvent> collisionEvents = new();
         ps.GetCollisionEvents(other, collisionEvents);
@@ -113,29 +100,19 @@ public class EntitySpawner : MonoBehaviour
 
     public Entity SpawnEntity(Entity entity, Vector3 position, Quaternion rotation)
     {
-        if (!spawnOnParticleCollison && hasParticleSpawner)
+        if (hasParticleSpawner)
         {
             // spawn a particle to mask entity spawning
             particleSpawner.SpawnParticle(position, rotation);
         }
 
         Entity spawnedEntity = Instantiate(entity, position, rotation);
-        spawnedEntity.SetSpawnPoint(spawnOnParticleCollison ? position : transform.position);
 
         // set the spawn point without any offset applied
-        OnEntitySpawned.Invoke(spawnedEntity.EntityType, position, rotation);
+        spawnedEntity.SetSpawnPoint(spawnOnCollison ? position : transform.position);
 
-        if (spawnedEntity.EntityType == EntityType.Boss)
-        {
-            OnBossEntitySpawned.Invoke(spawnedEntity.EntityType);
-        }
-
-        // destroy the spawner to stop more spawns
-        if (destroyOnSpawn && hasParticleSpawner)
-        {
-            OnBeforeSpawnerDestroyed.Invoke();
-            Destroy(gameObject, particleSpawner.SpawnParticle(position, rotation).main.duration);
-        }
+        // start a dynamic music track based on the entity type
+        MusicManager.Instance.StartTrack(spawnedEntity.Type);
 
         return spawnedEntity;
     }

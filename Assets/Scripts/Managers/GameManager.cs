@@ -2,29 +2,37 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public EntityPlayer Player => player;
+    public Transform PlayerTransform => playerTransform;
 
     private EntityPlayer player;
+    private Transform playerTransform;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (!Instance)
-        {
-            Instance = this;
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        base.Awake();
+    }
 
-        DontDestroyOnLoad(gameObject);
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (!player && playerObject)
+    protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+        switch (scene.name)
         {
-            if (!playerObject.TryGetComponent(out player))
-            {
-                Debug.LogWarning($"[{this}] Could not find a player in the scene.");
-            }
+            case SceneNames.MainGame:
+                FindPlayerInScene();
+                break;
+            case SceneNames.MainMenu:
+                GameController.Instance.ChangeGameState(GameState.MainMenu);
+                break;
+            default:
+                break;
         }
     }
 
@@ -34,32 +42,44 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = lockMode;
     }
 
-    public void StartGame()
-    {
-        LoadScene(SceneNames.MainGame);
-    }
-
-    public void LoadMainMenu()
-    {
-        LoadScene(SceneNames.MainMenu);
-    }
-
-    public void RestartCurrentLevel()
-    {
-        LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void Quit(int exitCode = 0)
+    public void Quit()
     {
 #if UNITY_EDITOR        
         EditorApplication.ExitPlaymode();
 #else
-        Application.Quit(exitCode);
+        Application.Quit();
 #endif
     }
 
-    private void LoadScene(string name, LoadSceneMode mode = LoadSceneMode.Single)
+    public void LoadMainMenu()
     {
-        SceneManager.LoadScene(name, mode);
+        SetCursor(true, CursorLockMode.None);
+        LoadScene(SceneNames.MainMenu);
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void FindPlayerInScene()
+    {
+        var playerGO = GameObject.FindWithTag("Player");
+
+        if (!playerGO)
+        {
+            Debug.LogError($"[{this}] Could not find an active player in the scene.");
+            return;
+        }
+
+        if (playerGO.TryGetComponent(out player))
+        {
+            playerTransform = player.transform;
+        }
+    }
+
+    private void LoadScene(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }

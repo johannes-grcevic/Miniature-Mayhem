@@ -38,7 +38,7 @@ ModelImporter:
       lastFrame: 78
       wrapMode: 0
       orientationOffsetY: 0
-      level: -0.15
+      level: 0.7
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -48,7 +48,7 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
@@ -70,8 +70,8 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0

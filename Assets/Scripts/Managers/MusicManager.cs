@@ -1,13 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MusicManager : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class MusicManager : Singleton<MusicManager>
 {
-    public static MusicManager Instance { get; private set; }
-
     [Header("Dynamic Music")]
-    [SerializeField]
-    private AudioSource musicSource;
-
     [SerializeField]
     private float fadeInVolume = 1f;
 
@@ -17,14 +14,29 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     private float fadeDuration = 2.0f;
 
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
+    private AudioSource musicSource;
 
-        DontDestroyOnLoad(gameObject);
+    protected override void Awake()
+    {
+        musicSource = GetComponent<AudioSource>();
+
+        base.Awake();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneUnloaded += OnSceneUnload;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneUnloaded -= OnSceneUnload;
+    }
+
+    public void OnSceneUnload(Scene scene)
+    {
+        // stop the music from playing if we go to the main menu
+        musicSource.Stop();
     }
 
     public async void StartTrack(EntityType type)
